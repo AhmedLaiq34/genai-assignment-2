@@ -1,5 +1,7 @@
 # Generative AI Assignment 2
 
+**Current compute route:** Kaggle is planned for research; CLI authentication is verified, while job execution and runtime are still unverified. Earlier Colab instructions and results below are historical. Start with [Kaggle setup](docs/kaggle_setup.md). The final app remains local.
+
 This workspace implements a small research prototype for matching patient
 descriptions to individual clinical-trial criteria. It is not a clinical
 decision system.

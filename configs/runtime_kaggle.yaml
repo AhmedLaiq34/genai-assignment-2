@@ -1,0 +1,16 @@
+profile: kaggle
+project_root: /kaggle/working/Gen_AI_Assignment_2
+cache_root: /kaggle/working/.cache
+model_cache: /kaggle/working/.cache/huggingface
+active_work_dir: /kaggle/working
+persistent_artifact_dir: /kaggle/working/output_bundle
+results_dir: results
+device: cuda
+preferred_dtype: float16
+allow_cpu_fallback: true
+max_prompt_tokens: 1024
+max_new_tokens: 96
+batch_size: 1
+num_workers: 0
+max_concurrent_inference_requests: 1
+gpu_allocation_verified: false

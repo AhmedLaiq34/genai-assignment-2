@@ -36,7 +36,7 @@ def main() -> None:
     if token_report['split_manifest_sha256'] != expected or set(token_report['splits']) != {'train', 'validation'}:
         raise ValueError('Token audit is not tied to the canonical development splits')
     profile = os.environ.get('PROJECT_RUNTIME_PROFILE', 'local')
-    if profile not in {'local', 'colab'}:
+    if profile not in {'local', 'colab', 'kaggle'}:
         raise ValueError('Unknown runtime profile')
     report = {
         'recorded_at_utc': datetime.now(timezone.utc).isoformat(),

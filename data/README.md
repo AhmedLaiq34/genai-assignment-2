@@ -18,7 +18,7 @@ The student has approved excluding source annotation 883, whose criterion is mis
 .\.venv\Scripts\python.exe -m pytest tests/test_data.py tests/test_prepare_data.py tests/test_phase2_contracts.py -q
 ```
 
-The tokenizer audit needs the pinned target tokenizer in the configured local Hugging Face cache. Phase 1 already downloaded it under D:. For Colab, set `HF_HUB_CACHE` to the prepared `/content` cache. The audit never loads the test JSONL.
+The tokenizer audit needs the pinned target tokenizer in the configured local Hugging Face cache. Phase 1 already downloaded it under D:. For Kaggle, set `HF_HUB_CACHE` to the prepared `/kaggle/working` cache. The audit never loads the test JSONL.
 
 ## Produced files and split rules
 

@@ -21,7 +21,6 @@ ROOT = Path(__file__).resolve().parent
 PDF_DIR = ROOT / 'pdf'
 QA_DIR = ROOT.parent / 'tmp' / 'pdfs'
 PDF_DIR.mkdir(parents=True, exist_ok=True)
-QA_DIR.mkdir(parents=True, exist_ok=True)
 
 for name, file in [('Plan','calibri.ttf'), ('PlanBold','calibrib.ttf'),
                    ('PlanItalic','calibrii.ttf'), ('PlanMono','consola.ttf')]:
@@ -74,7 +73,7 @@ class PlanDoc(BaseDocTemplate):
         canvas.setFont('Plan',8)
         canvas.setFillColor(MUTED)
         canvas.drawString(LEFT,PAGE_H-25,'GEN AI ASSIGNMENT 2  /  IMPLEMENTATION MASTER PLAN')
-        canvas.drawString(LEFT,25,'Revised 9 November 2026  |  Colab research / local application')
+        canvas.drawString(LEFT,25,'Revised 9 November 2026  |  Kaggle research / local application')
         canvas.drawRightString(PAGE_W-RIGHT,25,str(doc.page))
         canvas.restoreState()
     def afterFlowable(self, flowable):
@@ -166,11 +165,11 @@ cover.append(Spacer(1,58))
 cover.append(Paragraph('GENERATIVE AI / ASSIGNMENT 2',ParagraphStyle('Kicker',fontName='PlanBold',fontSize=11,textColor=TEAL,spaceAfter=20)))
 cover.append(Paragraph('Complete<br/>Master Plan',ParagraphStyle('CoverTitle',fontName='PlanBold',fontSize=38,leading=43,textColor=NAVY,spaceAfter=24)))
 cover.append(Paragraph('Clinical criterion matching with a fine-tuned Transformer',ParagraphStyle('Subtitle',fontName='Plan',fontSize=17,leading=23,textColor=INK,spaceAfter=27)))
-cover.append(Paragraph('12 sequential phases. Colab-first research compute. Independent local application. Complete rubric traceability.',styles['BodyPlan']))
+cover.append(Paragraph('12 sequential phases. Kaggle-first research compute. Independent local application. Complete rubric traceability.',styles['BodyPlan']))
 cover.append(Spacer(1,20))
-cover.append(Paragraph('<b>Revised:</b> 9 November 2026, Asia/Karachi<br/><b>Assignment deadline:</b> 10 November 2026; verify Classroom clock time<br/><b>Local device:</b> RTX 3050 Laptop 6 GB / 16 GB RAM / Windows 11<br/><b>Research compute:</b> free Colab, subject to verified allocation',styles['BodyPlan']))
+cover.append(Paragraph('<b>Revised:</b> 9 November 2026, Asia/Karachi<br/><b>Assignment deadline:</b> 10 November 2026; verify Classroom clock time<br/><b>Local device:</b> RTX 3050 Laptop 6 GB / 16 GB RAM / Windows 11<br/><b>Research compute:</b> free Kaggle, subject to verified allocation',styles['BodyPlan']))
 cover.append(Spacer(1,24))
-cover.append(Paragraph('<b>Planning status</b><br/>Assignment, local device and Colab service guidance inspected. Dataset structure/split counts verified. No Colab allocation, training run or performance result is claimed. The detailed assignment rubric totals 135 marks despite its 100-mark heading.',styles['BodyPlan']))
+cover.append(Paragraph('<b>Planning status</b><br/>Dataset preparation and a historical synthetic Colab pilot are documented. Kaggle allocation and clinical performance remain unverified. The detailed assignment rubric totals 135 marks despite its 100-mark heading.',styles['BodyPlan']))
 cover.append(PageBreak())
 cover.append(Paragraph('Contents',styles['H2Plan']))
 toc=TableOfContents()
@@ -184,24 +183,8 @@ body=text[text.index('## 1. Read this first'):]
 dest=PDF_DIR/'GenAI_Assignment_2_Master_Plan.pdf'
 PlanDoc(dest).multiBuild(cover+body_story(body))
 
-# Render every final page for layout QA, plus source pages containing the rubric.
+# Render in memory for visual quality checks.
 doc=fitz.open(dest)
-for idx,page in enumerate(doc):
-    page.get_pixmap(matrix=fitz.Matrix(1.25,1.25),alpha=False).save(QA_DIR/f'plan-{idx+1:02}.png')
-source=fitz.open(ROOT.parent/'GenAI_Assignment#2.pdf')
-for idx in [3,4,5,6]:
-    source[idx].get_pixmap(matrix=fitz.Matrix(1.2,1.2),alpha=False).save(QA_DIR/f'source-{idx+1}.png')
-
-from PIL import Image, ImageOps, ImageDraw
-for start in range(0,len(doc),9):
-    sheet=Image.new('RGB',(1200,1710),'#ccd4dc')
-    draw=ImageDraw.Draw(sheet)
-    for offset in range(min(9,len(doc)-start)):
-        im=Image.open(QA_DIR/f'plan-{start+offset+1:02}.png')
-        im.thumbnail((385,540))
-        x=(offset%3)*400+(400-im.width)//2
-        y=(offset//3)*570+22
-        sheet.paste(im,(x,y)); draw.text((x,y-17),f'Page {start+offset+1}',fill='black')
-    sheet.save(QA_DIR/f'contact-{start//9+1}.png')
-print(f'Built {dest}; {len(doc)} pages; {len(text.split())} Markdown words')
-print('Page text coverage:',[(i+1,len(p.get_text())) for i,p in enumerate(doc)])
+for page in doc:
+    page.get_pixmap(matrix=fitz.Matrix(1,1), alpha=False)
+print(f'Built {dest}; {len(doc)} pages')

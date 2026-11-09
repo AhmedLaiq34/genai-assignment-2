@@ -1,0 +1,17 @@
+{
+  "recorded_at_utc": "2026-11-09T14:59:05.244485+00:00",
+  "provider": "Kaggle",
+  "cli_version": "2.2.5",
+  "authentication": "quota_query_succeeded",
+  "quota_snapshot": {
+    "gpu_remaining_hours": 30.0,
+    "gpu_total_hours": 30.0,
+    "refresh_at_utc": "2026-11-14T00:00:00Z"
+  },
+  "job": "ahmedlaiq34/trialgpt-phase-2-verification",
+  "job_version": 1,
+  "submitted_source_sha256": "6d626bdd4923f75e3d7ef245a4815ecb0346056af90ae5650a7f038f2d7f339b",
+  "last_observed_status": "QUEUED",
+  "runtime_verification_passed": false,
+  "notes": "CPU private job; no training performed. Queue status is a snapshot."
+}

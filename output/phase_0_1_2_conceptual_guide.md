@@ -23,10 +23,10 @@ Training and running a language model requires software, memory, and a suitable 
 
 We therefore chose two roles for our computers:
 
-1. **Colab for research computation**, if a suitable free GPU is available. We can run training and experiments in an interactive cloud session.
-2. **Your laptop for development and the final browser application.** Copies of important results and the trained adapter will need to be available locally, so the evaluator does not need an active Colab session.
+1. **Kaggle for research computation**, if the account and a suitable GPU are available. We will submit private notebook jobs and download their outputs. This route is not yet verified.
+2. **Your laptop for development and the final browser application.** Copies of important results and the trained adapter will need to be available locally, so the evaluator does not need an active Kaggle session.
 
-A Python **environment** is an isolated collection of Python and the libraries needed by a project. The local environment is under `.venv` on D:. It has its own Python and packages, so project changes do not require replacing system Python. We also have separate descriptions of the local and Colab environments.
+A Python **environment** is an isolated collection of Python and the libraries needed by a project. The local environment is under `.venv` on D:. It has its own Python and packages, so project changes do not require replacing system Python. We have local and historical Colab environment descriptions; the Kaggle environment still needs measurement.
 
 ### What was actually checked
 
@@ -36,7 +36,7 @@ We also have tools that bundle files, check their hashes, and restore them. A **
 
 ### What remains to be careful about
 
-The free Colab allocation is not guaranteed in a later session. The saved handoff also records a nonzero displayed compute-unit usage rate during the T4 session, so check current account usage before requesting another runtime. The Phase 0/1 checklist identifies some remaining setup details, including notebook bootstrap gaps. The exact Classroom deadline time and live-demo arrangements still need confirmation by you.
+Repeated Colab allocations stalled, so Kaggle is now the planned research provider. Kaggle CLI access works; its job execution, GPU availability and reliable checkpoint recovery still need verification. The saved handoff also records a nonzero displayed compute-unit usage rate during the T4 session, so check current account usage before requesting another runtime. The Phase 0/1 checklist identifies some remaining setup details, including notebook bootstrap gaps. The exact Classroom deadline time and live-demo arrangements still need confirmation by you.
 
 **What to remember:** Phase 0 proved that specific small calculations ran and that report files could be recovered. It did not train the assignment model or prove a future Colab GPU will be available.
 

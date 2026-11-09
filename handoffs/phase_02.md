@@ -1,5 +1,7 @@
 # Phase 2 handoff: dataset preparation and contracts
 
+**Current cloud route:** Kaggle replaces Colab for future research at the user's request. Colab evidence below is historical. Kaggle CLI authentication and quota lookup succeeded, and a private Kaggle CPU verification job was submitted; execution and output recovery remain outstanding. See the [submission snapshot](../results/kaggle_phase02_submission.json), [Kaggle setup](../docs/kaggle_setup.md) and [decision log](../research/decision_log.md).
+
 ## Status and boundary
 
 The preparation pipeline, fixed split, audited exclusion, prompt contracts, development-only tokenization audit and automated checks are implemented. All 1,015 original annotation IDs are accounted for; the source contains **one training row without criterion text**. On 9 November 2026 the student decided to exclude that row from training. The original is retained in the source and audit; the usable training set contains 602 of 603 assigned rows. The row's influence on model quality and the instructor's grading treatment remain unknown.

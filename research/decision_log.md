@@ -1,5 +1,12 @@
 # Project decision log
 
+## 9 November 2026: Kaggle research route
+
+| Decision | Reason and consequences | Evidence and outstanding work |
+|---|---|---|
+| Use Kaggle free-tier jobs for research; retain the laptop for the final app and fallback. | Repeated Colab CLI allocations stalled; the user requested the switch. Prior Colab pilot results remain historical feasibility evidence, not Kaggle or clinical-performance evidence. | [Setup](../docs/kaggle_setup.md); [compute strategy](../output/compute_strategy.md). Authentication and quota query succeeded; internet, GPU fit and interrupted-run recovery remain unverified. |
+| Start with a private CPU Phase 2 verification job. | Data and split verification do not require GPU quota. Embed a checksummed source archive without credentials or raw or prepared patient data. | [Job builder](../scripts/prepare_kaggle_job.py); submitted, but actual execution and downloaded report remain outstanding. |
+
 This is the continuing record of decisions for all phases. Add an entry when a material choice is made or changed, including rationale, evidence, limitations and the person or basis for the decision. Past observations are snapshots, not guarantees. Do not record test-derived tuning choices as if they were made before seeing the test.
 
 ## Phases 0 and 1: environment, models and research

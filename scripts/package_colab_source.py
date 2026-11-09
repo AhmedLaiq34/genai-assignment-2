@@ -17,12 +17,14 @@ ROOT_FILES = (
     "Start_App.cmd",
     "requirements-base.txt",
     "requirements-colab.txt",
+    "requirements-kaggle.txt",
     "requirements-data.txt",
     "requirements-dev.txt",
     "checkpoints/README.md",
 )
 SOURCE_DIRS = (
     "configs",
+    "docs",
     "handoffs",
     "notebooks",
     "research",

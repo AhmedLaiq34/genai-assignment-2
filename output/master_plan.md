@@ -1,8 +1,8 @@
 # Generative AI Assignment 2: Complete Master Plan
 
-Prepared on 8 November; revised on **9 November 2026** (Asia/Karachi) for a **Colab-first compute, local-application workflow**.
+Prepared on 8 November; revised on **9 November 2026** (Asia/Karachi) for a **Kaggle-first research, local-application workflow**.
 
-**Purpose:** a sequential implementation guide for an individual student or coding agent. This is a plan, not completed implementation or measured model performance. Proposed settings and time budgets must be validated. The plan covers every stated requirement and every rubric item.
+**Purpose:** a sequential implementation guide for an individual student or coding agent. This is a plan; see the dated handoffs for completed implementation and measured feasibility. Proposed settings and time budgets must be validated. The plan covers every stated requirement and every rubric item.
 
 ## 1. Read this first
 
@@ -16,7 +16,7 @@ The deadline is **10 November 2026**. The PDF does not state a clock time or dea
 
 - Use only `ncbi/TrialGPT-Criterion-Annotations` for core supervised training and comparison [S1]. Keep its six expert labels; inclusion and exclusion have different applicable subsets.
 - Provisional target: `Qwen/Qwen2.5-1.5B-Instruct`; provisional draft: `Qwen/Qwen2.5-0.5B-Instruct` [S3-S4]. Commit only after a real memory smoke test and tokenizer compatibility check.
-- Use **free Colab as the primary training and research-compute environment**, subject to a real allocation/fit check. Keep source development, durable artifact copies, and the final browser application on the laptop. The account's current GPU allocation has not been inspected; this plan does not promise one.
+- Use **free Kaggle as the primary training and research-compute environment**, subject to a real allocation/fit check. Keep source development, durable artifact copies, and the final browser application on the laptop. Kaggle CLI authentication has succeeded, but GPU allocation has not yet been verified; this plan does not promise one.
 - Prefer ordinary 16-bit LoRA on the allocated GPU first. If it cannot fit, use verified 4-bit LoRA or the documented local fallback. Keep inference comparisons at the same target checkpoint and precision; extra cloud memory is not a reason to select a model the final laptop cannot serve.
 - Use PyTorch, Transformers, PEFT, NumPy, scikit-learn and a local Gradio browser application. These are proposed implementation choices; pin versions only after compatibility checks. A locally hosted browser app meets the assignment.
 - Implement the cache loop, tiled online-softmax attention, and greedy speculative algorithm yourself. Libraries may supply model layers, cache containers and reference tests.
@@ -30,7 +30,7 @@ Patient text + typed criteria -> numbered patient sentences -> fixed prompt -> t
 
 The same inference service exposes uncached greedy, cached greedy, and speculative greedy generation. An independent attention module demonstrates dense versus tiled attention and optionally compares a supported PyTorch backend. Benchmark charts always come from saved measurements or a live run.
 
-**Compute decision:** training in Colab is compatible with the assignment's allowance for notebooks and free environments. The final evaluator must launch the independent local app; they must not need to connect, authorize Drive, execute a notebook or acquire a Colab GPU. The detailed comparison and recovery protocol are included below and in `compute_strategy.md`.
+**Compute decision:** training in Kaggle is compatible with the assignment's allowance for notebooks and free environments. The final evaluator must launch the independent local app; they must not need to connect, authorize cloud storage, execute a notebook or acquire a Kaggle GPU. The detailed comparison and recovery protocol are included below and in `compute_strategy.md`.
 
 ## 2. Device feasibility and resource policy
 
@@ -53,39 +53,38 @@ Use D: for `HF_HOME`, `UV_CACHE_DIR`, `PIP_CACHE_DIR`, and task-specific tempora
 
 Use AC power and stable cooling. Close unnecessary applications with the user's normal controls. Begin with `num_workers=0`, batch size 1, one loaded target, and one serialized inference request. Training and app serving should run separately.
 
-### Colab opportunity and allocation decision
+### Kaggle opportunity and allocation decision
 
-**Recommendation: switch the primary compute route to free Colab, while retaining the local app.** With 6 GiB VRAM and little currently free system RAM, local training has tight activation/workspace margins. A larger allocated GPU can reduce that pressure and allow a cleaner 16-bit LoRA experiment. This is a feasibility advantage, not a measured speedup. Colab CPU RAM is separate from VRAM; inspect both rather than assuming all resources improve.
+**Recommendation: switch the primary compute route to free Kaggle, while retaining the local app.** With 6 GiB VRAM and little currently free system RAM, local training has tight activation/workspace margins. A larger allocated GPU can reduce that pressure and allow a cleaner 16-bit LoRA experiment. This is a feasibility advantage, not a measured speedup. Kaggle CPU RAM is separate from VRAM; inspect both rather than assuming all resources improve.
 
-Google documents variable GPU types/limits, no guaranteed free resources, idle termination and an upper session duration of up to 12 hours, subject to availability. Runtime files are temporary. Its free-tier rules also restrict bypassing the notebook UI to interact primarily through a separate web UI [S15]. We therefore use interactive notebook-driven scripts for research and local hosting for the final app. Do not plan around a promised T4, A100, fixed weekly allowance or uninterrupted 12-hour run.
-
+Kaggle provides managed notebook jobs and CLI submission; current GPU quota, internet access, session limits and assigned hardware must be checked on the account. Do not assume a fixed weekly allowance, device, or continuous availability. See [Kaggle setup](../docs/kaggle_setup.md).
 | Option | Opportunity | Cost / failure mode | Decision |
 |---|---|---|---|
 | Laptop only | Stable ownership and direct final-app testing | 6 GiB VRAM, low free RAM, laptop power/thermal constraints | Keep for app, local correctness checks and fallback training. |
-| Free Colab only | Managed Linux compute; more headroom if a suitable GPU is allocated | Allocation uncertainty, restarts, artifact recovery and unsuitable final hosting dependency | Use for research compute, not the complete delivery architecture. |
-| Colab compute + laptop app | Training headroom plus independent final delivery | Two runtime profiles and a tested artifact transfer | Preferred route. |
+| Free Kaggle only | Managed Linux compute; more headroom if a suitable GPU is allocated | Allocation uncertainty, restarts, artifact recovery and unsuitable final hosting dependency | Use for research compute, not the complete delivery architecture. |
+| Kaggle compute + laptop app | Training headroom plus independent final delivery | Two runtime profiles and a tested artifact transfer | Preferred route. |
 
-The assigned GPU matters more than the Colab name. In phase 0 record GPU model, free/total VRAM, compute capability, CPU RAM, disk and current package versions. Then follow this project policy, which is not a Google resource guarantee:
+The assigned GPU matters more than the Kaggle name. In phase 0 record GPU model, free/total VRAM, compute capability, CPU RAM, disk and current package versions. Then follow this project policy, which is not a Kaggle resource guarantee:
 
 - **At least 12 GiB usable VRAM:** first try 16-bit 1.5B LoRA, batch 1, accumulation 8, gradient checkpointing and 1,024 total tokens. Test 2,048 only if data lengths warrant it and a pilot fits. Preserve the chosen effective batch when changing microbatch.
 - **6 to under 12 GiB usable VRAM:** begin at the same short envelope, measure a 10-step pilot and use the fallback ladder if needed. Do not assume an assigned accelerator outperforms the laptop.
 - **No GPU, or an unusable runtime:** time-box setup/allocation troubleshooting to 20-30 minutes, then continue CPU development and use the local training fallback. Revisit available free compute at a natural break; do not spend the deadline repeatedly requesting sessions.
 
-Use FP16 when native BF16 is unavailable. Check capability and finite operations on the actual GPU; do not inherit a model card's BF16 dtype blindly. The model pair remains the proposed 1.5B target and 0.5B draft because the final app must fit the 6 GiB laptop. No Colab runtime or performance measurement has been executed as part of this planning revision.
+Use FP16 when native BF16 is unavailable. Check capability and finite operations on the actual GPU; do not inherit a model card's BF16 dtype blindly. The model pair remains the proposed 1.5B target and 0.5B draft because the final app must fit the 6 GiB laptop. A historical Colab T4 synthetic pilot exists; Kaggle allocation and fit remain unverified.
 
 ### Two runtime profiles and durable handoff
 
-Keep one portable Python source tree and one set of dataset/model/prompt definitions. Use `configs/runtime_colab.yaml` for research jobs and `configs/runtime_local.yaml` for the app. Record shared library versions plus separate tested Linux/Windows environment locks. Prefer Colab's existing compatible PyTorch; do not reinstall its entire stack reflexively. Capture the detected Python version and restart/retest after any required package change. Use the dedicated local Python 3.11 environment for Windows compatibility.
+Keep one portable Python source tree and one set of dataset/model/prompt definitions. Use `configs/runtime_kaggle.yaml` for research jobs and `configs/runtime_local.yaml` for the app. Record shared library versions plus separate tested Linux/Windows environment locks. Prefer Kaggle's existing compatible PyTorch; do not reinstall its entire stack reflexively. Capture the detected Python version and restart/retest after any required package change. Use the dedicated local Python 3.11 environment for Windows compatibility.
 
 ```text
-Local D: workspace -> pinned Git commit / source archive -> Colab /content project
-Colab scripts -> checkpoints + predictions + raw logs -> verified persistent bundle
+Local D: workspace -> pinned Git commit / source archive -> Kaggle /kaggle/working project
+Kaggle scripts -> checkpoints + predictions + raw logs -> verified persistent bundle
 Persistent bundle -> local artifacts/ and results/ -> offline browser application
 ```
 
-`notebooks/colab_runner.ipynb` is a thin launcher to implement in phase 0. It installs the tested minimal dependencies, retrieves a pinned source revision, runs `doctor.py`, selects a config, calls repository scripts, and saves/resumes artifacts. Core data/training/decoder/attention code belongs in Python modules, not notebook cells. A source archive is acceptable until the repository exists; record its hash. Account login and any Drive mount happen interactively in Colab; no account action has been performed by this plan.
+`scripts/prepare_kaggle_job.py` is a private Phase 2 job builder; future job launchers must be implemented and verified. It embeds a checksummed source archive, installs dependencies and runs the doctor and Phase 2 verification. Training, durable checkpointing and resume remain future work. Core data/training/decoder/attention code belongs in Python modules, not notebook cells. A source archive is acceptable until the repository exists; record its hash. Authentication is local; the actual Kaggle run remains to be verified.
 
-Use `/content` for active caches, model files, data and checkpoints. Use a project folder in mounted Drive or another explicitly chosen persistent destination for verified snapshots. Copy archives rather than training against many small remote files. Do not treat autosaved notebook output as saved model weights. Check destination capacity before a run.
+Use `/kaggle/working` for active caches, model files, data and checkpoints. Save finished job outputs, download them through the CLI and verify checksums. During-run persistence and resume must be implemented and tested before long training; finished notebook output alone is insufficient for interrupted jobs. Copy archives rather than training against many small remote files. Do not treat autosaved notebook output as saved model weights. Check destination capacity before a run.
 
 Implement a durable checkpoint every **25 optimizer steps or 5 minutes, whichever comes first**, and at each epoch end. Save the adapter, optimizer/scheduler/scaler state, all RNG states, epoch/global step and sampler/order/cursor state needed for resume. Save into a local temporary bundle, copy to a uniquely named persistent destination, verify checksums there, then write a completion marker and update the latest pointer. Keep the last two verified resumable bundles and the best adapter; prune only after a newer copy is verified. Do not repeatedly archive base-model weights that can be downloaded by pinned revision.
 
@@ -95,7 +94,7 @@ Resume optimizer state only with a compatible training representation and config
 
 ### Fair comparisons across cloud and laptop
 
-Run the primary research benchmark suite on one recorded environment per experiment and compare modes on that same device/session. Never divide a Colab speculative time by a laptop greedy time. If a runtime reconnect changes GPU/backend, create a new benchmark group and rerun all compared modes for that group; exclude checkpoint/Drive transfers from model timers and report transfer/setup separately.
+Run the primary research benchmark suite on one recorded environment per experiment and compare modes on that same device/session. Never divide a Kaggle speculative time by a laptop greedy time. If a runtime reconnect changes GPU/backend, create a new benchmark group and rerun all compared modes for that group; exclude checkpoint/artifact transfers from model timers and report transfer/setup separately.
 
 Use validation/synthetic fixtures to compare the exported model on both environments before test freeze. Match model, adapter, tokenizer, prompt, dtype and decoding settings where supported; investigate differences. Exact cached/uncached/speculative equality is required within each supported runtime, while cross-device floating-point discrepancies need an explicit explanation. Keep local-app measurements labeled RTX 3050 and cloud measurements labeled with the actual allocation. If local serving needs a different quantization, treat it as a separately identified deployment variant and validate it on development data; do not silently present cloud quality scores as its measured quality.
 
@@ -118,9 +117,9 @@ KV bytes = 2 * B * T * L * Hkv * d * s
 
 At B=1, T=2,048, s=2, the target cache is approximately 56 MiB; draft approximately 24 MiB. These exclude workspace and allocator overhead. Large vocabulary logits, especially full-prompt training logits, can be a substantial extra allocation. Cache savings do not make long-sequence training free.
 
-**Initial operating envelope:** on Colab, begin with 1,024 total training tokens, batch 1, accumulation 8, 16-bit base weights, FP32 adapter/softmax accumulation where appropriate, gradient checkpointing, no training cache. Test 2,048 tokens only after measuring. Local fallback training starts at the same short envelope and may require 4-bit LoRA. Inference starts at prompt cap 1,024 and output cap 96; increase if validation shows truncation or incomplete JSON. Training length includes prompt plus answer. Validate local app limits independently; a cloud-only long-context benchmark is not a promise that the app supports it.
+**Initial operating envelope:** on Kaggle, begin with 1,024 total training tokens, batch 1, accumulation 8, 16-bit base weights, FP32 adapter/softmax accumulation where appropriate, gradient checkpointing, no training cache. Test 2,048 tokens only after measuring. Local fallback training starts at the same short envelope and may require 4-bit LoRA. Inference starts at prompt cap 1,024 and output cap 96; increase if validation shows truncation or incomplete JSON. Training length includes prompt plus answer. Validate local app limits independently; a cloud-only long-context benchmark is not a promise that the app supports it.
 
-**Fallback ladder:** use the verified free Colab allocation -> reduce unnecessary padding/workspace and verify mixed precision/checkpointing -> use verified 4-bit LoRA if needed [S7] -> resume the same project locally at a measured safe envelope if Colab is unavailable. Audit evidence loss before reducing length. A second free provider is optional, not a required account/setup dependency. If the 1.5B target remains infeasible, select a smaller target and an actually smaller tokenizer-compatible draft before freezing baseline/training; repeat affected experiments. Never use the same-sized model as a nominal smaller draft or silently swap targets mid-comparison. Local inference feasibility is a selection gate even when cloud training succeeds.
+**Fallback ladder:** use the verified free Kaggle allocation -> reduce unnecessary padding/workspace and verify mixed precision/checkpointing -> use verified 4-bit LoRA if needed [S7] -> resume the same project locally at a measured safe envelope if Kaggle is unavailable. Audit evidence loss before reducing length. Kaggle availability is unverified; use the local fallback if allocation remains unavailable. If the 1.5B target remains infeasible, select a smaller target and an actually smaller tokenizer-compatible draft before freezing baseline/training; repeat affected experiments. Never use the same-sized model as a nominal smaller draft or silently swap targets mid-comparison. Local inference feasibility is a selection gate even when cloud training succeeds.
 
 The CUDA version printed by `nvidia-smi` is driver capability, not proof of an installed CUDA toolkit. Install a supported PyTorch CUDA wheel using official instructions [S11], then verify `torch.cuda.is_available()` and an actual GPU operation. No third-party FlashAttention package is required.
 
@@ -143,9 +142,9 @@ Work in order. Every phase below contains its own contract, implementation steps
 | 10 | Standalone browser app and export | 2-4 h |
 | 11 | IEEE paper, release, video and defense | 4-6 h |
 
-Total original implementation estimate: roughly 23-42 focused hours plus training/evaluation. Add an initial 30-60 minute Colab bootstrap/transfer/resume check; actual compute savings are unknown until the pilot. As of 9 November, completing all work before 10 November is high risk if implementation has not begun. Colab may improve compute feasibility but does not eliminate coding, correctness, report or demo work. Record paper notes and figures at each completed phase.
+Total original implementation estimate: roughly 23-42 focused hours plus training/evaluation. Add an initial 30-60 minute Kaggle bootstrap/transfer/resume check; actual compute savings are unknown until the pilot. As of 9 November, completing all work before 10 November is high risk if implementation has not begun. Kaggle may improve compute feasibility but does not eliminate coding, correctness, report or demo work. Record paper notes and figures at each completed phase.
 
-**Revised calendar from 9 November:** first confirm the Classroom time and finish phases 0-2, including Colab access and local inference fit. Use the first productive GPU session for phases 3-4 and export the adapter immediately. Finish phases 5-8 next with CPU tests before allocating GPU for real checks. On 10 November reserve time for frozen evaluation, local app completion, paper/video and at least three hours of submission buffer. If unfinished coding remains, use CPU development between checkpointed research jobs. This preserves phase acceptance boundaries; do not run a dependent phase on an unaccepted artifact. Cut optional sweeps, deployment and visual polish immediately if the clock does not fit.
+**Revised calendar from 9 November:** first confirm the Classroom time and finish phases 0-2, including Kaggle access and local inference fit. Use the first productive GPU session for phases 3-4 and export the adapter immediately. Finish phases 5-8 next with CPU tests before allocating GPU for real checks. On 10 November reserve time for frozen evaluation, local app completion, paper/video and at least three hours of submission buffer. If unfinished coding remains, use CPU development between checkpointed research jobs. This preserves phase acceptance boundaries; do not run a dependent phase on an unaccepted artifact. Cut optional sweeps, deployment and visual polish immediately if the clock does not fit.
 
 At the end of each phase, save `handoffs/phase_XX.md`: completed commands, artifact paths/hashes, exact config and dependency versions, acceptance evidence, observed failures, and any unresolved issue. A failed acceptance gate means the phase is incomplete. Update `research/decision_log.md` with the alternative, evidence and decision. Keep these within the same individual project; the student must understand all AI-assisted work.
 
@@ -153,7 +152,7 @@ At the end of each phase, save `handoffs/phase_XX.md`: completed commands, artif
 
 ```text
 configs/                 data, model, train, generation, benchmark configs
-notebooks/               thin Colab launcher calling repository scripts
+scripts/                 Kaggle job builder and portable project scripts
 src/clinical_match/      data, prompts, schemas, metrics, training, screening
 src/clinical_match/decoding/   uncached.py, cached.py, speculative.py, cache_ops.py
 src/clinical_match/attention/  dense.py, tiled.py
@@ -172,32 +171,32 @@ handoffs/                one completion record per phase
 
 ## Phase 0 - Establish the environment and project contract
 
-**Goal:** establish reproducible Colab research and local application runtimes. **Inputs:** assignment PDF, this plan, device inventory, the user's free Colab account if available. **Rubric:** A2, H2 groundwork. **Execution:** local scaffold plus interactive Colab bootstrap; no training yet.
+**Goal:** establish reproducible Kaggle research and local application runtimes. **Inputs:** assignment PDF, this plan, device inventory, the user's free Kaggle account if available. **Rubric:** A2, H2 groundwork. **Execution:** local scaffold plus Kaggle job bootstrap; no training yet.
 
 1. Confirm the exact Classroom deadline and live-demo arrangements. Save the interpretation of the 135-mark rubric in `research/requirements.md`.
 2. Create the project directories and Git ignore rules for environments, caches, raw data, weights, private inputs and large temporary files. Initialize Git locally if needed. Do not publish credentials or patient uploads.
-3. Locally create a Python 3.11 `.venv` on D:, with D: caches and a supported CUDA wheel for app inference [S11]. In Colab select a GPU runtime, inspect its actual allocation/Python/PyTorch, and keep a compatible preinstalled torch. Time-box unavailable-GPU troubleshooting to 20-30 minutes; retain the local route.
-4. Create portable `scripts/doctor.py` to record OS, Python/packages, CPU RAM, GPU/VRAM, compute capability, CUDA, disk and dtype support. Run GPU matrix multiplication and one tiny forward pass on each available GPU environment. Save separate `results/environments/local.json` and `colab_<run_id>.json`; keep `results/environment.json` as a pointer/summary to the primary research environment.
-5. Pin compatible shared libraries and tested environment-specific locks. Create `configs/runtime_colab.yaml` and `runtime_local.yaml`; make all source paths configurable. Inspect the installed cache API. Do not copy Windows CUDA-wheel assumptions into Linux or force Colab onto local Python 3.11.
-6. Create `notebooks/colab_runner.ipynb` as a thin bootstrap/runner for pinned repository scripts, with doctor, train/eval/benchmark, durable snapshot and resume cells. Code runs in `/content`; verified bundles persist in a chosen Drive/project folder. Implement checkpoint/export helpers and a synthetic save/restore test now; use 25-step/5-minute persistence later. Keep secrets out of source and notebook outputs.
-7. Design the local Windows `.cmd` setup/app launcher. The evaluator will double-click it without needing Colab. Record a source archive hash if GitHub publication is not ready.
+3. Locally create a Python 3.11 `.venv` on D:, with D: caches and a supported CUDA wheel for app inference [S11]. In Kaggle select a GPU runtime, inspect its actual allocation/Python/PyTorch, and keep a compatible preinstalled torch. Time-box unavailable-GPU troubleshooting to 20-30 minutes; retain the local route.
+4. Create portable `scripts/doctor.py` to record OS, Python/packages, CPU RAM, GPU/VRAM, compute capability, CUDA, disk and dtype support. Run GPU matrix multiplication and one tiny forward pass on each available GPU environment. Save separate `results/environments/local.json` and `kaggle_<run_id>.json`; keep `results/environment.json` as a pointer/summary to the primary research environment.
+5. Pin compatible shared libraries and tested environment-specific locks. Create `configs/runtime_kaggle.yaml` and `runtime_local.yaml`; make all source paths configurable. Inspect the installed cache API. Do not copy Windows CUDA-wheel assumptions into Linux or force Kaggle onto local Python 3.11.
+6. Create `scripts/prepare_kaggle_job.py` as the Phase 2 verification job builder; implement future train/eval/benchmark jobs and tested durable snapshot/resume separately. Code runs in `/kaggle/working`; verify completed job outputs after downloading them. Interrupted-run persistence is not yet proven. Implement checkpoint/export helpers and a synthetic save/restore test now; use 25-step/5-minute persistence later. Keep secrets out of source and notebook outputs.
+7. Design the local Windows `.cmd` setup/app launcher. The evaluator will double-click it without needing Kaggle. Record a source archive hash if GitHub publication is not ready.
 
-**Outputs:** shared dependencies and two environment locks/profiles, `.gitignore`, source skeleton, thin Colab launcher, environment reports, checkpoint/export helpers, setup notes and `handoffs/phase_00.md`.
+**Outputs:** shared dependencies and two environment locks/profiles, `.gitignore`, source skeleton, thin Kaggle launcher, environment reports, checkpoint/export helpers, setup notes and `handoffs/phase_00.md`.
 
-**Verify:** run `python scripts/doctor.py --output results/environments/<environment>.json` in each runtime. Local caches use D:, Colab active files use `/content`, and a synthetic persistent bundle restores with matching hashes. Record any unavailable cloud GPU explicitly. This proves setup, not training fit.
+**Verify:** run `python scripts/doctor.py --output results/environments/<environment>.json` in each runtime. Local caches use D:, Kaggle active files use `/kaggle/working`; verify job outputs by download. A Kaggle interruption/resume test remains outstanding. Record any unavailable cloud GPU explicitly. This proves setup, not training fit.
 
-**Done when:** local setup reproduces, Colab bootstrap/persistence is tested if available, and the active primary/fallback route is explicit. A denied cloud allocation does not block acceptance if the tested local route is ready. No future module is required.
+**Done when:** local setup reproduces, Kaggle bootstrap, output retrieval and persistence are tested if available, and the active primary/fallback route is explicit. A denied cloud allocation does not block acceptance if the tested local route is ready. No future module is required.
 
 ## Phase 1 - Research and choose the model pair
 
 **Goal:** make a defensible architecture choice with measured feasibility. **Inputs:** working environment and hardware report. **Rubric:** A1-A3, F1.
 
-**Execution:** train-fit pilot on allocated Colab GPU; inference-fit pilot on the laptop. Use only synthetic/development fixtures. The model must satisfy both roles before selection.
+**Execution:** train-fit pilot on allocated Kaggle GPU; inference-fit pilot on the laptop. Use only synthetic/development fixtures. The model must satisfy both roles before selection.
 
 1. Read and summarize at least five credible sources. Start with TrialGPT for task framing, model cards/configs for architecture, LoRA for adaptation, the caching documentation, online-softmax/FlashAttention papers and speculative decoding [S2-S10]. For each record: claim, relevance, limitation, implementation consequence and citation. Summarize in your own words.
 2. Compare the two proposed open-weight decoder candidates using the model table in section 2. Include exact revision, architecture, parameter count, tokenizer, context, license and expected memory. Explain why BERT-style encoders do not directly satisfy the required autoregressive decoding work.
-3. Download pinned configs/tokenizers to each runtime's cache (`/content` in Colab, D: locally). Compare complete vocabularies, added tokens, special IDs and representative encodings. Use identical target-formatted prompt IDs after compatibility is proven.
-4. On the primary research GPU run short greedy inference at 256/1,024 prompt tokens and a 10-step LoRA fit test. Start with 16-bit weights, batch 1, accumulation 8, 1,024 total tokens and checkpointing. Record actual VRAM/time/finite values; enable BF16 only when supported. Estimate run cost from this pilot rather than a guessed Colab GPU.
+3. Download pinned configs/tokenizers to each runtime's cache (`/kaggle/working` in Kaggle, D: locally). Compare complete vocabularies, added tokens, special IDs and representative encodings. Use identical target-formatted prompt IDs after compatibility is proven.
+4. On the primary research GPU run short greedy inference at 256/1,024 prompt tokens and a 10-step LoRA fit test. Start with 16-bit weights, batch 1, accumulation 8, 1,024 total tokens and checkpointing. Record actual VRAM/time/finite values; enable BF16 only when supported. Estimate run cost from this pilot rather than a guessed Kaggle GPU.
 5. On the laptop test target inference and target+draft co-residency at the intended app envelope. Training needs only the target; speculative inference needs both. Record cloud and local fit separately. A cloud-fit/local-OOM pair is not accepted for final delivery without an explicitly validated deployment variant or a revised model choice.
 6. Freeze `configs/model.yaml`, the provisional prompt schema, and the source ledger. Record rejected choices and observed issues, including any free-cloud constraints.
 
@@ -211,7 +210,7 @@ handoffs/                one completion record per phase
 
 **Goal:** establish trustworthy supervised examples and contracts. **Inputs:** prescribed dataset ID [S1], selected tokenizer and model config. **Rubric:** B1-B2.
 
-**Execution:** CPU locally or in Colab. Do not occupy a scarce GPU session solely for data cleaning. Generate one canonical split manifest, hash it, and copy it unchanged to every runtime; do not create environment-specific splits.
+**Execution:** CPU locally or in Kaggle. Do not occupy a scarce GPU session solely for data cleaning. Generate one canonical split manifest, hash it, and copy it unchanged to every runtime; do not create environment-specific splits.
 
 The inspected dataset metadata reports **1,015 rows and 53 patients**. Using the required patient split gives **603 / 206 / 206 rows** in train / validation / test in the current snapshot. Planning inspection derived labels/formats from train+validation only; test notes, labels and evidence were not inspected. Recompute and publish counts against the pinned revision.
 
@@ -283,11 +282,11 @@ Define a separate inference result with `raw_output`, parsed label/IDs, parse st
 
 **Goal:** learn expert labels and sentence IDs using the mandated training patients. **Inputs:** final baseline prompt, processed train/validation, selected target and working environment. **Rubric:** B3-B4, A3.
 
-**Execution:** free Colab GPU is primary, tested laptop fallback. Use the accepted runtime profile, immutable source/split/config hashes, thin notebook launcher and durable checkpoint helper. Do not reselect a model merely because cloud memory is available.
+**Execution:** free Kaggle GPU is primary, tested laptop fallback. Use the accepted runtime profile, immutable source/split/config hashes, thin notebook launcher and durable checkpoint helper. Do not reselect a model merely because cloud memory is available.
 
-1. Implement executable `scripts/train.py`; the Colab notebook invokes this script instead of duplicating training logic. Render the exact chat template with an assistant JSON target. Mask prompt and padding labels with `-100`; apply causal token cross-entropy to assistant answer tokens, including the correct end-of-turn token. Verify the shift/mask with a decoded sample. No GPT explanation supervision is permitted.
+1. Implement executable `scripts/train.py`; the Kaggle notebook invokes this script instead of duplicating training logic. Render the exact chat template with an assistant JSON target. Mask prompt and padding labels with `-100`; apply causal token cross-entropy to assistant answer tokens, including the correct end-of-turn token. Verify the shift/mask with a decoded sample. No GPT explanation supervision is permitted.
 2. Starting configuration: LoRA rank 8, alpha 16, dropout 0.05, `q_proj` and `v_proj`, learning rate 2e-4, AdamW, weight decay 0.01, warmup ratio 0.05, max gradient norm 1, microbatch 1, accumulation 8, maximum 3 epochs, seed 42. Use FP16 with a gradient scaler or BF16 only after capability/finite-operation checks. Set training `use_cache=False` and enable gradient checkpointing. These are starting hypotheses, not tuned results.
-3. Confirm only intended adapter parameters train. Log trainable/total counts, tokens per batch, loss, learning rate, gradient norms, epoch/step time and memory. Persist a verified resumable bundle every 25 optimizer steps or 5 minutes, whichever is first, plus epoch ends. Include adapter, optimizer/scheduler/scaler, RNG and data-order/cursor states. Keep best adapter plus two verified recent resumable bundles; persist from local `/content` files rather than treating runtime storage as durable.
+3. Confirm only intended adapter parameters train. Log trainable/total counts, tokens per batch, loss, learning rate, gradient norms, epoch/step time and memory. Persist a verified resumable bundle every 25 optimizer steps or 5 minutes, whichever is first, plus epoch ends. Include adapter, optimizer/scheduler/scaler, RNG and data-order/cursor states. Keep best adapter plus two verified recent resumable bundles; persist from local `/kaggle/working` files rather than treating runtime storage as durable.
 4. Overfit 8-16 training examples first. Require finite loss, a downward trend, and substantially improved reproduction of those targets. Failure indicates masking, template, optimization or precision bugs; do not waste a full run.
 5. Run the full training split and evaluate validation generation after each epoch. Select checkpoint by validation label macro-F1, then evidence F1 as tie-breaker; log validation loss too. Save each candidate and the selected-checkpoint manifest. Use fixed generation settings for selection and baseline comparison.
 6. Test at least one meaningful competing adaptation setting if time allows, e.g. rank 8 versus rank 16 with the same training budget, or 1e-4 versus 2e-4. This supplies observed design evidence. The compulsory base-versus-adapted comparison is separate. Do not launch an open-ended search.
@@ -304,7 +303,7 @@ Define a separate inference result with `raw_output`, parsed label/IDs, parse st
 
 **Goal:** provide defensible criterion results with visible uncertainty. **Inputs:** selected adapter, sentence maps, schemas, parser and validation predictions. **Rubric:** C4, G2 groundwork.
 
-**Execution:** implement/test the service locally using the exported adapter; reuse it on Colab for larger development runs. The service must import without Drive mounts, notebook globals or `/content` paths. Use local validation fixtures to verify export parity before final test evaluation.
+**Execution:** implement/test the service locally using the exported adapter; reuse it on Kaggle for larger development runs. The service must import without cloud mounts, notebook globals or `/kaggle/working` paths. Use local validation fixtures to verify export parity before final test evaluation.
 
 1. Implement a screening service callable without a UI. It accepts patient text, typed criterion and inference mode, builds the same prompt and returns the stable inference result. Retain source IDs and raw generation.
 2. Resolve each predicted ID to exact original patient text. Preserve punctuation and negation. Never ask a model to reconstruct the quote. Mark missing, duplicated and invalid IDs; duplicates may be deduplicated for set metrics but their raw occurrence remains auditable.
@@ -324,7 +323,7 @@ Define a separate inference result with `raw_output`, parsed label/IDs, parse st
 
 **Goal:** reuse keys and values correctly, and prove equivalence to the uncached decoder. **Inputs:** selected target/checkpoint, uncached reference, fixed prompts and generation settings. **Rubric:** D1-D3.
 
-**Execution:** develop portable code and CPU/toy tests locally; run the primary GPU correctness/benchmark grid in Colab. Run a small local target-model equivalence set as a delivery gate. Save each environment separately and persist raw token/timing logs after each grid group.
+**Execution:** develop portable code and CPU/toy tests locally; run the primary GPU correctness/benchmark grid in Kaggle. Run a small local target-model equivalence set as a delivery gate. Save each environment separately and persist raw token/timing logs after each grid group.
 
 1. Create a cache adapter for the installed Transformers cache class: construct, read sequence length, update through forward output, and crop where supported. Inspect actual tensor shapes and class API. Unit-test behavior before speculative decoding needs rollback [S8].
 2. Implement a batch-one cached loop. Prefill the whole prompt once, obtain cache and last-position logits, choose the first token, then feed only newly committed tokens with the returned cache. The prompt length is the first generation position; each new processed token advances it once. Do not feed the whole prompt alongside an already populated cache.
@@ -344,7 +343,7 @@ Define a separate inference result with `raw_output`, parsed label/IDs, parse st
 
 **Goal:** demonstrate mathematically correct attention without materializing the full score matrix in the tiled path. **Inputs:** PyTorch environment and synthetic tensor fixtures; no trained model integration is required. **Rubric:** E1-E3.
 
-**Execution:** local CPU tests first, then Colab GPU measurements on the actual supported backend. Keep local/Colab memory and speed tables separate. Do not introduce a CUDA-only package solely because Linux makes installation possible; the portable PyTorch implementation remains sufficient.
+**Execution:** local CPU tests first, then Kaggle GPU measurements on the actual supported backend. Keep local/Kaggle memory and speed tables separate. Do not introduce a CUDA-only package solely because Linux makes installation possible; the portable PyTorch implementation remains sufficient.
 
 1. Implement dense scaled dot-product attention from Q, K, V with logits `Q @ K.T / sqrt(d)`, correct mask, max-subtracted softmax, and multiplication by V. Define shapes `[batch, heads, query_length, head_dim]` and `[batch, heads, key_length, head_dim]`. For GQA testing, explicitly map KV heads to Q-head groups.
 2. Implement query/key tiling. For each query block, keep row-wise running maximum m, normalizer l and unnormalized weighted-value accumulator A. Initialize m=-infinity, l=0, A=0. For each key/value tile use:
@@ -376,7 +375,7 @@ output = A / l
 
 **Goal:** use a smaller draft while reproducing the target's ordinary greedy token sequence. **Inputs:** selected fine-tuned target, verified smaller draft, tokenizer compatibility evidence, cached target reference and tested cache operations. **Rubric:** F1-F3.
 
-**Execution:** develop rejection/state tests locally; run the primary k/length sweep on the Colab GPU and persist results. Then prove real target/draft equivalence and peak-memory fit in a small local demo envelope. Never compare speculative cloud timing with ordinary laptop timing as a speedup.
+**Execution:** develop rejection/state tests locally; run the primary k/length sweep on the Kaggle GPU and persist results. Then prove real target/draft equivalence and peak-memory fit in a small local demo envelope. Never compare speculative cloud timing with ordinary laptop timing as a speedup.
 
 This is deterministic matching of argmax tokens. It does not require probabilistic acceptance ratios or sampling corrections from the stochastic versions of the papers [S13-S14]. The target is the selected adapted model, not an unadapted proxy.
 
@@ -408,11 +407,11 @@ Acceptance rate = accepted draft tokens / all proposed draft tokens. Also log pr
 
 **Goal:** produce a trustworthy final scientific comparison. **Inputs:** selected checkpoint, all passing correctness tests, immutable split and validation-selected settings. **Rubric:** B4, C1-C4, D3, E3, F3.
 
-**Execution:** use one recorded primary research environment, normally Colab, for the paired final quality evaluation and within-device benchmark groups. Local-app smoke/correctness checks use validation/synthetic fixtures and must already pass before opening test outputs. Download the frozen manifest and predictions after each completed job.
+**Execution:** use one recorded primary research environment, normally Kaggle, for the paired final quality evaluation and within-device benchmark groups. Local-app smoke/correctness checks use validation/synthetic fixtures and must already pass before opening test outputs. Download the frozen manifest and predictions after each completed job.
 
 1. Freeze Git commit, dataset revision, split hash, model/tokenizer revisions, adapter hash, prompt/template, truncation, parser/aggregation policies, precision, backend, decoding caps, metric conventions and the primary research/runtime profile in `results/frozen_manifest.json`. Include validated local deployment identity and any explicitly separate variant. No quality-related decision uses test outcomes.
 2. Use a fixed validation/synthetic benchmark suite for performance sweeps. Cache modes: 128/512/1,024 prompts x 16/64/128 outputs. Speculation: k=1/2/4/8, same prompts and target. Attention: multiple safe shapes/tiles. Add real clinical prompt timings with normal EOS. Report unavailable/OOM cells honestly.
-3. Warm up and use at least five measured runs, randomizing mode order where practical. Synchronize GPU work, reset request/cache state and peak counters, and report median plus IQR/range. Label each group with actual GPU, dtype, backend and session ID. After a GPU-changing reconnect rerun every compared mode for that group; do not average unlike accelerators or include Drive/checkpoint transfers inside inference timers.
+3. Warm up and use at least five measured runs, randomizing mode order where practical. Synchronize GPU work, reset request/cache state and peak counters, and report median plus IQR/range. Label each group with actual GPU, dtype, backend and session ID. After a GPU-changing reconnect rerun every compared mode for that group; do not average unlike accelerators or include artifact/checkpoint transfers inside inference timers.
 4. Record `prefill_ms`, `decode_ms`, TTFT, total request latency, actual output count, tokens/s, peak allocated/reserved VRAM and CPU RAM where available. Distinguish loaded-weight baseline from incremental memory. For speculation include draft+target residency and both prefills. State whether tokenization, JSON validation and UI/export are included; keep model-only and end-to-end measures separate.
 5. Run unchanged/adapted targets on the **same 206 held-out rows**, with identical prompt, preprocessing, precision, greedy mode and caps in the primary environment. Persist per-row outputs before inspecting gold comparisons. Resume interrupted evaluation using annotation ID plus full frozen-config/model hashes, never missing rows or mismatching variants. Produce all required quality/validity/truncation results with no row filtering. A later exact rerun is reproducibility, not a new tuning opportunity.
 6. Analyze at least eight distinct real errors across validation/test, clearly marking split. Include unknown/missing-information, unsupported evidence, exclusion polarity, temporal/negation or contradiction where present. Do not claim categories observed if they did not occur. If fewer than eight test errors exist, use validation errors to reach eight; if fewer than eight genuine errors exist overall, document that rather than inventing them and add separately labeled stress failures.
@@ -429,12 +428,12 @@ Acceptance rate = accepted draft tokens / all proposed draft tokens. Also log pr
 
 **Goal:** let an evaluator screen unseen cases and compare inference without executing code manually. **Inputs:** stable screening service, trained checkpoint, implemented decoders, exported benchmark results and frozen metadata. **Rubric:** G1-G4.
 
-**Execution:** host entirely on the laptop's localhost using exported artifacts. No active Colab session, notebook execution, Drive authorization, share tunnel or cloud-GPU allocation may be required for ordinary use. The app shows the local environment identity; historical cloud charts carry their own hardware labels. Free Colab is reserved for interactive research [S15].
+**Execution:** host entirely on the laptop's localhost using exported artifacts. No active Kaggle session, notebook execution, cloud authorization, share tunnel or cloud-GPU allocation may be required for ordinary use. The app shows the local environment identity; historical cloud charts carry their own hardware labels. Free Kaggle is reserved for research jobs [S15].
 
 1. Build a lightweight Gradio interface backed by the existing service. No new training or model logic belongs in UI callbacks. Load the target once, use a request queue, serialize GPU jobs and support explicit draft loading for speculative mode.
 2. Provide patient entry, visible numbered sentences, criterion type and criterion text, and a small editable multi-criterion table. Allow selection of a bundled example trial whose criteria are saved with provenance or entry of custom criteria. A live trial-search API is optional and must never be necessary for the demo. Do not use test records as polished examples.
 3. Show per-criterion category, original criterion, cited IDs, exact excerpts, explanation, uncertainty/invalid-output/truncation warnings and preliminary rule-based overall outcome. Expose that aggregate as a screening rule, not a separately learned or labeled trial verdict.
-4. Add uncached/cached/speculative mode selection. Run the same current prompt/settings through the actual local modes to show token equality, latency, throughput, memory and draft acceptance. Use validated batch-one limits and no duplicate target loads. Add small live dense/tiled attention examples. Historical Colab charts are supplementary and labeled by GPU/session; they cannot stand in for live app comparison or be combined with local times to calculate speedup.
+4. Add uncached/cached/speculative mode selection. Run the same current prompt/settings through the actual local modes to show token equality, latency, throughput, memory and draft acceptance. Use validated batch-one limits and no duplicate target loads. Add small live dense/tiled attention examples. Historical Kaggle charts are supplementary and labeled by GPU/session; they cannot stand in for live app comparison or be combined with local times to calculate speedup.
 5. Validate blank inputs, missing types, oversized notes/criteria, conflicting sentence numbering, output-cap exhaustion, unavailable weights, OOM and model errors. Return actionable messages and recover for the next request. Do not silently send a different model/precision as a fallback. Treat instructions embedded in patient text as data.
 6. Export a readable self-contained HTML screening report, plus JSON if convenient. Include entered text or an explicitly chosen privacy-preserving representation, numbered evidence, criteria, labels, explanations, flags, aggregate rule, timestamp/timezone, model/adapter/prompt revisions, decoding settings and timings. HTML can be printed to PDF; a direct PDF export is optional because the assignment only requires a readable report.
 7. Display the exact notice: **Educational screening prototype; not a clinical enrollment decision.** Do not persist uploaded notes by default or commit them to Git. Use bundled synthetic/public examples for the demo.
@@ -442,7 +441,7 @@ Acceptance rate = accepted draft tokens / all proposed draft tokens. Also log pr
 
 **Outputs:** app source, launchers, setup/startup guide, bundled development/synthetic examples, exported sample report and screenshots.
 
-**Verify:** disconnect Colab, then double-click the local launcher from a fresh login/shell. Screen an unseen synthetic note, enter/select criteria, compare modes, inspect evidence and export. Test invalid/long input followed by a valid request. Disable networking after downloading weights and repeat. Record actual laptop startup/response times; no notebook or Google login is needed.
+**Verify:** disconnect Kaggle, then double-click the local launcher from a fresh login/shell. Screen an unseen synthetic note, enter/select criteria, compare modes, inspect evidence and export. Test invalid/long input followed by a valid request. Disable networking after downloading weights and repeat. Record actual laptop startup/response times; no notebook or Google login is needed.
 
 **Done when:** an evaluator can use all core functions in a browser and recover from invalid inputs without editing code. If integration reveals a model-affecting bug after test freeze, use the versioned correction policy from phase 9.
 
@@ -450,12 +449,12 @@ Acceptance rate = accepted draft tokens / all proposed draft tokens. Also log pr
 
 **Goal:** make every claim reviewable and every deliverable accessible. **Inputs:** completed artifacts, measured results, app and source ledger. **Rubric:** H1-H3 and final A3 evidence.
 
-**Execution:** write/package locally using downloaded, verified results. Record the demo on the laptop with no active Colab runtime. Include the thin research notebook, both environment profiles, interruption/resume procedure and artifact transfer manifest in reproducibility documentation.
+**Execution:** write/package locally using downloaded, verified results. Record the demo on the laptop with no active Kaggle runtime. Include the thin research notebook, both environment profiles, interruption/resume procedure and artifact transfer manifest in reproducibility documentation.
 
 1. Prepare an IEEE-format paper in LaTeX using an appropriate IEEE template. Include title/author, abstract/keywords, introduction/problem, related work, materials/methods, experimental setup/metrics, results/discussion, limitations, conclusion, references and a brief AI-use appendix. This master-plan PDF is not the assignment's required research-paper PDF.
 2. Methods must cover exact dataset/split, leakage controls, sentence numbering, model architecture diagram, fine-tuning objective/settings, prompt/output schemas, truncation, attention recurrence, cache flow, speculative algorithm and application workflow. State whether custom attention runs inside the target or independently.
 3. Include measured training curves, metric/benchmark tables, numerical error and memory graphs, eight real error analyses and app screenshots. Refer to and interpret every figure/table. Explain slower speculation or tiled attention honestly. Do not paste screenshots of results instead of scientific tables.
-4. Discuss small data, eight test patients, imbalance, pretrained-data contamination, trial overlap, missing evidence and clinical limitations. Identify actual Colab GPU/RAM and local GPU/RAM separately, note interruptions and measured transfer/setup costs, and explain device-specific timing. Do not claim a generic Colab speedup from unlike hardware comparisons. Acknowledge that source-linked excerpts alone do not establish medical correctness.
+4. Discuss small data, eight test patients, imbalance, pretrained-data contamination, trial overlap, missing evidence and clinical limitations. Identify actual Kaggle GPU/RAM and local GPU/RAM separately, note interruptions and measured transfer/setup costs, and explain device-specific timing. Do not claim a generic Kaggle speedup from unlike hardware comparisons. Acknowledge that source-linked excerpts alone do not establish medical correctness.
 5. Publish the GitHub repository when ready, with executable scripts, dependency lock, configs, tests, manifest, logs, app, reproducibility steps and licenses/attribution. Host adapters/large weights elsewhere with a working download script, exact base revision, checksum and license notice. Verify a fresh download; do not commit tokens or large caches.
 6. Share the LaTeX source project link (GitHub `report/` may serve this if accessible), compiled IEEE report PDF, repository URL, model/adapter link, split manifest, benchmark logs and **5-7 minute video link**. Verify all links with the evaluator's intended access, not only the owner's session.
 7. Suggested six-minute video: 0:00-0:40 problem/resources; 0:40-2:30 unseen patient and criteria with evidence/unknown case; 2:30-3:50 live decoding comparison and attention view; 3:50-4:30 export and invalid-input recovery; 4:30-5:30 before/after results and limitation; 5:30-6:00 repository/reproducibility. Use actual runs, not simulated charts.
@@ -475,10 +474,10 @@ Acceptance rate = accepted draft tokens / all proposed draft tokens. Also log pr
 | OOM during target training | Record peak and failing shape; checkpoint; apply resource ladder. Preserve train split, objective and comparison identity. |
 | Target+draft do not fit | Lower safe input/output envelope, validate memory, or use a free GPU. Any precision/model change needs a matching ordinary-target reference. |
 | Free GPU unavailable | Time-box setup to 20-30 minutes, continue CPU/local fallback work, and preserve the same configs/split. No paid environment dependency. |
-| Colab disconnects / runtime storage disappears | Restore the newest checksum-verified persistent bundle; verify optimizer and data position. Keep the selected adapter and all logs locally. |
+| Kaggle disconnects / runtime storage disappears | Restore the newest checksum-verified persistent bundle; verify optimizer and data position. Keep the selected adapter and all logs locally. |
 | Reconnected GPU differs | New environment/session ID; rerun all compared benchmark modes in that group. Never merge unlike-device times into a speedup. |
 | Cloud model fits but local demo fails | Resolve before test freeze using the phase-1 local gate. Keep the small pair; validate any deployment variant explicitly. |
-| Colab becomes an app-hosting dependency | Move hosting to local localhost and verify offline startup. Keep notebook orchestration confined to research. |
+| Kaggle becomes an app-hosting dependency | Move hosting to local localhost and verify offline startup. Keep notebook orchestration confined to research. |
 | Training loss does not fall on tiny subset | Inspect answer loss mask, template, LR, precision and trainable parameters before full training. |
 | Accuracy looks high but macro-F1 is weak | Inspect per-class counts and confusion matrices; do not collapse unknown/NA or drop rare labels. |
 | Excess malformed output | Diagnose with validation only; adjust fixed output cap/schema/prompt before final freeze. Keep all failures in metrics. |
@@ -501,7 +500,7 @@ This section is the authoritative completion checklist for this plan. A standalo
 | A3 | Alternatives, rejected options, observed failures and evidence-based choices | `research/decision_log.md`, experiment comparisons, paper discussion |
 | B1 | Prescribed data; exact 37/8/8 seed-42 patient split; IDs/counts and leakage checks | `data/splits/manifest.json`, data hashes, tests |
 | B2 | Patient/type/criterion inputs; expert labels and sentence-ID targets; no GPT leakage | preparation script, schemas, prompt audit, preprocessing notes |
-| B3 | Executable training, reproducible config, verified resume/export, adapters and training logs/curves | script/config, Colab runner, resumable bundles, manifest, downloaded adapter |
+| B3 | Executable training, reproducible config, verified resume/export, adapters and training logs/curves | script/config, Kaggle runner, resumable bundles, manifest, downloaded adapter |
 | B4 | Same unchanged/adapted model comparison on identical validation/test examples and decoding settings | paired predictions, metric tables, manifests |
 | C1 | Inclusion/exclusion labels including unknown/NA; held-out accuracy/macro-F1 | overall and per-type test summary |
 | C2 | Per-class precision/recall/F1 and confusion matrices, overall and by type | metric JSON/CSV, confusion-matrix figures |
@@ -516,7 +515,7 @@ This section is the authoritative completion checklist for this plan. A standalo
 | F1 | Smaller compatible draft/target; tokenizer check, settings and memory justification | model manifest, compatibility test, feasibility record |
 | F2 | Own drafting, block verification, accepted-prefix/rejection correction and cache synchronization | `decoding/speculative.py`, state-machine tests |
 | F3 | Target-greedy equality, acceptance/latency/memory, within-device speedup or slowdown | cloud benchmark traces, local correctness/fit log, paper analysis |
-| G1 | Standalone local browser UI, startup/model loading and recovery; independent of Colab | app source, launcher, offline/disconnected-Colab verification |
+| G1 | Standalone local browser UI, startup/model loading and recovery; independent of Kaggle | app source, launcher, offline/disconnected-Kaggle verification |
 | G2 | Unseen note + selected/entered criteria; decisions, exact evidence, uncertainty and preliminary aggregate | working app, integration cases, video |
 | G3 | Live meaningful inference comparison and experiment visibility | compare action, attention view, displayed token agreement/timing |
 | G4 | Readable UI and downloadable screening report with provenance; invalid-input recovery | exported HTML report, screenshots, recovery evidence |
@@ -533,14 +532,14 @@ This section is the authoritative completion checklist for this plan. A standalo
 - [ ] Paired baseline/adapted validation and held-out predictions, complete classification/evidence results, training logs/curves and error analysis.
 - [ ] Raw benchmark logs, numerical/token correctness evidence, machine-readable summary tables and interpreted figures.
 - [ ] Clear setup/reproduction guide and double-click browser-app launcher; sample downloadable screening report with provenance and educational notice.
-- [ ] Thin Colab research notebook, tested local/cloud environment profiles, resumable-checkpoint instructions, durable artifact/export hashes and a successful local adapter reload. These support the rubric's reproducibility requirements; they are workflow additions, not extra instructor-assigned marks.
-- [ ] Actual GPU/session labels on research benchmarks, within-device speedup calculations, and independent local app/live-comparison checks with Colab disconnected.
+- [ ] Thin Kaggle research notebook, tested local/cloud environment profiles, resumable-checkpoint instructions, durable artifact/export hashes and a successful local adapter reload. These support the rubric's reproducibility requirements; they are workflow additions, not extra instructor-assigned marks.
+- [ ] Actual GPU/session labels on research benchmarks, within-device speedup calculations, and independent local app/live-comparison checks with Kaggle disconnected.
 - [ ] Accessible 5-7 minute recorded demonstration link, correct sharing permissions and confirmed live-demo attendance.
 - [ ] `SUBMISSION.md` linking every artifact, known limitations and the exact release commit; Classroom submission receipt.
 
 ## 6. Verified research starting points
 
-Model/dataset/research sources were checked on 8 November; Colab and environment guidance was checked on 9 November 2026. Pin revisions and installed versions; live documentation may change. These support the plan, not measured results. Read relevant methods/code and add BibTeX entries.
+Model/dataset/research sources were checked on 8 November; Kaggle and environment guidance was checked on 9 November 2026. Pin revisions and installed versions; live documentation may change. These support the plan, not measured results. Read relevant methods/code and add BibTeX entries.
 
 - **[S1] Dataset:** [NCBI TrialGPT Criterion Annotations](https://huggingface.co/datasets/ncbi/TrialGPT-Criterion-Annotations). Required supervised benchmark; source card identifies fields and the public-domain designation. The current card reports 1,015 examples. Exact split counts in this plan were independently computed using the assignment procedure.
 - **[S2] Clinical reasoning:** [Jin et al., Matching patients to clinical trials with large language models, Nature Communications (2024)](https://www.nature.com/articles/s41467-024-53081-z), and [official reference repository](https://github.com/ncbi-nlp/TrialGPT). Use for criterion reasoning/evidence and limitations. Its broader study is not your fixed-split experiment, and its results cannot be copied as your own.
@@ -556,7 +555,7 @@ Model/dataset/research sources were checked on 8 November; Colab and environment
 - **[S12] Optional backend reference:** [PyTorch scaled_dot_product_attention documentation](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html). Compare supported optimized backends separately from the custom implementation, including mask conventions.
 - **[S13] Speculation:** [Leviathan et al., Fast Inference from Transformers via Speculative Decoding](https://arxiv.org/abs/2211.17192). Core draft/verification motivation; distinguish the required greedy specialization from probabilistic sampling.
 - **[S14] Independent speculation reference:** [Chen et al., Accelerating Large Language Model Decoding with Speculative Sampling](https://arxiv.org/abs/2302.01318). Additional verification/performance perspective; published speedups on different hardware are not your results.
-- **[S15] Compute service:** [Google Colab official FAQ](https://research.google.com/colaboratory/faq.html), checked 9 November 2026. Source for allocation/session/storage and free-tier web-UI constraints; no account allocation was inspected.
+- **[S15] Compute service:** [Official Kaggle CLI](https://github.com/Kaggle/kaggle-cli) and [kernel metadata](https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels_metadata.md), checked 9 November 2026. Quota, internet, hardware and persistence remain to be verified.
 - **[S16] Runtime compatibility:** [Transformers installation and offline-cache guidance](https://huggingface.co/docs/transformers/installation) and [PEFT quantized-adaptation guidance](https://huggingface.co/docs/peft/en/developer_guides/quantization), checked 9 November 2026. Use installed-version-compatible code, explicit caches and an offline local load test.
 
 ## 7. Handoff prompt for completing one phase
@@ -567,7 +566,7 @@ Copy the selected phase in full and provide only its listed inputs plus the comp
 Implement Phase [number] using its stated input artifacts and contracts.
 Read the current repository instructions and completed handoff for each input.
 Preserve the fixed patient split, source sentence IDs and leakage controls.
-Use the phase's declared local/Colab route and portable runtime profile.
+Use the phase's declared local/Kaggle route and portable runtime profile.
 Persist cloud outputs with verified hashes; no future phase may require
 an active notebook session. Keep speed comparisons within one device.
 Do not inspect test content unless this is the frozen final-evaluation phase.
