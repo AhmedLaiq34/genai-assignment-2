@@ -1,0 +1,12 @@
+{
+  "criterion_type": "exclusion",
+  "effect_on_model_performance": "not measured",
+  "excluded_annotation_id": 883,
+  "excluded_rows": 1,
+  "expert_category": "not excluded",
+  "manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "same_type_and_category_after_exclusion": 291,
+  "same_type_and_category_before_exclusion": 292,
+  "scope": "training annotations only; no patient text, test records or model outputs",
+  "training_source_rows": 603
+}

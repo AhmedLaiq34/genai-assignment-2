@@ -88,7 +88,7 @@ We kept the row in the original snapshot and split manifest, and recorded it in 
 
 The preparation command now reports the exclusion and records the approved decision in the manifest. The loader rejects unexpected exclusions. This prevents a future script from quietly presenting the training set as if all 603 rows were usable.
 
-The assignment restricts public trial metadata to supporting the application, so we have not substituted another source to repair the supervised example. The decision is in the [decision log](../research/decision_log.md). Excluding 1/603 rows is a small fraction, but the impact on the model, especially for a rare category, is unknown; instructor grading treatment is also unknown.
+The assignment restricts public trial metadata to supporting the application, so we have not substituted another source to repair the supervised example. The decision is in the [decision log](../research/decision_log.md). Excluding 1/603 rows is a small fraction. This particular row belongs to a common training group: it was an exclusion criterion labeled `not excluded`, and 291 of 292 rows in that group remain. The impact on model performance and instructor grading treatment are still unknown.
 
 ## 7. Why preserve sentence numbers?
 

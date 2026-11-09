@@ -12,6 +12,7 @@ No model was trained or evaluated for clinical quality in this phase. The protec
 - Raw Parquet SHA-256: `14c547184fac9b013cd17441fd028845b40150c76b022e58334f5494077e5234`. The source is unchanged and accompanied by [license](../data/raw/LICENSE) and [snapshot notes](../data/raw/README.md).
 - Split: sorted patient IDs, `numpy.random.default_rng(42).shuffle`, then 37/8/8 patients. [Manifest](../data/splits/manifest.json) records 603/206/206 source annotations, all patient/annotation IDs, and approved excluded ID 883. The current manifest SHA-256 is in [manifest.sha256](../data/splits/manifest.sha256).
 - Usable outputs: train 602, validation 206, protected test 206; quarantine 1. The missing training criterion is annotation 883. [Audit](../results/data_audit.json) and [quarantine record](../data/processed/quarantine.jsonl) explain the reason without manufacturing a criterion.
+- [Training-only excluded-row analysis](../results/excluded_training_row_analysis.json) records the row's type/category as exclusion/`not excluded`: 291 of 292 training-source examples in that type/category remain. No patient text or test data is included; model-performance effect remains unmeasured.
 - The assignment allows public trial metadata only for application support. Do not recover a training criterion from trial metadata or previous GPT output. The student's exclusion decision and its limitations are recorded in the [decision log](../research/decision_log.md).
 
 ## What is implemented
