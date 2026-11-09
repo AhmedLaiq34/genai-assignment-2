@@ -1,0 +1,27 @@
+{
+  "recorded_at_utc": "2026-11-09T15:30:11.832637+00:00",
+  "provider": "Kaggle",
+  "cli_version": "2.2.5",
+  "authentication": "verified",
+  "quota_remaining_gpu_hours_last_checked": 30.0,
+  "jobs": [
+    {
+      "kernel": "ahmedlaiq34/trialgpt-gpu-probe",
+      "version": 1,
+      "accelerator_requested": "NvidiaTeslaT4",
+      "internet": false,
+      "latest_status": "QUEUED",
+      "previous_version_report": "CPU-only torch; revised probe includes nvidia-smi"
+    },
+    {
+      "kernel": "ahmedlaiq34/trialgpt-phase-2-verification",
+      "version": 1,
+      "accelerator_requested": null,
+      "internet": true,
+      "source_archive_sha256": "a4ac13ec0b1b51a6f819d573f26ee21d55c72765e7a001fa0513dd7517b1ad82",
+      "latest_status": "QUEUED"
+    }
+  ],
+  "outputs_downloaded_for_current_submissions": false,
+  "note": "Old notebook IDs were deleted by user after remaining queued. Both jobs were recreated; new submissions remain queued."
+}
