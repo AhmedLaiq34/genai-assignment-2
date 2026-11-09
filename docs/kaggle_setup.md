@@ -3,8 +3,16 @@
 Kaggle is the chosen research provider. CLI authentication and a quota query
 succeeded on 9 November 2026. The account reported 30 GPU hours remaining at
 that moment; availability and limits can change. Internet, actual accelerator,
-job execution and output retrieval are unverified. The local app remains
+and Phase 2 job execution and output retrieval are unverified. The local app remains
 independent of Kaggle. The prior Colab pilots remain historical evidence only.
+
+On 9 November, a separate private GPU probe ran and its output was downloaded.
+Its runtime had `torch 2.11.0+cpu`, and `torch.cuda.is_available()` was false.
+That does not establish whether physical GPU hardware was attached. The first
+probe did not inspect `nvidia-smi`. A revised probe that checks it was submitted
+and is queued. See [probe report](../results/kaggle_gpu_probe_v1.json) and
+[probe builder](../scripts/prepare_kaggle_gpu_probe.py). The Phase 2 CPU
+verification job is still queued. No Kaggle model-fit result exists yet.
 
 1. Sign in at [Kaggle settings](https://www.kaggle.com/settings/api), create an
    API token, and follow Kaggle's on-screen instructions to save credentials

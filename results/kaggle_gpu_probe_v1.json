@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-11-09T15:11:56.765412+00:00",
+  "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+  "python": "3.13.18 (main, Oct 26 2026, 15:28:15) [GCC 13.3.0]",
+  "synthetic_only": true,
+  "passed": false,
+  "torch": "2.11.0+cpu",
+  "cuda_available": false,
+  "error": "Traceback (most recent call last):\n  File \"/kaggle/src/script.py\", line 11, in <module>\n    raise RuntimeError('Kaggle did not provide a CUDA device')\nRuntimeError: Kaggle did not provide a CUDA device\n"
+}
