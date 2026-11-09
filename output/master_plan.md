@@ -16,7 +16,7 @@ The deadline is **10 November 2026**. The PDF does not state a clock time or dea
 
 - Use only `ncbi/TrialGPT-Criterion-Annotations` for core supervised training and comparison [S1]. Keep its six expert labels; inclusion and exclusion have different applicable subsets.
 - Provisional target: `Qwen/Qwen2.5-1.5B-Instruct`; provisional draft: `Qwen/Qwen2.5-0.5B-Instruct` [S3-S4]. Commit only after a real memory smoke test and tokenizer compatibility check.
-- Use **free Kaggle as the primary training and research-compute environment**, subject to a real allocation/fit check. Keep source development, durable artifact copies, and the final browser application on the laptop. Kaggle CLI authentication has succeeded, but GPU allocation has not yet been verified; this plan does not promise one.
+- Use **Kaggle free tier for training and research only when its service is available**. Keep source development, durable artifact copies, and the final browser application on the laptop. CLI authentication works; GPU allocation and reliable runtime access are not verified.
 - Prefer ordinary 16-bit LoRA on the allocated GPU first. If it cannot fit, use verified 4-bit LoRA or the documented local fallback. Keep inference comparisons at the same target checkpoint and precision; extra cloud memory is not a reason to select a model the final laptop cannot serve.
 - Use PyTorch, Transformers, PEFT, NumPy, scikit-learn and a local Gradio browser application. These are proposed implementation choices; pin versions only after compatibility checks. A locally hosted browser app meets the assignment.
 - Implement the cache loop, tiled online-softmax attention, and greedy speculative algorithm yourself. Libraries may supply model layers, cache containers and reference tests.
@@ -31,6 +31,8 @@ Patient text + typed criteria -> numbered patient sentences -> fixed prompt -> t
 The same inference service exposes uncached greedy, cached greedy, and speculative greedy generation. An independent attention module demonstrates dense versus tiled attention and optionally compares a supported PyTorch backend. Benchmark charts always come from saved measurements or a live run.
 
 **Compute decision:** training in Kaggle is compatible with the assignment's allowance for notebooks and free environments. The final evaluator must launch the independent local app; they must not need to connect, authorize cloud storage, execute a notebook or acquire a Kaggle GPU. The detailed comparison and recovery protocol are included below and in `compute_strategy.md`.
+
+**Current service hold (9 November 2026):** Kaggle displays an outage notice that notebooks may not start or stay connected. The CPU verification job and GPU probe both remained queued, including after recreation. Pause cloud submissions while the notice is displayed; continue local, CPU-only development. Resume with one minimal CPU job after the notice clears, then test GPU access.
 
 ## 2. Device feasibility and resource policy
 

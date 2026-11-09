@@ -4,6 +4,8 @@
 
 A separate private GPU probe ran and its result was downloaded. It reported a CPU-only PyTorch build and no CUDA availability; it did not establish whether a physical GPU was attached. A revised hardware diagnostic is queued. See the [probe report](../results/kaggle_gpu_probe_v1.json). This is neither model fit nor clinical evaluation.
 
+**Outage update (9 November):** the user reports Kaggle currently displays a service banner saying notebooks cannot start or stay connected and Kaggle is working on a fix. Both newly recreated jobs were queued. Do not treat that queue as a project-code failure or submit further retries until the banner clears. CLI deletion requests also stalled, and the two notebook entries still appeared in `kernels list --mine`; their current deletion state is unresolved.
+
 ## Status and boundary
 
 The preparation pipeline, fixed split, audited exclusion, prompt contracts, development-only tokenization audit and automated checks are implemented. All 1,015 original annotation IDs are accounted for; the source contains **one training row without criterion text**. On 9 November 2026 the student decided to exclude that row from training. The original is retained in the source and audit; the usable training set contains 602 of 603 assigned rows. The row's influence on model quality and the instructor's grading treatment remain unknown.

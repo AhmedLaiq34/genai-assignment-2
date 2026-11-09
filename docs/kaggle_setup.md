@@ -1,10 +1,13 @@
 # Kaggle setup and Phase 2 verification
 
-Kaggle is the chosen research provider. CLI authentication and a quota query
-succeeded on 9 November 2026. The account reported 30 GPU hours remaining at
-that moment; availability and limits can change. Internet, actual accelerator,
-and Phase 2 job execution and output retrieval are unverified. The local app remains
-independent of Kaggle. The prior Colab pilots remain historical evidence only.
+Kaggle is the planned research provider. On 9 November 2026 the Kaggle site
+displayed this outage banner: “We are aware of an issue preventing notebooks
+from starting or staying connected, and are actively working on a fix.” Treat
+the queued jobs as blocked by the platform incident until Kaggle clears it.
+Do not resubmit repeatedly. CLI authentication and a quota query succeeded;
+the account showed 30 GPU hours at the time, which does not make notebook
+capacity available. Kaggle execution and output recovery remain unverified.
+The local app remains independent. Earlier Colab pilots are historical only.
 
 On 9 November, a separate private GPU probe ran and its output was downloaded.
 Its runtime had `torch 2.11.0+cpu`, and `torch.cuda.is_available()` was false.

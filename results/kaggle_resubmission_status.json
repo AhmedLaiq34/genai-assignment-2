@@ -23,5 +23,8 @@
     }
   ],
   "outputs_downloaded_for_current_submissions": false,
-  "note": "Old notebook IDs were deleted by user after remaining queued. Both jobs were recreated; new submissions remain queued."
+  "note": "Old notebook IDs were deleted by user after remaining queued. Both jobs were recreated; new submissions remain queued.",
+  "platform_notice_reported_by_user": "We are aware of an issue preventing notebooks from starting or staying connected, and are actively working on a fix.",
+  "action": "Paused retries. CLI delete requests were interrupted after hanging; kernel entries remained visible in list --mine at last check.",
+  "last_observed_status": "QUEUED"
 }
