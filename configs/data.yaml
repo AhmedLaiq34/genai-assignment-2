@@ -1,0 +1,8 @@
+dataset_id: ncbi/TrialGPT-Criterion-Annotations
+dataset_revision: 1cfcafde94a1560a33b4addc1638664fe28fc059
+source_sha256: 14c547184fac9b013cd17441fd028845b40150c76b022e58334f5494077e5234
+seed: 42
+split: [37, 8, 8]
+malformed_training_policy: exclude_known_missing_training_883
+approved_excluded_training_annotation_ids: [883]
+malformed_validation_or_test_policy: fail

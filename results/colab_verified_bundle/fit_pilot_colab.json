@@ -1,0 +1,41 @@
+{
+  "all_losses_finite": true,
+  "device": "Tesla T4",
+  "dtype": "torch.float16",
+  "gradient_accumulation": 8,
+  "losses": [
+    0.6925734281539917,
+    0.4955049753189087,
+    0.32599931955337524,
+    0.2314767986536026,
+    0.18630912899971008,
+    0.14299556612968445,
+    0.09406343102455139,
+    0.057451002299785614,
+    0.03276637941598892,
+    0.01692192628979683
+  ],
+  "max_sequence_tokens": 1024,
+  "mean_seconds_per_step": 4.869075529500026,
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "passed": true,
+  "peak_allocated_bytes": 5406132736,
+  "peak_reserved_bytes": 6106906624,
+  "seconds_per_optimizer_step": [
+    6.995627774000013,
+    4.4969474410000885,
+    4.538469742000075,
+    4.562231402000066,
+    4.596832921999976,
+    4.639918934999969,
+    4.663910623999982,
+    4.691655158000003,
+    4.738430636000089,
+    4.766730660999997
+  ],
+  "steps": 10,
+  "synthetic_only": true,
+  "total_parameter_count": 1544803840,
+  "trainable_parameter_count": 1089536
+}

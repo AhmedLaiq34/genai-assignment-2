@@ -1,0 +1,90 @@
+{
+  "max_new_tokens": 96,
+  "max_total_tokens": 1024,
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompt_config_sha256": "59cccc29bccaadd0dd76e92f36fecbef598ecf7a48174373bfbf66aef6a27104",
+  "prompt_source_sha256": "4da52a034ebc110890061bee8b5946563dc613d0f1037499e8030769442d5a00",
+  "prompt_version": "v1-provisional",
+  "scope": "training and validation only; no protected test examples loaded",
+  "selection_policy": "leading whole sentences only, independent of gold evidence",
+  "split_manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "splits": {
+    "train": {
+      "failures": [],
+      "full_prompt_token_lengths": {
+        "max": 595,
+        "median": 286.0,
+        "min": 209,
+        "p95": 517.0
+      },
+      "gold_evidence_id_retention": 1.0,
+      "gold_evidence_ids_retained": 418,
+      "gold_evidence_ids_total": 418,
+      "kept_prompt_token_lengths": {
+        "max": 595,
+        "median": 286.0,
+        "min": 209,
+        "p95": 517.0
+      },
+      "records": 602,
+      "records_with_all_gold_retained": 254,
+      "records_with_nonempty_gold": 254,
+      "removed_sentences_per_record": {
+        "max": 0,
+        "median": 0.0,
+        "min": 0,
+        "p95": 0.0
+      },
+      "removed_sentences_total": 0,
+      "successfully_budgeted": 602,
+      "target_token_lengths_including_eos": {
+        "max": 29,
+        "median": 13.0,
+        "min": 12,
+        "p95": 18.0
+      },
+      "targets_exceeding_output_reserve_ids": [],
+      "truncated_annotation_ids": [],
+      "truncated_count": 0
+    },
+    "validation": {
+      "failures": [],
+      "full_prompt_token_lengths": {
+        "max": 436,
+        "median": 333.0,
+        "min": 260,
+        "p95": 385.5
+      },
+      "gold_evidence_id_retention": 1.0,
+      "gold_evidence_ids_retained": 115,
+      "gold_evidence_ids_total": 115,
+      "kept_prompt_token_lengths": {
+        "max": 436,
+        "median": 333.0,
+        "min": 260,
+        "p95": 385.5
+      },
+      "records": 206,
+      "records_with_all_gold_retained": 90,
+      "records_with_nonempty_gold": 90,
+      "removed_sentences_per_record": {
+        "max": 0,
+        "median": 0.0,
+        "min": 0,
+        "p95": 0.0
+      },
+      "removed_sentences_total": 0,
+      "successfully_budgeted": 206,
+      "target_token_lengths_including_eos": {
+        "max": 21,
+        "median": 13.0,
+        "min": 12,
+        "p95": 16.0
+      },
+      "targets_exceeding_output_reserve_ids": [],
+      "truncated_annotation_ids": [],
+      "truncated_count": 0
+    }
+  }
+}

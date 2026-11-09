@@ -1,0 +1,5 @@
+{
+  "local_application_environment": "results/environments/local.json",
+  "primary_research_environment": "results/environments/colab_20261109T110002Z.json",
+  "status": "Colab T4 allocation inspected; CUDA smoke passed and measured report is saved."
+}

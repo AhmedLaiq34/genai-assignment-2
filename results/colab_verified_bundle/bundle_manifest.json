@@ -1,0 +1,32 @@
+{
+  "bundle_name": "phase01-colab-20261109T110409Z",
+  "created_at_utc": "2026-11-09T11:04:09.759708+00:00",
+  "files": {
+    "environment.json": {
+      "sha256": "6bf15b55744450c6142be2b90ac1693f5df1bce2e8be291d1a4a49dfe87b014f",
+      "size_bytes": 237
+    },
+    "environments/colab_20261109T110002Z.json": {
+      "sha256": "eee202b7c1fb9c119a58b68d9bb150fb2e54bdd7897a1a7e5c14b76a6d6a4b0b",
+      "size_bytes": 2066
+    },
+    "feasibility_colab.json": {
+      "sha256": "cb58558b7199cf03c01d7730099bcf61043cb3456baa8549d318d13541f9f32e",
+      "size_bytes": 1687
+    },
+    "fit_pilot_colab.json": {
+      "sha256": "e9f0e99fb16467a7b61ed2e9a63f35c7950f329b7bdd3332eac7f7367cc65d9f",
+      "size_bytes": 1047
+    },
+    "tokenizer_compatibility_colab.json": {
+      "sha256": "52522ff90100a6198694658222a1e6894659ed396a2716b3114eb37fa93c6876",
+      "size_bytes": 5670
+    }
+  },
+  "metadata": {
+    "purpose": "phase-0-1-pilot-results",
+    "runtime": "colab-t4",
+    "synthetic_only": true
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,5 @@
+{
+  "local_application_environment": "results/environments/local.json",
+  "primary_research_environment": "results/environments/colab_20261109T110002Z.json",
+  "status": "Colab environment inspected; see report for actual allocation."
+}

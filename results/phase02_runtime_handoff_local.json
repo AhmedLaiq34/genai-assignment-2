@@ -1,0 +1,14 @@
+{
+  "canonical_manifest_matches": true,
+  "packaged_manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "platform": "win32",
+  "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
+  "raw_or_prepared_test_content_reported": false,
+  "recorded_at_utc": "2026-11-09T14:38:02.565934+00:00",
+  "regenerated_manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "runtime_profile": "local",
+  "token_audit_scope": "training and validation only; no protected test examples loaded",
+  "training_excluded_annotation_ids": [
+    883
+  ]
+}

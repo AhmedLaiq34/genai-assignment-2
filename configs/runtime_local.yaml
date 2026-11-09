@@ -1,0 +1,16 @@
+profile: local
+project_root: .
+cache_root: .cache
+model_cache: .cache/huggingface
+active_work_dir: .
+persistent_artifact_dir: artifacts
+results_dir: results
+device: cuda
+preferred_dtype: float16
+allow_cpu_fallback: true
+max_prompt_tokens: 1024
+max_new_tokens: 96
+batch_size: 1
+num_workers: 0
+max_concurrent_inference_requests: 1
+colab_required_for_app: false

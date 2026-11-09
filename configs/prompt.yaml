@@ -1,0 +1,7 @@
+version: v1-provisional
+model_id: Qwen/Qwen2.5-1.5B-Instruct
+model_revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+max_total_tokens: 1024
+max_new_tokens: 96
+truncation: retain_leading_whole_sentences
+output_fields: [label, evidence_sentence_ids]

@@ -1,0 +1,14 @@
+# Keep data, source and checksum inputs byte-stable across Windows and Linux.
+*.json text eol=lf
+*.jsonl text eol=lf
+*.ipynb text eol=lf
+*.yaml text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.lock text eol=lf
+*.sha256 text eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.pdf binary
+*.zip binary

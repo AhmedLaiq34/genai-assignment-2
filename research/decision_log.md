@@ -1,0 +1,33 @@
+# Project decision log
+
+This is the continuing record of decisions for all phases. Add an entry when a material choice is made or changed, including rationale, evidence, limitations and the person or basis for the decision. Past observations are snapshots, not guarantees. Do not record test-derived tuning choices as if they were made before seeing the test.
+
+## Phases 0 and 1: environment, models and research
+
+| Decision | Alternatives considered | Current choice | Evidence / status |
+|---|---|---|---|
+| Source of task labels | Required TrialGPT annotations; GPT-generated dataset outputs; public trial APIs | Expert annotations from prescribed TrialGPT dataset only | Assignment requires dataset; previous AI outputs are leakage, not training targets. |
+| Local development Python | System Python 3.14; existing Python 3.13; project Python 3.11 | Isolated Python 3.11 on D: | Current machine exposes 3.14 and 3.13; 3.11 installed for broader ML wheel compatibility. |
+| Compute split | Laptop-only; Colab-only; Colab compute plus local app | Colab research, local development and final app | Official Colab CLI allocated a standard T4 (16 GiB); actual report, CUDA smoke, and verified results transfer are saved. While running, the CLI showed 0.00 balance and 1.15 CU/hour. After stopping, it showed no active sessions, 0.00 CU/hour, and 0 active assignments; don't assume future use is free. |
+| Model target | Qwen2.5-1.5B; Qwen2.5-0.5B; encoder-only model; larger decoder | Select Qwen2.5-1.5B target and Qwen2.5-0.5B speculative draft for subsequent implementation | Pinned tokenizers match. Target passes local and T4 inference at 256/1,024 tokens; target+draft pass at both lengths on the RTX 3050. A synthetic 10-step FP16 LoRA pilot passes on T4. Task-quality evaluation remains pending. |
+| Adaptation | Full fine-tuning; LoRA; 4-bit LoRA | Start with ordinary FP16 LoRA | Ten optimizer steps, accumulation 8, sequence length 1,024, synthetic-only on Tesla T4; all losses finite; 5,406,132,736 peak allocated / 6,106,906,624 peak reserved bytes; mean 4.87 seconds per step. Pilot establishes feasibility, not useful clinical learning. |
+| Custom attention | Claim production integration; separate educational module | Keep attention experiment independent unless verified integration is necessary | Avoid claiming the selected model uses custom code that it does not use. |
+| Final hosting | Notebook / cloud web UI; local browser application | Local browser application | Cloud runtime and notebook access cannot be required for evaluator use. |
+| Long-running artifacts | Temporary runtime only; Drive or verified storage; local downloads | Local staging, checksummed persistent bundle, then local copy | Five Colab result files were bundled and hash-verified on the T4, downloaded through the official CLI, and restored/verified locally. Training optimizer-resume integration remains Phase 4. |
+
+Record measured failures, changed model/config revisions and rejected options
+here as the pilots run. Do not change a candidate silently after freezing a
+baseline or training run.
+
+## Phase 2: dataset preparation and evaluation integrity
+
+| Decision | Alternatives / rationale | Evidence and limitation |
+|---|---|---|
+| Exclude the single malformed training example, annotation 883 | On 9 November 2026, the student chose to exclude this one row because its criterion text is absent. No text is guessed or recovered from labels, previous predictions, or external trial metadata. The original row, patient-group assignment, annotation ID and quarantine record remain in the audit trail. Any other missing training criterion, and any missing validation/test criterion, must fail. | [Data audit](../results/data_audit.json); [manifest](../data/splits/manifest.json); [config](../configs/data.yaml). Training has 602 usable rows from 603 assigned, a 1/603 (about 0.17%) exclusion. Its impact on rare categories and model performance is unknown; disclose it in the paper. This student decision does not guarantee instructor approval or full-credit treatment. |
+| Preserve prescribed patient split | Use sorted IDs and `default_rng(42)`, 37/8/8 patients, independent of the source's legacy `training` flag. | [Split manifest](../data/splits/manifest.json); [preparation](../scripts/prepare_data.py). One excluded training annotation does not change patient assignment or validation/test sets. |
+| Model-input allowlist | Keep expert target, provenance, legacy flag and prior GPT predictions outside model prompts. | [Prompt implementation](../src/clinical_match/prompts.py); [prepared-example schema](../schemas/prepared_example.schema.json); [tests](../tests/test_phase2_contracts.py). |
+| Preserve six expert categories and source sentence IDs | Inclusion and exclusion have distinct categories; unknown and not-applicable are preserved. Retain source evidence text in provenance. | [Preparation](../scripts/prepare_data.py); [schema](../schemas/prepared_example.schema.json). |
+| Provisional prompt and context policy | Use a 1,024-token total budget with 96 reserved for output; retain leading whole sentences, independently of gold evidence. | [Prompt config](../configs/prompt.yaml); [development-only token audit](../results/tokenization_audit.json). No development example required truncation; this is not a model-quality result and does not cover test. |
+| Protect held-out data during development | Mechanically prepare test records, but do not use their contents for prompt, model or threshold selection. Require explicit final-test flag and a frozen-manifest hash in the provided loader. | [Data access](../src/clinical_match/data_access.py); [Phase 2 handoff](../handoffs/phase_02.md). The guard prevents accidents, not direct filesystem access; later evaluation must verify the recorded artifact identities. |
+| Report source anomalies without substituting benchmark data | The incomplete training record is excluded from supervised inputs but kept in the manifest and quarantine. Do not silently drop any other malformed row or source evidence from public trial metadata. | [Data preparation](../scripts/prepare_data.py); [quarantine](../data/processed/quarantine.jsonl). The quarantine JSONL is intentionally excluded from Git; the public audit records its ID/reason. |
+| Colab and local evidence must remain separate | Package the canonical split manifest and verify its checksum when transferred; do not merge unlike-device timing as a speedup. | [Packaging script](../scripts/package_colab_source.py); [split hash](../data/splits/manifest.sha256). Actual cloud verification must be separately recorded. |

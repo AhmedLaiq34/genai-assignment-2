@@ -1,0 +1,3 @@
+# Shared packages for the Colab research runtime.
+# Use Colab's compatible preinstalled PyTorch build; do not reinstall torch here.
+-r requirements-base.txt

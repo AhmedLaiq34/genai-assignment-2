@@ -1,0 +1,91 @@
+{
+  "cuda_smoke_test": {
+    "cuda_available": true,
+    "device": {
+      "bfloat16_supported": true,
+      "compute_capability": [
+        7,
+        5
+      ],
+      "name": "Tesla T4",
+      "total_memory_bytes": 15637086208
+    },
+    "matrix_multiply": {
+      "passed": true,
+      "shape": [
+        128,
+        128
+      ]
+    },
+    "peak_allocated_bytes": 8765440,
+    "peak_reserved_bytes": 23068672,
+    "tiny_forward": {
+      "passed": true,
+      "shape": [
+        1,
+        8,
+        32
+      ]
+    },
+    "torch_cuda_build": "13.0",
+    "torch_version": "2.14.1+cu130"
+  },
+  "environment_variables": {
+    "HF_HOME": "/content/.cache/huggingface",
+    "HF_HUB_CACHE": "/content/.cache/huggingface/hub",
+    "PIP_CACHE_DIR": null,
+    "UV_CACHE_DIR": null
+  },
+  "nvidia_smi": {
+    "available": true,
+    "devices": [
+      {
+        "driver_version": "580.82.07",
+        "memory_free_mib": "14913",
+        "memory_total_mib": "15360",
+        "name": "Tesla T4",
+        "power_draw_w": "9.77",
+        "power_limit_w": "70.00",
+        "temperature_c": "43"
+      }
+    ]
+  },
+  "packages": {
+    "accelerate": "1.10.1",
+    "gradio": "6.17.3",
+    "huggingface-hub": "0.35.3",
+    "numpy": "2.3.4",
+    "peft": "0.17.1",
+    "scikit-learn": "1.7.2",
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.1"
+  },
+  "recorded_at_utc": "2026-11-09T11:00:02.215840+00:00",
+  "runtime": {
+    "cpu_memory": {
+      "available_bytes": 12341129216,
+      "total_bytes": 13605810176
+    },
+    "logical_cpu_count": 2,
+    "machine": "x86_64",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "profile": "colab",
+    "project_storage_path": "/content/Gen_AI_Assignment_2",
+    "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+    "python_executable": "/usr/bin/python3",
+    "storage": {
+      "project": {
+        "free_bytes": 120331149312,
+        "total_bytes": 120942624768
+      }
+    },
+    "windows_version": [
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "schema_version": 1
+}

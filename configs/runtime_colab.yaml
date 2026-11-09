@@ -1,0 +1,16 @@
+profile: colab
+project_root: /content/Gen_AI_Assignment_2
+cache_root: /content/.cache
+model_cache: /content/.cache/huggingface
+active_work_dir: /content
+persistent_artifact_dir: /content/drive/MyDrive/GenAI_Assignment_2
+results_dir: results
+device: cuda
+preferred_dtype: float16
+allow_cpu_fallback: true
+max_prompt_tokens: 1024
+max_new_tokens: 96
+batch_size: 1
+num_workers: 0
+max_concurrent_inference_requests: 1
+gpu_allocation_verified: false

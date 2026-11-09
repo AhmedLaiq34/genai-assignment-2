@@ -1,0 +1,95 @@
+{
+  "cuda_smoke_test": {
+    "cuda_available": true,
+    "device": {
+      "bfloat16_supported": true,
+      "compute_capability": [
+        8,
+        6
+      ],
+      "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "total_memory_bytes": 6441926656
+    },
+    "matrix_multiply": {
+      "passed": true,
+      "shape": [
+        128,
+        128
+      ]
+    },
+    "peak_allocated_bytes": 9742336,
+    "peak_reserved_bytes": 23068672,
+    "tiny_forward": {
+      "passed": true,
+      "shape": [
+        1,
+        8,
+        32
+      ]
+    },
+    "torch_cuda_build": "12.8",
+    "torch_version": "2.11.0+cu128"
+  },
+  "environment_variables": {
+    "HF_HOME": "D:\\Gen_AI_Assignment_2\\.cache\\huggingface",
+    "HF_HUB_CACHE": "D:\\Gen_AI_Assignment_2\\.cache\\huggingface\\hub",
+    "PIP_CACHE_DIR": "D:\\Gen_AI_Assignment_2\\.cache\\pip",
+    "UV_CACHE_DIR": "D:\\Gen_AI_Assignment_2\\.cache\\uv"
+  },
+  "nvidia_smi": {
+    "available": true,
+    "devices": [
+      {
+        "driver_version": "610.74",
+        "memory_free_mib": "5801",
+        "memory_total_mib": "6144",
+        "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+        "power_draw_w": "14.58",
+        "power_limit_w": "[N/A]",
+        "temperature_c": "54"
+      }
+    ]
+  },
+  "packages": {
+    "accelerate": "1.10.1",
+    "gradio": "6.17.3",
+    "huggingface-hub": "0.35.3",
+    "numpy": "2.3.4",
+    "peft": "0.17.1",
+    "scikit-learn": "1.7.2",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "recorded_at_utc": "2026-11-09T11:07:02.073569+00:00",
+  "runtime": {
+    "cpu_memory": {
+      "available_bytes": 6564032512,
+      "total_bytes": 16802938880
+    },
+    "logical_cpu_count": 12,
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "profile": "local",
+    "project_storage_path": "D:\\Gen_AI_Assignment_2",
+    "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "D:\\Gen_AI_Assignment_2\\.venv\\Scripts\\python.exe",
+    "storage": {
+      "C:": {
+        "free_bytes": 18198577152,
+        "total_bytes": 300683358208
+      },
+      "D:": {
+        "free_bytes": 94251409408,
+        "total_bytes": 209715195904
+      }
+    },
+    "windows_version": [
+      "10",
+      "10.0.26300",
+      "SP0",
+      "Multiprocessor Free"
+    ]
+  },
+  "schema_version": 1
+}

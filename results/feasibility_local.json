@@ -1,0 +1,106 @@
+{
+  "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "pair_fit_passed": true,
+  "precision": "float16",
+  "synthetic_only": true,
+  "target": {
+    "1024": {
+      "cache_length_after_decode": 1025,
+      "greedy_next_token_id": 13,
+      "one_token_decode_seconds": 0.07487989999935962,
+      "passed": true,
+      "peak_allocated_bytes": 3441470976,
+      "peak_reserved_bytes": 3676307456,
+      "prefill_seconds": 0.4178596000001562,
+      "prompt_tokens": 1024
+    },
+    "256": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.20264599999973143,
+      "passed": true,
+      "peak_allocated_bytes": 3182919168,
+      "peak_reserved_bytes": 3265265664,
+      "prefill_seconds": 0.8165880999986257,
+      "prompt_tokens": 256
+    }
+  },
+  "target_draft_co_residency": {
+    "by_prompt_tokens": {
+      "1024": {
+        "draft": {
+          "cache_length_after_decode": 1025,
+          "greedy_next_token_id": 13,
+          "one_token_decode_seconds": 0.07330600000022969,
+          "passed": true,
+          "peak_allocated_bytes": 4423014400,
+          "peak_reserved_bytes": 4685037568,
+          "prefill_seconds": 0.23334340000110387,
+          "prompt_tokens": 1024
+        },
+        "pair_peak_allocated_bytes": 4423014400,
+        "pair_peak_reserved_bytes": 4685037568,
+        "target": {
+          "cache_length_after_decode": 1025,
+          "greedy_next_token_id": 13,
+          "one_token_decode_seconds": 0.03663770000093791,
+          "passed": true,
+          "peak_allocated_bytes": 4441495552,
+          "peak_reserved_bytes": 4685037568,
+          "prefill_seconds": 0.40641409999989264,
+          "prompt_tokens": 1024
+        }
+      },
+      "256": {
+        "draft": {
+          "cache_length_after_decode": 257,
+          "greedy_next_token_id": 17556,
+          "one_token_decode_seconds": 0.04514969999945606,
+          "passed": true,
+          "peak_allocated_bytes": 4178814976,
+          "peak_reserved_bytes": 4259315712,
+          "prefill_seconds": 0.044541699999172124,
+          "prompt_tokens": 256
+        },
+        "pair_peak_allocated_bytes": 4178814976,
+        "pair_peak_reserved_bytes": 4259315712,
+        "target": {
+          "cache_length_after_decode": 257,
+          "greedy_next_token_id": 17556,
+          "one_token_decode_seconds": 0.05285510000067006,
+          "passed": true,
+          "peak_allocated_bytes": 4183336960,
+          "peak_reserved_bytes": 4259315712,
+          "prefill_seconds": 0.08088169999973616,
+          "prompt_tokens": 256
+        }
+      }
+    },
+    "draft": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.04514969999945606,
+      "passed": true,
+      "peak_allocated_bytes": 4178814976,
+      "peak_reserved_bytes": 4259315712,
+      "prefill_seconds": 0.044541699999172124,
+      "prompt_tokens": 256
+    },
+    "loaded": true,
+    "pair_peak_allocated_bytes": 4178814976,
+    "pair_peak_reserved_bytes": 4259315712,
+    "target": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.05285510000067006,
+      "passed": true,
+      "peak_allocated_bytes": 4183336960,
+      "peak_reserved_bytes": 4259315712,
+      "prefill_seconds": 0.08088169999973616,
+      "prompt_tokens": 256
+    }
+  },
+  "target_fit_passed": true,
+  "torch_cuda_build": "12.8",
+  "torch_version": "2.11.0+cu128"
+}

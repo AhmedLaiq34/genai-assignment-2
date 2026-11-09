@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Criterion inference result without gold targets",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["criterion_type", "criterion_text", "raw_output", "label", "evidence_sentence_ids", "parse_status", "evidence_status", "evidence_excerpts", "explanation", "truncated", "model_revision", "prompt_revision", "timing_ms"],
+  "properties": {
+    "criterion_type": {"enum": ["inclusion", "exclusion"]},
+    "criterion_text": {"type": "string"},
+    "raw_output": {"type": "string"},
+    "label": {"type": ["string", "null"]},
+    "evidence_sentence_ids": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "parse_status": {"type": "string"},
+    "evidence_status": {"type": "string"},
+    "evidence_excerpts": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "text"], "properties": {"id": {"type": "integer"}, "text": {"type": "string"}}}},
+    "explanation": {"type": "string"},
+    "truncated": {"type": "boolean"},
+    "model_revision": {"type": "string"},
+    "prompt_revision": {"type": "string"},
+    "timing_ms": {"type": "number", "minimum": 0}
+  }
+}

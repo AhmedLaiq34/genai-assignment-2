@@ -1,0 +1,56 @@
+{
+  "device": "Tesla T4",
+  "pair_fit_passed": true,
+  "precision": "float16",
+  "synthetic_only": true,
+  "target": {
+    "1024": {
+      "cache_length_after_decode": 1025,
+      "greedy_next_token_id": 13,
+      "one_token_decode_seconds": 0.033143182000003435,
+      "passed": true,
+      "peak_allocated_bytes": 3440422400,
+      "peak_reserved_bytes": 3611295744,
+      "prefill_seconds": 0.1955614969999715,
+      "prompt_tokens": 1024
+    },
+    "256": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.23349113400001897,
+      "passed": true,
+      "peak_allocated_bytes": 3181870592,
+      "peak_reserved_bytes": 3265265664,
+      "prefill_seconds": 4.347876381999981,
+      "prompt_tokens": 256
+    }
+  },
+  "target_draft_co_residency": {
+    "draft": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.04674816300007478,
+      "passed": true,
+      "peak_allocated_bytes": 4176095232,
+      "peak_reserved_bytes": 4269801472,
+      "prefill_seconds": 0.05827073000000382,
+      "prompt_tokens": 256
+    },
+    "loaded": true,
+    "pair_peak_allocated_bytes": 4176095232,
+    "pair_peak_reserved_bytes": 4269801472,
+    "target": {
+      "cache_length_after_decode": 257,
+      "greedy_next_token_id": 17556,
+      "one_token_decode_seconds": 0.05758618499999102,
+      "passed": true,
+      "peak_allocated_bytes": 4180617216,
+      "peak_reserved_bytes": 4269801472,
+      "prefill_seconds": 0.06789997900000344,
+      "prompt_tokens": 256
+    }
+  },
+  "target_fit_passed": true,
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.14.1+cu130"
+}
