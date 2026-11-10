@@ -1,0 +1,1 @@
+{"epoch": 0, "example_cursor": 8, "examples_in_step": 8, "global_step": 1, "grad_norm": 1.4942619800567627, "learning_rate": 1.8181818181818182e-05, "loss": 0.5740016512572765, "peak_allocated_bytes": 4065578496, "peak_reserved_bytes": 4825546752, "seconds": 4.066740900001605, "tokens": 2517}

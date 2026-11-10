@@ -1,5 +1,7 @@
 # Phase 0–1: the important ideas, in plain language
 
+> **Compute-route update (10 November 2026):** the active training route is **Google Colab**, with the laptop for development and the final app. See [Colab training setup](../docs/colab_manual_setup.md). Verify CUDA in the current runtime.
+
 This is a short conceptual companion to the [master plan](master_plan.md).
 It explains why the setup and model-choice work matters and distinguishes
 feasibility evidence from model-quality evidence.
@@ -30,11 +32,12 @@ temporary buffers and the desktop GPU all consume memory. The environment
 doctor records the actual state; the model smoke test measures whether the
 intended prompt and model fit. A failed fit is evidence too.
 
-**Local app and cloud research are different jobs.** Colab may offer a
-different GPU, but availability is variable and its files are temporary. We
-can use it to research/train, while the evaluator-facing app must work on this
-laptop without Drive or a running notebook. Any cloud checkpoint therefore
-needs a verified durable copy and a tested local reload.
+**Local app and cloud research are different jobs.** Google Colab offers a
+different GPU through the official CLI, but availability is variable and its
+scratch files are temporary. We can use it to research/train, while the
+evaluator-facing app must work on this laptop without Drive or a running
+kernel. Any cloud checkpoint therefore needs a verified downloaded copy and a
+tested local reload.
 
 **A checkpoint must be resumable, not just present.** A completion marker and
 file hashes help detect an incomplete or corrupted copy. The small synthetic
@@ -72,7 +75,7 @@ learns small low-rank update matrices instead. This reduces trainable state,
 but does **not** make training free: forward activations, gradients through
 the adapters, attention workspaces and output logits still consume memory.
 
-The initial plan is an ordinary 16-bit LoRA pilot on the actual Colab GPU. If
+The initial plan is an ordinary 16-bit LoRA run on a verified Colab GPU. If
 that cannot fit, a tested 4-bit method is a fallback. Quantization changes
 the experiment and software requirements; it should not be selected simply
 because it sounds smaller. The measured 10-step T4 pilot used one synthetic

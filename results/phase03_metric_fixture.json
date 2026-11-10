@@ -1,0 +1,407 @@
+{
+  "by_criterion_type": {
+    "exclusion": {
+      "classification": {
+        "accuracy": 1.0,
+        "classes": [
+          "excluded",
+          "not excluded",
+          "not enough information",
+          "not applicable"
+        ],
+        "confusion_matrix": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "excluded",
+          "not excluded",
+          "not enough information",
+          "not applicable",
+          "__invalid__"
+        ],
+        "invalid_prediction_count": 0,
+        "macro_f1": 0.75,
+        "n": 3,
+        "per_class": {
+          "excluded": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          },
+          "not applicable": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          },
+          "not enough information": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 0
+          },
+          "not excluded": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          }
+        },
+        "zero_support_classes": [
+          "not enough information"
+        ]
+      },
+      "evidence": {
+        "both_empty_annotations": 2,
+        "macro_per_annotation": {
+          "f1": 0.6666666666666666,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666
+        },
+        "micro": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "micro_counts": {
+          "fn": 1,
+          "fp": 0,
+          "tp": 0
+        },
+        "n": 3,
+        "nonempty_gold_micro": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "nonempty_gold_micro_counts": {
+          "fn": 1,
+          "fp": 0,
+          "tp": 0
+        },
+        "nonempty_gold_n": 1
+      }
+    },
+    "inclusion": {
+      "classification": {
+        "accuracy": 0.6666666666666666,
+        "classes": [
+          "included",
+          "not included",
+          "not enough information",
+          "not applicable"
+        ],
+        "confusion_matrix": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "included",
+          "not included",
+          "not enough information",
+          "not applicable",
+          "__invalid__"
+        ],
+        "invalid_prediction_count": 1,
+        "macro_f1": 0.5,
+        "n": 3,
+        "per_class": {
+          "included": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          },
+          "not applicable": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 0
+          },
+          "not enough information": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          },
+          "not included": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 1
+          }
+        },
+        "zero_support_classes": [
+          "not applicable"
+        ]
+      },
+      "evidence": {
+        "both_empty_annotations": 1,
+        "macro_per_annotation": {
+          "f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "micro": {
+          "f1": 0.3333333333333333,
+          "precision": 0.25,
+          "recall": 0.5
+        },
+        "micro_counts": {
+          "fn": 1,
+          "fp": 3,
+          "tp": 1
+        },
+        "n": 3,
+        "nonempty_gold_micro": {
+          "f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "nonempty_gold_micro_counts": {
+          "fn": 1,
+          "fp": 1,
+          "tp": 1
+        },
+        "nonempty_gold_n": 1
+      }
+    }
+  },
+  "classification": {
+    "accuracy": 0.8333333333333334,
+    "classes": [
+      "included",
+      "not included",
+      "excluded",
+      "not excluded",
+      "not enough information",
+      "not applicable"
+    ],
+    "confusion_matrix": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "included",
+      "not included",
+      "excluded",
+      "not excluded",
+      "not enough information",
+      "not applicable",
+      "__invalid__"
+    ],
+    "invalid_prediction_count": 1,
+    "macro_f1": 0.8333333333333334,
+    "n": 6,
+    "per_class": {
+      "excluded": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "included": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "not applicable": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "not enough information": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "not excluded": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "not included": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 1
+      }
+    },
+    "zero_support_classes": []
+  },
+  "evidence": {
+    "both_empty_annotations": 3,
+    "macro_per_annotation": {
+      "f1": 0.5833333333333334,
+      "precision": 0.5833333333333334,
+      "recall": 0.5833333333333334
+    },
+    "micro": {
+      "f1": 0.28571428571428575,
+      "precision": 0.25,
+      "recall": 0.3333333333333333
+    },
+    "micro_counts": {
+      "fn": 2,
+      "fp": 3,
+      "tp": 1
+    },
+    "n": 6,
+    "nonempty_gold_micro": {
+      "f1": 0.4,
+      "precision": 0.5,
+      "recall": 0.3333333333333333
+    },
+    "nonempty_gold_micro_counts": {
+      "fn": 2,
+      "fp": 1,
+      "tp": 1
+    },
+    "nonempty_gold_n": 2
+  },
+  "evidence_parse_failure_count": 1,
+  "invalid_evidence_value_count": 3,
+  "n": 6,
+  "parse_status_counts": {
+    "illegal_category": 1,
+    "invalid_evidence_list": 1,
+    "valid": 4
+  },
+  "raw_evidence_validity_rate": 0.5,
+  "runtime_failure_count": 0,
+  "truncated_count": 0,
+  "validated_evidence_validity_rate": 0.5
+}

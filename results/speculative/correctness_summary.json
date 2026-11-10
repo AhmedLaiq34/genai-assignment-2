@@ -1,0 +1,70 @@
+{
+  "config": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "model_config": "configs/model.yaml",
+    "prompt_config": "configs/prompt.yaml",
+    "prompt_revision": "v1-provisional",
+    "max_total_tokens": 1024,
+    "max_new_tokens": 96,
+    "split": "validation",
+    "baseline_name": "base_greedy_v1",
+    "dtype": "float16",
+    "device": "cuda",
+    "reference_equivalence_examples": 3,
+    "generation_backend": "transformers_generate_greedy_cache",
+    "seed": 42
+  },
+  "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+  "model_config_sha256": "490d017489c7526eeacef6e76870a67110974ad1e7da22b77ad92db79b2bea0c",
+  "script_sha256": "656ac72c42b05af3e7db6dc98ed85cfa6ba7f620d50a5a273e5c2e93203c382c",
+  "speculative_source_sha256": "6776f05fd381cacb37955808e17843f846add89e1d21aec8de34fe2f43821ce8",
+  "reference_backend": "cached_explicit_greedy",
+  "generation_backend": "cached_explicit_greedy",
+  "timestamp_utc": "2026-11-10T01:43:31.188049+00:00",
+  "command": [
+    "D:\\Gen_AI_Assignment_2\\.venv\\Scripts\\python.exe",
+    "scripts\\check_speculative_correctness.py",
+    "--rows",
+    "3",
+    "--caps",
+    "8",
+    "16",
+    "32",
+    "--draft-k",
+    "1",
+    "2",
+    "4",
+    "8"
+  ],
+  "validation_data_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+  "manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "target_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "target_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "draft_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "draft_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "torch_version": "2.11.0+cu128",
+  "transformers_version": "4.57.1",
+  "git": {
+    "commit": "6db214952a772c65d2ff2402587df41168949263",
+    "dirty": true
+  },
+  "rows": 3,
+  "caps": [
+    8,
+    16,
+    32
+  ],
+  "draft_k": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "cases": 36,
+  "matches": 36,
+  "all_match": true,
+  "adapter_pending": true
+}

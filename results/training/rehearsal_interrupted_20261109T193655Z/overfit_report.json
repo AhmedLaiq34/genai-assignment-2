@@ -1,0 +1,14 @@
+{
+  "ending_loss": 0.5186840873211622,
+  "finite_losses": true,
+  "losses": [
+    0.5186840873211622,
+    0.5186840873211622
+  ],
+  "max_steps": 2,
+  "passed": false,
+  "starting_loss": 0.5186840873211622,
+  "subset_count": 8,
+  "target_match_after": 0,
+  "target_match_before": 0
+}

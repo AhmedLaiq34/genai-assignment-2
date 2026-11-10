@@ -131,7 +131,7 @@ cover=[Spacer(1,75),
     Paragraph('A plain-language companion to the master plan',ParagraphStyle('Subtitle',fontName='Guide',fontSize=17,leading=23,textColor=INK,spaceAfter=25)),
     Paragraph('Understand what we are building, why each phase matters, and what you should see when it is complete.',body),
     Spacer(1,18),
-    Paragraph('<b>Our working approach</b><br/>Kaggle for training and experiments, subject to availability; your laptop for the final browser application.',body),
+    Paragraph('<b>Our working approach</b><br/>Google Colab for training and experiments, subject to GPU/session availability; your laptop for the final browser application.',body),
     Spacer(1,18),
     Paragraph('<b>How to use this guide</b><br/>Read for understanding, then use the matching phase in the technical master plan for implementation and checks.',body),
     PageBreak(), Paragraph('Contents',h2)]

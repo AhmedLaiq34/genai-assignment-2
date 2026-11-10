@@ -1,0 +1,283 @@
+{
+  "aggregate": {
+    "criteria": [
+      {
+        "criterion_text": "Age 25 to 65 years",
+        "criterion_type": "inclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "9da47d13-4c21-49a8-9d70-2372eae3091b"
+      },
+      {
+        "criterion_text": "Myocardial infarction within the previous 6 months",
+        "criterion_type": "exclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "b8c8286e-eeb0-406b-96c7-4b908ca7e3b9"
+      },
+      {
+        "criterion_text": "Abnormal exercise myocardial perfusion scan with reversible ischemia",
+        "criterion_type": "inclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "8b1f3e5f-3322-4544-b122-f804603886b8"
+      }
+    ],
+    "criterion_count": 3,
+    "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+    "is_ground_truth_trial_outcome": false,
+    "not_applicable_policy": "Keep 'not applicable' visible but force review_needed for this preliminary aggregation. Without an external applicability rule, the label cannot establish that a required criterion is satisfied; treating it as a pass would turn an uncertain or misused category into an unsupported match.",
+    "outcome": "review_needed",
+    "outcome_description": "No definite failure, but at least one criterion is unknown, not applicable, invalid, truncated, contradictory, or operationally failed.",
+    "policy_version": "v1",
+    "reasons": [
+      "At least one criterion requires review or has no verified decision."
+    ]
+  },
+  "criteria": [
+    {
+      "adapter_path": null,
+      "adapter_sha256": null,
+      "criterion_text": "Age 25 to 65 years",
+      "criterion_type": "inclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "input_truncated": false,
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "omitted_sentence_count": 0,
+      "output_truncated": false,
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "prompt_sha256": "919d697964f5e81d989486ad53a874800ea88f790aaad0f7c7b60f139c80336e",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "9da47d13-4c21-49a8-9d70-2372eae3091b",
+      "runtime_error": null,
+      "timing_ms": 1893.0084000021452,
+      "truncated": false
+    },
+    {
+      "adapter_path": null,
+      "adapter_sha256": null,
+      "criterion_text": "Myocardial infarction within the previous 6 months",
+      "criterion_type": "exclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "input_truncated": false,
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "omitted_sentence_count": 0,
+      "output_truncated": false,
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "prompt_sha256": "daf84ffa180c1dc5cbe3da0d0e7a3c54bd28aa7f74e685792c8f8bf8fabf6c4d",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "b8c8286e-eeb0-406b-96c7-4b908ca7e3b9",
+      "runtime_error": null,
+      "timing_ms": 1213.8110000014422,
+      "truncated": false
+    },
+    {
+      "adapter_path": null,
+      "adapter_sha256": null,
+      "criterion_text": "Abnormal exercise myocardial perfusion scan with reversible ischemia",
+      "criterion_type": "inclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "input_truncated": false,
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "omitted_sentence_count": 0,
+      "output_truncated": false,
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "prompt_sha256": "f24bbf5e183b30e8ef630a3cfa81bd791fcf28f1c094e1a38da74a18ef896701",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "8b1f3e5f-3322-4544-b122-f804603886b8",
+      "runtime_error": null,
+      "timing_ms": 1158.5539000006975,
+      "truncated": false
+    }
+  ],
+  "notice": "Synthetic educational example. Not a real patient and not medical advice."
+}

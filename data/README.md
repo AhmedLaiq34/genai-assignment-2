@@ -18,7 +18,7 @@ The student has approved excluding source annotation 883, whose criterion is mis
 .\.venv\Scripts\python.exe -m pytest tests/test_data.py tests/test_prepare_data.py tests/test_phase2_contracts.py -q
 ```
 
-The tokenizer audit needs the pinned target tokenizer in the configured local Hugging Face cache. Phase 1 already downloaded it under D:. For Kaggle, set `HF_HUB_CACHE` to the prepared `/kaggle/working` cache. The audit never loads the test JSONL.
+The tokenizer audit needs the pinned target tokenizer in the configured local Hugging Face cache. Phase 1 already downloaded it under D:. In the active Kaggle training kernel, set `HF_HUB_CACHE` to the scratch cache; the generated kernel handles this automatically. The archived Colab notebook used `/content/.cache/huggingface/hub`. The audit never loads the test JSONL.
 
 ## Produced files and split rules
 
@@ -36,3 +36,4 @@ Use `src.clinical_match.data_access.load_examples` for split access. Training lo
 Pinned training annotation `883` for patient `sigir-201519` and trial `NCT02213809` has no `criterion_text`. The student chose to exclude it from training. It remains in the source snapshot and manifest and is explicitly listed in quarantine; no criterion is invented. The assignment restricts public trial metadata to application support, so do not reconstruct a supervised input from another dataset, trial metadata, the expert label or previous GPT output. Report the 602/603 coverage and the unmeasured impact on model performance; instructor grading treatment is unknown.
 
 Validation/test records with missing criteria are fatal errors because dropping them would invalidate the required held-out comparison. No test-derived prompt or threshold tuning is permitted.
+

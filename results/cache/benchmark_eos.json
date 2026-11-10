@@ -1,0 +1,573 @@
+{
+  "provenance": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "prompt_revision": "v1-provisional",
+    "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+    "dataset_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+    "dtype": "float16",
+    "attention_implementation": "sdpa",
+    "torch_version": "2.11.0+cu128",
+    "transformers_version": "4.57.1",
+    "eos_token_id": 151645,
+    "git_revision": "6db214952a772c65d2ff2402587df41168949263",
+    "git_dirty": true
+  },
+  "summary": {
+    "comparisons": [
+      {
+        "annotation_id": 0,
+        "prompt_sha256": "17c9d800cf145929b3f67973fbbbbc70eed699913c05eed985e5f8e5bdcf52cd",
+        "prompt_tokens": 356,
+        "max_new_tokens": 64,
+        "uncached_mean_seconds": 3.6192541000011262,
+        "cached_explicit_mean_seconds": 1.243228779999481,
+        "speedup": 2.9111730344616356
+      },
+      {
+        "annotation_id": 1,
+        "prompt_sha256": "667ec839ba83f9584cedb7094ee5d719161deba5fa78687e62b50debadf6017d",
+        "prompt_tokens": 335,
+        "max_new_tokens": 64,
+        "uncached_mean_seconds": 3.819774359998701,
+        "cached_explicit_mean_seconds": 1.2923450000002048,
+        "speedup": 2.955692450543853
+      }
+    ]
+  },
+  "records": [
+    {
+      "annotation_id": 0,
+      "mode": "uncached",
+      "prompt_tokens": 356,
+      "prompt_sha256": "17c9d800cf145929b3f67973fbbbbc70eed699913c05eed985e5f8e5bdcf52cd",
+      "max_new_tokens": 64,
+      "generated_tokens": 29,
+      "generated_token_ids": [
+        4913,
+        1502,
+        3252,
+        82622,
+        2198,
+        68,
+        27480,
+        48332,
+        8077,
+        8899,
+        15,
+        11,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        19,
+        11,
+        20,
+        11,
+        21,
+        11,
+        22,
+        11,
+        23,
+        13989,
+        151645
+      ],
+      "hit_token_cap": false,
+      "termination": "eos",
+      "warmups": 1,
+      "repetitions": [
+        {
+          "seconds": 3.599640799999179,
+          "peak_allocated_bytes": 3333576704,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 8.056359401195424
+        },
+        {
+          "seconds": 3.604810400000133,
+          "peak_allocated_bytes": 3333576704,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 8.044805907128689
+        },
+        {
+          "seconds": 3.605190499998571,
+          "peak_allocated_bytes": 3333576704,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 8.043957732611215
+        },
+        {
+          "seconds": 3.6365306000006967,
+          "peak_allocated_bytes": 3333576704,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.974633844685493
+        },
+        {
+          "seconds": 3.6500982000070508,
+          "peak_allocated_bytes": 3333576704,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.944991726508613
+        }
+      ],
+      "latency_seconds": {
+        "count": 5,
+        "mean": 3.6192541000011262,
+        "stdev": 0.022588286838135744,
+        "min": 3.599640799999179,
+        "median": 3.605190499998571,
+        "max": 3.6500982000070508
+      },
+      "ttft_seconds": null,
+      "end_to_end_tokens_per_second": {
+        "count": 5,
+        "mean": 8.012949722425887,
+        "stdev": 0.04986759746181847,
+        "min": 7.944991726508613,
+        "median": 8.043957732611215,
+        "max": 8.056359401195424
+      },
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "prompt_revision": "v1-provisional",
+      "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+      "dataset_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "dtype": "float16",
+      "attention_implementation": "sdpa",
+      "torch_version": "2.11.0+cu128",
+      "transformers_version": "4.57.1",
+      "eos_token_id": 151645,
+      "git_revision": "6db214952a772c65d2ff2402587df41168949263",
+      "git_dirty": true
+    },
+    {
+      "annotation_id": 0,
+      "mode": "cached_explicit",
+      "prompt_tokens": 356,
+      "prompt_sha256": "17c9d800cf145929b3f67973fbbbbc70eed699913c05eed985e5f8e5bdcf52cd",
+      "max_new_tokens": 64,
+      "generated_tokens": 29,
+      "generated_token_ids": [
+        4913,
+        1502,
+        3252,
+        82622,
+        2198,
+        68,
+        27480,
+        48332,
+        8077,
+        8899,
+        15,
+        11,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        19,
+        11,
+        20,
+        11,
+        21,
+        11,
+        22,
+        11,
+        23,
+        13989,
+        151645
+      ],
+      "hit_token_cap": false,
+      "termination": "eos",
+      "warmups": 1,
+      "repetitions": [
+        {
+          "seconds": 1.195534400001634,
+          "peak_allocated_bytes": 3224567296,
+          "timings": {
+            "prefill_seconds": 0.1398853999999119,
+            "decode_seconds": 1.0421167999811587,
+            "total_forward_seconds": 1.1820021999810706,
+            "forward_steps": 29
+          },
+          "ttft_seconds": 0.1398853999999119,
+          "decode_tokens_per_second": 26.868389417103952,
+          "end_to_end_tokens_per_second": 24.256934806694282
+        },
+        {
+          "seconds": 1.3116712999981246,
+          "peak_allocated_bytes": 3224567296,
+          "timings": {
+            "prefill_seconds": 0.1366626999952132,
+            "decode_seconds": 1.162198299978627,
+            "total_forward_seconds": 1.29886099997384,
+            "forward_steps": 29
+          },
+          "ttft_seconds": 0.1366626999952132,
+          "decode_tokens_per_second": 24.09227409858965,
+          "end_to_end_tokens_per_second": 22.1091976320908
+        },
+        {
+          "seconds": 1.2934677000012016,
+          "peak_allocated_bytes": 3224567296,
+          "timings": {
+            "prefill_seconds": 0.139268600003561,
+            "decode_seconds": 1.1387538999915705,
+            "total_forward_seconds": 1.2780224999951315,
+            "forward_steps": 29
+          },
+          "ttft_seconds": 0.139268600003561,
+          "decode_tokens_per_second": 24.588280224732724,
+          "end_to_end_tokens_per_second": 22.420351122778758
+        },
+        {
+          "seconds": 1.2122304000004078,
+          "peak_allocated_bytes": 3224567296,
+          "timings": {
+            "prefill_seconds": 0.14414310000574915,
+            "decode_seconds": 1.053510899997491,
+            "total_forward_seconds": 1.19765400000324,
+            "forward_steps": 29
+          },
+          "ttft_seconds": 0.14414310000574915,
+          "decode_tokens_per_second": 26.57779810352858,
+          "end_to_end_tokens_per_second": 23.922845030111638
+        },
+        {
+          "seconds": 1.2032400999960373,
+          "peak_allocated_bytes": 3224567296,
+          "timings": {
+            "prefill_seconds": 0.14164809999783756,
+            "decode_seconds": 1.0482170000032056,
+            "total_forward_seconds": 1.1898651000010432,
+            "forward_steps": 29
+          },
+          "ttft_seconds": 0.14164809999783756,
+          "decode_tokens_per_second": 26.71202623112807,
+          "end_to_end_tokens_per_second": 24.10159036429679
+        }
+      ],
+      "latency_seconds": {
+        "count": 5,
+        "mean": 1.243228779999481,
+        "stdev": 0.05487047384766192,
+        "min": 1.195534400001634,
+        "median": 1.2122304000004078,
+        "max": 1.3116712999981246
+      },
+      "ttft_seconds": {
+        "count": 5,
+        "mean": 0.14032158000045455,
+        "stdev": 0.002786130525200237,
+        "min": 0.1366626999952132,
+        "median": 0.1398853999999119,
+        "max": 0.14414310000574915
+      },
+      "end_to_end_tokens_per_second": {
+        "count": 5,
+        "mean": 23.362183791194454,
+        "stdev": 1.014724787209495,
+        "min": 22.1091976320908,
+        "median": 23.922845030111638,
+        "max": 24.256934806694282
+      },
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "prompt_revision": "v1-provisional",
+      "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+      "dataset_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "dtype": "float16",
+      "attention_implementation": "sdpa",
+      "torch_version": "2.11.0+cu128",
+      "transformers_version": "4.57.1",
+      "eos_token_id": 151645,
+      "git_revision": "6db214952a772c65d2ff2402587df41168949263",
+      "git_dirty": true
+    },
+    {
+      "annotation_id": 1,
+      "mode": "uncached",
+      "prompt_tokens": 335,
+      "prompt_sha256": "667ec839ba83f9584cedb7094ee5d719161deba5fa78687e62b50debadf6017d",
+      "max_new_tokens": 64,
+      "generated_tokens": 30,
+      "generated_token_ids": [
+        4913,
+        1502,
+        3252,
+        1921,
+        8415,
+        2198,
+        68,
+        27480,
+        48332,
+        8077,
+        8899,
+        15,
+        11,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        19,
+        11,
+        20,
+        11,
+        21,
+        11,
+        22,
+        11,
+        23,
+        13989,
+        151645
+      ],
+      "hit_token_cap": false,
+      "termination": "eos",
+      "warmups": 1,
+      "repetitions": [
+        {
+          "seconds": 3.7738773000019137,
+          "peak_allocated_bytes": 3322051072,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.949384045947861
+        },
+        {
+          "seconds": 3.775307399999292,
+          "peak_allocated_bytes": 3322051072,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.94637279073106
+        },
+        {
+          "seconds": 3.8938985999993747,
+          "peak_allocated_bytes": 3322051072,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.704360868566227
+        },
+        {
+          "seconds": 3.8246016999983112,
+          "peak_allocated_bytes": 3322051072,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.843954051480249
+        },
+        {
+          "seconds": 3.8311867999946116,
+          "peak_allocated_bytes": 3322051072,
+          "timings": null,
+          "ttft_seconds": null,
+          "decode_tokens_per_second": null,
+          "end_to_end_tokens_per_second": 7.830471748347586
+        }
+      ],
+      "latency_seconds": {
+        "count": 5,
+        "mean": 3.819774359998701,
+        "stdev": 0.04932494450515707,
+        "min": 3.7738773000019137,
+        "median": 3.8246016999983112,
+        "max": 3.8938985999993747
+      },
+      "ttft_seconds": null,
+      "end_to_end_tokens_per_second": {
+        "count": 5,
+        "mean": 7.854908701014597,
+        "stdev": 0.10083785172852132,
+        "min": 7.704360868566227,
+        "median": 7.843954051480249,
+        "max": 7.949384045947861
+      },
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "prompt_revision": "v1-provisional",
+      "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+      "dataset_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "dtype": "float16",
+      "attention_implementation": "sdpa",
+      "torch_version": "2.11.0+cu128",
+      "transformers_version": "4.57.1",
+      "eos_token_id": 151645,
+      "git_revision": "6db214952a772c65d2ff2402587df41168949263",
+      "git_dirty": true
+    },
+    {
+      "annotation_id": 1,
+      "mode": "cached_explicit",
+      "prompt_tokens": 335,
+      "prompt_sha256": "667ec839ba83f9584cedb7094ee5d719161deba5fa78687e62b50debadf6017d",
+      "max_new_tokens": 64,
+      "generated_tokens": 30,
+      "generated_token_ids": [
+        4913,
+        1502,
+        3252,
+        1921,
+        8415,
+        2198,
+        68,
+        27480,
+        48332,
+        8077,
+        8899,
+        15,
+        11,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        19,
+        11,
+        20,
+        11,
+        21,
+        11,
+        22,
+        11,
+        23,
+        13989,
+        151645
+      ],
+      "hit_token_cap": false,
+      "termination": "eos",
+      "warmups": 1,
+      "repetitions": [
+        {
+          "seconds": 1.2899901999990107,
+          "peak_allocated_bytes": 3217340928,
+          "timings": {
+            "prefill_seconds": 0.1441897999975481,
+            "decode_seconds": 1.1311934999612276,
+            "total_forward_seconds": 1.2753832999587758,
+            "forward_steps": 30
+          },
+          "ttft_seconds": 0.1441897999975481,
+          "decode_tokens_per_second": 25.636639532488466,
+          "end_to_end_tokens_per_second": 23.255990626923374
+        },
+        {
+          "seconds": 1.286709100000735,
+          "peak_allocated_bytes": 3217340928,
+          "timings": {
+            "prefill_seconds": 0.1422104000012041,
+            "decode_seconds": 1.132522699997935,
+            "total_forward_seconds": 1.274733099999139,
+            "forward_steps": 30
+          },
+          "ttft_seconds": 0.1422104000012041,
+          "decode_tokens_per_second": 25.60655075615957,
+          "end_to_end_tokens_per_second": 23.315293254693593
+        },
+        {
+          "seconds": 1.3048253000015393,
+          "peak_allocated_bytes": 3217340928,
+          "timings": {
+            "prefill_seconds": 0.13854410000203643,
+            "decode_seconds": 1.1530622000063886,
+            "total_forward_seconds": 1.291606300008425,
+            "forward_steps": 30
+          },
+          "ttft_seconds": 0.13854410000203643,
+          "decode_tokens_per_second": 25.150421200035282,
+          "end_to_end_tokens_per_second": 22.991583624232767
+        },
+        {
+          "seconds": 1.3090522999991663,
+          "peak_allocated_bytes": 3217340928,
+          "timings": {
+            "prefill_seconds": 0.1421736000047531,
+            "decode_seconds": 1.152854700005264,
+            "total_forward_seconds": 1.2950283000100171,
+            "forward_steps": 30
+          },
+          "ttft_seconds": 0.1421736000047531,
+          "decode_tokens_per_second": 25.154947973814554,
+          "end_to_end_tokens_per_second": 22.91734256913884
+        },
+        {
+          "seconds": 1.2711481000005733,
+          "peak_allocated_bytes": 3217340928,
+          "timings": {
+            "prefill_seconds": 0.1372475000025588,
+            "decode_seconds": 1.1210354999784613,
+            "total_forward_seconds": 1.2582829999810201,
+            "forward_steps": 30
+          },
+          "ttft_seconds": 0.1372475000025588,
+          "decode_tokens_per_second": 25.868939922560156,
+          "end_to_end_tokens_per_second": 23.600711828925732
+        }
+      ],
+      "latency_seconds": {
+        "count": 5,
+        "mean": 1.2923450000002048,
+        "stdev": 0.015178181567818274,
+        "min": 1.2711481000005733,
+        "median": 1.2899901999990107,
+        "max": 1.3090522999991663
+      },
+      "ttft_seconds": {
+        "count": 5,
+        "mean": 0.1408730800016201,
+        "stdev": 0.0028744298025555923,
+        "min": 0.1372475000025588,
+        "median": 0.1421736000047531,
+        "max": 0.1441897999975481
+      },
+      "end_to_end_tokens_per_second": {
+        "count": 5,
+        "mean": 23.21618438078286,
+        "stdev": 0.27341378564571167,
+        "min": 22.91734256913884,
+        "median": 23.255990626923374,
+        "max": 23.600711828925732
+      },
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "prompt_revision": "v1-provisional",
+      "config_sha256": "e5d169b68ce549d0ffc06892a3884d22403b323779c70345f76d49c0b576bb95",
+      "dataset_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+      "dtype": "float16",
+      "attention_implementation": "sdpa",
+      "torch_version": "2.11.0+cu128",
+      "transformers_version": "4.57.1",
+      "eos_token_id": 151645,
+      "git_revision": "6db214952a772c65d2ff2402587df41168949263",
+      "git_dirty": true
+    }
+  ]
+}

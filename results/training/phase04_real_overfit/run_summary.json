@@ -1,0 +1,10 @@
+{
+  "best": null,
+  "epochs_completed": 20,
+  "export_bundle": "D:\\Gen_AI_Assignment_2\\checkpoints\\phase04_real_overfit\\exports\\phase04-export-phase04_real_overfit-20261109T193647Z",
+  "export_manifest": "D:\\Gen_AI_Assignment_2\\results\\training\\phase04_real_overfit\\export\\selected_manifest.json",
+  "global_step": 40,
+  "published_bundle": null,
+  "results_dir": "D:\\Gen_AI_Assignment_2\\results\\training\\phase04_real_overfit",
+  "run_name": "phase04_real_overfit"
+}

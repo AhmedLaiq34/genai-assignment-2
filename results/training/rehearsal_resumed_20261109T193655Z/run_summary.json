@@ -1,0 +1,10 @@
+{
+  "best": null,
+  "epochs_completed": 4,
+  "export_bundle": "D:\\Gen_AI_Assignment_2\\checkpoints\\rehearsal_resumed_20261109T193655Z\\exports\\phase04-export-rehearsal_resumed_20261109T193655Z-20261109T193927Z",
+  "export_manifest": "D:\\Gen_AI_Assignment_2\\results\\training\\rehearsal_resumed_20261109T193655Z\\export\\selected_manifest.json",
+  "global_step": 4,
+  "published_bundle": null,
+  "results_dir": "D:\\Gen_AI_Assignment_2\\results\\training\\rehearsal_resumed_20261109T193655Z",
+  "run_name": "rehearsal_resumed_20261109T193655Z"
+}

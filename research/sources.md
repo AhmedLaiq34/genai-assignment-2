@@ -15,7 +15,8 @@ from publications are not project results.
 | Rabe and Staats, [Self-attention Does Not Need O(n^2) Memory](https://arxiv.org/abs/2112.05682) | Blockwise online accumulation can avoid materializing a full attention-score matrix. | Numerical correctness depends on stable rescaling, masking, all-masked rows, and accumulation precision. | Test non-divisible tiles, causal offsets, fully masked rows, and numerical error against a reference. |
 | Leviathan et al., [Speculative Decoding](https://arxiv.org/abs/2211.17192) | A smaller draft can propose multiple tokens for a target to verify, enabling exact output-preserving acceleration under an appropriate algorithm. | Published speedups are hardware-, model-, and algorithm-dependent; their sampling procedure is not identical to this assignment's greedy target-equivalence specialization. | Implement draft/verify/reject/correct/cache-crop explicitly; prove token equality and report slowdown if that is what measurements show. |
 | PyTorch, [official installation selector](https://pytorch.org/get-started/locally/) | Selects wheels by OS, package manager, Python and CUDA runtime. The CUDA version printed by the NVIDIA driver is not proof that a local CUDA toolkit is installed. | Driver capability does not mean every wheel/kernel combination works on a given device. | Install an official CUDA-enabled Torch wheel in the project venv and verify a real CUDA tensor operation. |
-| Google, [Colab FAQ](https://research.google.com/colaboratory/faq.html) | Free runtimes have variable availability, limits and temporary local storage. | A GPU type, session duration, weekly quota, or uninterrupted training is not guaranteed. Free-tier rules also restrict some web-UI hosting patterns. | Use Colab as interactive research compute only; checkpoint durably and keep the final app local. |
+| Kaggle, [API and CLI documentation](https://www.kaggle.com/docs/api) | The official CLI can authenticate, push private kernels, check status, and download kernel output. | GPU type, quota, queue state, internet access, and output retention are not guaranteed. CLI commands and kernel behavior can change. Credentials must be handled securely. | Use the private Kaggle training kernel as research compute; verify GPU/CUDA, download output, and keep the final app local. |
+| Google, [Colab FAQ](https://research.google.com/colaboratory/faq.html) | Active training route: free runtimes have variable availability, limits and temporary local storage. | A GPU type, session duration, weekly quota, or uninterrupted training is not guaranteed. | Use Colab only after verifying the current runtime allocation. |
 
 ## Live facts verified for this setup
 
@@ -28,4 +29,5 @@ from publications are not project results.
 - Both model configs report `Qwen2ForCausalLM`, vocabulary size 151,936,
   context 32,768, and two KV heads; target has hidden size 1,536 and 28
   layers; draft has hidden size 896 and 24 layers. Tokenizer-map equality
-  still must be run locally and in Colab.
+  was checked locally and in historical Colab; the active Colab run must
+  re-verify it in its own environment.

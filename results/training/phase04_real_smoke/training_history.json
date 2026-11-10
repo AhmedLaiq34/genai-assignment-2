@@ -1,0 +1,14 @@
+{
+  "best": null,
+  "epochs_completed": 0,
+  "global_step": 1,
+  "last_validation": null,
+  "losses": [
+    0.5740016512572765
+  ],
+  "run_name": "phase04_real_smoke",
+  "seconds_per_step": [
+    4.066740900001605
+  ],
+  "skip_validation": true
+}

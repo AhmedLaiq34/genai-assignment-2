@@ -1,0 +1,17 @@
+{
+  "adapter_path": "D:\\Gen_AI_Assignment_2\\artifacts\\phase04\\phase04_lora_colab_cli_20261110T1650Z_bundle\\selected_adapter",
+  "baseline_name": "base_greedy_v1",
+  "device": "cuda",
+  "dtype": "float16",
+  "generation_backend": "transformers_generate_greedy_cache",
+  "max_new_tokens": 96,
+  "max_total_tokens": 1024,
+  "model_config": "configs/model.yaml",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompt_config": "configs/prompt.yaml",
+  "prompt_revision": "v1-provisional",
+  "reference_equivalence_examples": 3,
+  "seed": 42,
+  "split": "validation"
+}

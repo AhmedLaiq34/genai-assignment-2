@@ -1,4 +1,8 @@
+# Active Colab training profile; see docs/colab_manual_setup.md.
 profile: colab
+execution_mode: manual_browser_ui
+cli_allocation_enabled: false
+active: false
 project_root: /content/Gen_AI_Assignment_2
 cache_root: /content/.cache
 model_cache: /content/.cache/huggingface

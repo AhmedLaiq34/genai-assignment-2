@@ -1,0 +1,83 @@
+{
+  "attn_implementation": "sdpa",
+  "checkpoint": {
+    "drive_root": null,
+    "every_seconds": 300,
+    "every_steps": 25,
+    "keep_recent": 2,
+    "local_root": "checkpoints"
+  },
+  "data_config": "configs/data.yaml",
+  "device": "cuda",
+  "gradient_accumulation_steps": 8,
+  "gradient_checkpointing": true,
+  "lora": {
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "r": 8,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "task_type": "CAUSAL_LM"
+  },
+  "manifest_sha256_file": "data/splits/manifest.sha256",
+  "max_epochs": 3,
+  "max_grad_norm": 1.0,
+  "max_new_tokens": 96,
+  "max_seq_len": 1024,
+  "max_total_tokens": 1024,
+  "micro_batch_size": 1,
+  "model_config": "configs/model.yaml",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "optimizer": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "learning_rate": 0.0002,
+    "name": "AdamW",
+    "weight_decay": 0.01
+  },
+  "output": {
+    "results_root": "results/training"
+  },
+  "precision": "float16",
+  "prompt_config": "configs/prompt.yaml",
+  "prompt_revision": "v1-provisional",
+  "run_name": "phase04_lora_r8",
+  "runtime": {
+    "device": "cuda",
+    "max_steps": null,
+    "overfit": false,
+    "overfit_examples": 12,
+    "resume": "checkpoints\\phase04_lora_r8\\bundles\\resume-step-000076-epoch",
+    "run_name": "phase04_lora_r8",
+    "skip_validation": false,
+    "stop_after_steps": null,
+    "tiny_model": false
+  },
+  "scheduler": {
+    "name": "linear",
+    "warmup_ratio": 0.05
+  },
+  "seed": 42,
+  "selection": {
+    "final_tie": "validation_loss",
+    "primary": "classification.macro_f1",
+    "tie_breaker": "evidence.micro.f1"
+  },
+  "split_manifest": "data/splits/manifest.json",
+  "tokenizer_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "train_config_path": "configs\\train.yaml",
+  "use_cache_during_training": false,
+  "validation": {
+    "generation_backend": "transformers_generate_greedy_cache",
+    "max_new_tokens": 96,
+    "max_total_tokens": 1024,
+    "reference_equivalence_examples": 0,
+    "split": "validation"
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Criterion screening result without gold targets",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "criterion_type",
+    "criterion_text",
+    "raw_output",
+    "label",
+    "evidence_sentence_ids",
+    "raw_evidence_values",
+    "invalid_evidence_values",
+    "parse_status",
+    "evidence_status",
+    "evidence_excerpts",
+    "explanation",
+    "flags",
+    "truncated",
+    "input_truncated",
+    "output_truncated",
+    "removed_sentence_ids",
+    "kept_sentence_ids",
+    "omitted_sentence_count",
+    "model_id",
+    "model_revision",
+    "adapter_path",
+    "adapter_sha256",
+    "prompt_revision",
+    "prompt_sha256",
+    "generation_mode",
+    "runtime_error",
+    "timing_ms",
+    "educational_notice"
+  ],
+  "properties": {
+    "request_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "criterion_type": {
+      "enum": [
+        "inclusion",
+        "exclusion"
+      ]
+    },
+    "criterion_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "raw_output": {
+      "type": "string"
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "included",
+        "not included",
+        "excluded",
+        "not excluded",
+        "not enough information",
+        "not applicable",
+        null
+      ]
+    },
+    "evidence_sentence_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "raw_evidence_values": {
+      "type": "array"
+    },
+    "invalid_evidence_values": {
+      "type": "array"
+    },
+    "parse_status": {
+      "enum": [
+        "valid",
+        "json_error",
+        "shape_error",
+        "illegal_category",
+        "invalid_evidence_list",
+        "runtime_error"
+      ]
+    },
+    "evidence_status": {
+      "enum": [
+        "valid",
+        "no_ids",
+        "parse_failed",
+        "contains_invalid",
+        "duplicate_ids",
+        "runtime_error"
+      ]
+    },
+    "evidence_excerpts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "explanation": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parse_failure",
+        "invalid_evidence_ids",
+        "duplicate_evidence_ids",
+        "truncation",
+        "runtime_failure",
+        "missing_information",
+        "contradiction"
+      ],
+      "properties": {
+        "parse_failure": {
+          "type": "boolean"
+        },
+        "invalid_evidence_ids": {
+          "type": "boolean"
+        },
+        "duplicate_evidence_ids": {
+          "type": "boolean"
+        },
+        "truncation": {
+          "type": "boolean"
+        },
+        "runtime_failure": {
+          "type": "boolean"
+        },
+        "missing_information": {
+          "type": "boolean"
+        },
+        "contradiction": {
+          "type": "boolean"
+        }
+      }
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "input_truncated": {
+      "type": "boolean"
+    },
+    "output_truncated": {
+      "type": "boolean"
+    },
+    "removed_sentence_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "kept_sentence_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "omitted_sentence_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "model_revision": {
+      "type": "string"
+    },
+    "adapter_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "adapter_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prompt_revision": {
+      "type": "string"
+    },
+    "prompt_sha256": {
+      "type": "string"
+    },
+    "generation_mode": {
+      "type": "string"
+    },
+    "runtime_error": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "message"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "timing_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "educational_notice": {
+      "type": "string"
+    }
+  }
+}

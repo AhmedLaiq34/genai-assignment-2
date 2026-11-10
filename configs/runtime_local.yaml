@@ -14,3 +14,5 @@ batch_size: 1
 num_workers: 0
 max_concurrent_inference_requests: 1
 colab_required_for_app: false
+cloud_required_for_app: false
+

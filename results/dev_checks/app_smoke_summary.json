@@ -1,0 +1,13 @@
+{
+  "adapter_sha256": "86af3f6a0b294932a88abc54568debc61650f5aaa49b3408187c686e0d25b1f1",
+  "aggregate_outcome": "preliminary_match",
+  "criterion_count": 1,
+  "decoder": "Library cached greedy",
+  "evidence_statuses": [
+    "valid"
+  ],
+  "message": "Screening finished. Nothing was written to disk. Exports include cited text and are created only when you request a download.",
+  "no_raw_note_or_excerpts_saved": true,
+  "passed": true,
+  "synthetic_input_only": true
+}

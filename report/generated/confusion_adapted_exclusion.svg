@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="350">
+<rect width="100%" height="100%" fill="white"/>
+<text x="20" y="30" font-size="18" font-family="Arial">adapted: exclusion confusion</text>
+<text x="20" y="58" font-size="12" font-family="Arial">Rows: gold · columns: predicted</text>
+<text x="202" y="110" text-anchor="end" font-size="10" font-family="Arial">excluded</text>
+<text x="230" y="77" transform="rotate(-45 230 77)" text-anchor="start" font-size="10" font-family="Arial">excluded</text>
+<rect x="210" y="85" width="41" height="41" fill="#f5f8ff"/>
+<text x="231.0" y="110" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="252" y="85" width="41" height="41" fill="#f5f8ff"/>
+<text x="273.0" y="110" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="294" y="85" width="41" height="41" fill="#f5f8ff"/>
+<text x="315.0" y="110" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="336" y="85" width="41" height="41" fill="#f5f8ff"/>
+<text x="357.0" y="110" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="378" y="85" width="41" height="41" fill="#f5f8ff"/>
+<text x="399.0" y="110" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<text x="202" y="152" text-anchor="end" font-size="10" font-family="Arial">not excluded</text>
+<text x="272" y="77" transform="rotate(-45 272 77)" text-anchor="start" font-size="10" font-family="Arial">not excluded</text>
+<rect x="210" y="127" width="41" height="41" fill="#f5f8ff"/>
+<text x="231.0" y="152" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="252" y="127" width="41" height="41" fill="#7376ff"/>
+<text x="273.0" y="152" text-anchor="middle" font-size="11" font-family="Arial">91</text>
+<rect x="294" y="127" width="41" height="41" fill="#f5f8ff"/>
+<text x="315.0" y="152" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="336" y="127" width="41" height="41" fill="#f5f8ff"/>
+<text x="357.0" y="152" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="378" y="127" width="41" height="41" fill="#f5f8ff"/>
+<text x="399.0" y="152" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<text x="202" y="194" text-anchor="end" font-size="10" font-family="Arial">not enough info</text>
+<text x="314" y="77" transform="rotate(-45 314 77)" text-anchor="start" font-size="10" font-family="Arial">not enough info</text>
+<rect x="210" y="169" width="41" height="41" fill="#f5f8ff"/>
+<text x="231.0" y="194" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="252" y="169" width="41" height="41" fill="#cdd0ff"/>
+<text x="273.0" y="194" text-anchor="middle" font-size="11" font-family="Arial">28</text>
+<rect x="294" y="169" width="41" height="41" fill="#f5f8ff"/>
+<text x="315.0" y="194" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="336" y="169" width="41" height="41" fill="#f5f8ff"/>
+<text x="357.0" y="194" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="378" y="169" width="41" height="41" fill="#f5f8ff"/>
+<text x="399.0" y="194" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<text x="202" y="236" text-anchor="end" font-size="10" font-family="Arial">not applicable</text>
+<text x="356" y="77" transform="rotate(-45 356 77)" text-anchor="start" font-size="10" font-family="Arial">not applicable</text>
+<rect x="210" y="211" width="41" height="41" fill="#f5f8ff"/>
+<text x="231.0" y="236" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="252" y="211" width="41" height="41" fill="#e3e6ff"/>
+<text x="273.0" y="236" text-anchor="middle" font-size="11" font-family="Arial">12</text>
+<rect x="294" y="211" width="41" height="41" fill="#f5f8ff"/>
+<text x="315.0" y="236" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="336" y="211" width="41" height="41" fill="#f5f8ff"/>
+<text x="357.0" y="236" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="378" y="211" width="41" height="41" fill="#f5f8ff"/>
+<text x="399.0" y="236" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<text x="202" y="278" text-anchor="end" font-size="10" font-family="Arial">invalid</text>
+<text x="398" y="77" transform="rotate(-45 398 77)" text-anchor="start" font-size="10" font-family="Arial">invalid</text>
+<rect x="210" y="253" width="41" height="41" fill="#f5f8ff"/>
+<text x="231.0" y="278" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="252" y="253" width="41" height="41" fill="#f5f8ff"/>
+<text x="273.0" y="278" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="294" y="253" width="41" height="41" fill="#f5f8ff"/>
+<text x="315.0" y="278" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="336" y="253" width="41" height="41" fill="#f5f8ff"/>
+<text x="357.0" y="278" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="378" y="253" width="41" height="41" fill="#f5f8ff"/>
+<text x="399.0" y="278" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+</svg>

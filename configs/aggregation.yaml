@@ -1,0 +1,31 @@
+version: v1
+description: "Rule-based preliminary patient-trial screening aggregation. This is not a ground-truth outcome."
+outcomes:
+  no_assessment: "No criteria were supplied."
+  preliminary_criterion_failure: "At least one inclusion criterion is not included, or one exclusion criterion is excluded."
+  review_needed: "No definite failure, but at least one criterion is unknown, not applicable, invalid, truncated, contradictory, or operationally failed."
+  preliminary_match: "All inclusion criteria are included and all exclusion criteria are not excluded, with no review flag."
+criterion_effects:
+  inclusion_success: included
+  inclusion_failure: not included
+  exclusion_success: not excluded
+  exclusion_failure: excluded
+  review_labels:
+    - not enough information
+    - not applicable
+review_flags:
+  - parse_failure
+  - invalid_evidence_ids
+  - duplicate_evidence_ids
+  - truncation
+  - runtime_failure
+  - missing_information
+  - contradiction
+evidence_statuses_that_force_review:
+  - no_ids
+  - parse_failed
+  - contains_invalid
+  - duplicate_ids
+  - runtime_error
+not_applicable_policy: "Keep 'not applicable' visible but force review_needed for this preliminary aggregation. Without an external applicability rule, the label cannot establish that a required criterion is satisfied; treating it as a pass would turn an uncertain or misused category into an unsupported match."
+failure_with_other_flags_policy: "A definite criterion failure takes precedence, but all operational and uncertainty flags remain attached to the result."

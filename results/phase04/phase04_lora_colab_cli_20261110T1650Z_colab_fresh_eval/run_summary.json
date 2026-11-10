@@ -1,0 +1,24 @@
+{
+  "best": {
+    "accuracy": 0.7378640776699029,
+    "adapter_path": "/content/Gen_AI_Assignment_2_ca38d541ab3e/Gen_AI_Assignment_2/results/training/phase04_lora_colab_cli_20261110T1650Z/epoch_3/adapter",
+    "adapter_sha256": "b823bc3f7e979be9fca7b2f9543305a5b5562721f4342af5487dc3d2941151fb",
+    "epoch": 3,
+    "evidence_micro_f1": 0.3449612403100775,
+    "global_step": 228,
+    "macro_f1": 0.47292909917590226,
+    "selection_key": [
+      0.47292909917590226,
+      0.3449612403100775,
+      -0.13595900053917928
+    ],
+    "validation_loss": 0.13595900053917928
+  },
+  "epochs_completed": 3,
+  "export_bundle": "/content/Gen_AI_Assignment_2_ca38d541ab3e/Gen_AI_Assignment_2/checkpoints/phase04_lora_colab_cli_20261110T1650Z/exports/phase04-export-phase04_lora_colab_cli_20261110T1650Z-20261110T170324Z",
+  "export_manifest": "/content/Gen_AI_Assignment_2_ca38d541ab3e/Gen_AI_Assignment_2/results/training/phase04_lora_colab_cli_20261110T1650Z/export/selected_manifest.json",
+  "global_step": 228,
+  "published_bundle": "/content/drive/MyDrive/GenAI_Assignment_2_checkpoints/exports/phase04_lora_colab_cli_20261110T1650Z/phase04-export-phase04_lora_colab_cli_20261110T1650Z-20261110T170324Z",
+  "results_dir": "/content/Gen_AI_Assignment_2_ca38d541ab3e/Gen_AI_Assignment_2/results/training/phase04_lora_colab_cli_20261110T1650Z",
+  "run_name": "phase04_lora_colab_cli_20261110T1650Z"
+}

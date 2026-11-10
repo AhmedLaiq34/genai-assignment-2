@@ -1,0 +1,10 @@
+{
+  "best": null,
+  "epochs_completed": 0,
+  "export_bundle": "D:\\Gen_AI_Assignment_2\\checkpoints\\phase04_real_smoke\\exports\\phase04-export-phase04_real_smoke-20261109T193314Z",
+  "export_manifest": "D:\\Gen_AI_Assignment_2\\results\\training\\phase04_real_smoke\\export\\selected_manifest.json",
+  "global_step": 1,
+  "published_bundle": null,
+  "results_dir": "D:\\Gen_AI_Assignment_2\\results\\training\\phase04_real_smoke",
+  "run_name": "phase04_real_smoke"
+}

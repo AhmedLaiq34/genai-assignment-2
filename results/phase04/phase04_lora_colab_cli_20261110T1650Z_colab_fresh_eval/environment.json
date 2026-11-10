@@ -1,0 +1,13 @@
+{
+  "cuda": "13.0",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "peft": "0.17.1",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "precision": "float16",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "recorded_at_utc": "2026-11-10T16:46:45.774800+00:00",
+  "torch": "2.14.1+cu130",
+  "transformers": "4.57.1",
+  "vram_total_bytes": 15637086208
+}

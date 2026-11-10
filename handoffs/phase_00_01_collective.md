@@ -1,3 +1,5 @@
+> **Compute-route update (10 November 2026):** this file records historical Colab evidence. The active route is **Google Colab**; see [Colab training setup](../docs/colab_manual_setup.md). This file records earlier Colab feasibility evidence; verify CUDA in the current training session.
+
 # Collective handoff: Phase 0 and Phase 1
 
 **Status:** Phase 0 setup/verification and Phase 1 research-feasibility gates

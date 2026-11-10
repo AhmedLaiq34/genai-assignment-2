@@ -9,7 +9,8 @@ from typing import Any
 
 def load_examples(root: Path, split: str, *, allow_final_test: bool = False,
                   frozen_manifest: Path | None = None, frozen_sha256: str | None = None,
-                  allow_quarantined_training: bool = False) -> list[dict[str, Any]]:
+                  allow_quarantined_training: bool = False,
+                  variant: str | None = None) -> list[dict[str, Any]]:
     if split not in {"train", "validation", "test"}:
         raise ValueError("Unknown split")
     root = Path(root)
@@ -20,10 +21,25 @@ def load_examples(root: Path, split: str, *, allow_final_test: bool = False,
         if hashlib.sha256(contents).hexdigest() != frozen_sha256:
             raise ValueError("Frozen manifest checksum mismatch")
         frozen = json.loads(contents)
-        required = ("dataset_revision", "split_manifest_sha256", "model_revision", "adapter_sha256",
-                    "prompt_sha256", "generation_config_sha256", "metric_config_sha256")
+        required = ("dataset_revision", "split_manifest_sha256")
         if frozen.get("state") != "frozen" or any(not frozen.get(k) for k in required):
             raise ValueError("Frozen manifest lacks required experiment identity")
+        if frozen.get("variants"):
+            if variant not in frozen["variants"]:
+                raise ValueError("A frozen manifest variant must be selected for test access")
+            selected = frozen["variants"][variant]
+            if not selected.get("model_revision"):
+                raise ValueError("Selected frozen variant lacks a model revision")
+            if variant == "base" and selected.get("adapter_sha256") is not None:
+                raise ValueError("The frozen base variant must not use an adapter")
+            if variant == "adapted" and not selected.get("adapter_sha256"):
+                raise ValueError("The frozen adapted variant must identify its adapter")
+        else:
+            # Compatibility with the original single-variant freeze contract.
+            legacy = ("model_revision", "adapter_sha256", "prompt_sha256",
+                      "generation_config_sha256", "metric_config_sha256")
+            if any(not frozen.get(k) for k in legacy):
+                raise ValueError("Frozen manifest lacks required experiment identity")
         manifest_path = root / "data/splits/manifest.json"
         split_bytes = manifest_path.read_bytes()
         if hashlib.sha256(split_bytes).hexdigest() != frozen["split_manifest_sha256"]:
@@ -40,4 +56,10 @@ def load_examples(root: Path, split: str, *, allow_final_test: bool = False,
                 raise ValueError("Unapproved quarantined training records; review before loading")
         path = root / "data/processed/development" / f"{split}.jsonl"
     with path.open(encoding="utf-8") as file:
-        return [json.loads(line) for line in file if line.strip()]
+        rows = [json.loads(line) for line in file if line.strip()]
+    if split == "test" and frozen.get("variants"):
+        expected_ids = frozen.get("expected_test_ids", [])
+        observed_ids = [row["provenance"]["annotation_id"] for row in rows]
+        if len(rows) != frozen.get("expected_test_count") or sorted(observed_ids) != sorted(expected_ids):
+            raise ValueError("Protected test rows do not match the frozen IDs and count")
+    return rows

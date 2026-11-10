@@ -1,0 +1,551 @@
+{
+  "json_error": [
+    {
+      "annotation_id": 542,
+      "criterion_type": "inclusion",
+      "criterion_text": "New claudication patient with Rutherford stage 2 and Fontaine stage 2a symptoms",
+      "gold_label": "not enough information",
+      "predicted_label": null,
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: not applicable\nevidence_sentence_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8]",
+      "gold_excerpts": [
+        "A 72-year-old man complains of increasing calf pain when walking uphill."
+      ],
+      "cited_excerpts": []
+    },
+    {
+      "annotation_id": 553,
+      "criterion_type": "inclusion",
+      "criterion_text": "Males or females older than 18 years of age.",
+      "gold_label": "included",
+      "predicted_label": null,
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: not applicable\nevidence_sentence_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8]",
+      "gold_excerpts": [
+        "A 72-year-old man complains of increasing calf pain when walking uphill."
+      ],
+      "cited_excerpts": []
+    },
+    {
+      "annotation_id": 563,
+      "criterion_type": "exclusion",
+      "criterion_text": "Any illness or significant laboratory abnormality, which in the investigator's judgment will interfere with the patient's ability to comply with the protocol, compromise the patient's safety, or interfere with the interpretation of the study results.",
+      "gold_label": "not enough information",
+      "predicted_label": null,
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: excluded\nevidence_sentence_ids: [0, 1, 2, 3, 4, 5, 6, 7]",
+      "gold_excerpts": [],
+      "cited_excerpts": []
+    }
+  ],
+  "exclusion_false_positive": [
+    {
+      "annotation_id": 7,
+      "criterion_type": "exclusion",
+      "criterion_text": "Myocardial infarction in < 6 months",
+      "gold_label": "not excluded",
+      "predicted_label": "excluded",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"excluded\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 10,
+      "criterion_type": "exclusion",
+      "criterion_text": "Severe anemia (Hb 7G/dl)",
+      "gold_label": "not excluded",
+      "predicted_label": "excluded",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\"label\":\"excluded\",\"evidence_sentence_ids\":[0,1,2,3,4,5,6,7,8]}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 11,
+      "criterion_type": "exclusion",
+      "criterion_text": "Cardiac arrhythmias or II or III degree AV block",
+      "gold_label": "not excluded",
+      "predicted_label": "excluded",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"excluded\",\n  \"evidence_sentence_ids\": [3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    }
+  ],
+  "exclusion_na": [
+    {
+      "annotation_id": 5,
+      "criterion_type": "exclusion",
+      "criterion_text": "Hypertension of > 170/100 mm of Hg",
+      "gold_label": "not excluded",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        3,
+        4,
+        5
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [3, 4, 5]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications."
+      ]
+    },
+    {
+      "annotation_id": 6,
+      "criterion_type": "exclusion",
+      "criterion_text": "Valvular heart disease and cardiomyopathy",
+      "gold_label": "not excluded",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes."
+      ]
+    },
+    {
+      "annotation_id": 9,
+      "criterion_type": "exclusion",
+      "criterion_text": "Congestive cardiac failure",
+      "gold_label": "not excluded",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes."
+      ]
+    }
+  ],
+  "inclusion_unknown_as_included": [
+    {
+      "annotation_id": 0,
+      "criterion_type": "inclusion",
+      "criterion_text": "Patients of chronic stable angina with abnormal Exercise Myocardial Perfusion Spect Scan with reversible and partially reversible ischemic changes.",
+      "gold_label": "not enough information",
+      "predicted_label": "included",
+      "gold_evidence_ids": [
+        0,
+        1,
+        2
+      ],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"included\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival."
+      ],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 375,
+      "criterion_type": "inclusion",
+      "criterion_text": "Trauma patients undergoing DC/OA management for traumatic injury",
+      "gold_label": "not enough information",
+      "predicted_label": "included",
+      "gold_evidence_ids": [
+        0,
+        1
+      ],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\"label\":\"included\",\"evidence_sentence_ids\":[0,1,2,3,4,5,6]}",
+      "gold_excerpts": [
+        "A 32-year-old woman is admitted to the ER following a car accident.",
+        "She has sustained multiple injuries including upper and lower extremity fractures."
+      ],
+      "cited_excerpts": [
+        "A 32-year-old woman is admitted to the ER following a car accident.",
+        "She has sustained multiple injuries including upper and lower extremity fractures.",
+        "She is fully awake and alert, and she reports that she was not wearing a seat belt.",
+        "Her blood pressure is 134/74 mm Hg, and her pulse is 87/min.",
+        "Physical examination reveals a tender abdomen with guarding and rebound in all four quadrants.",
+        "She has no bowel sounds.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 502,
+      "criterion_type": "inclusion",
+      "criterion_text": "WHO performance status ≤1",
+      "gold_label": "not enough information",
+      "predicted_label": "included",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"included\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 21-year-old college student undergoes colonoscopy due to family history of multiple polyps in his older siblings.",
+        "His brother underwent total proctocolectomy at age 22, and his sister underwent a total proctocolectomy at age 28, after both were found to have hundreds of colonic adenomas on colonoscopy.",
+        "Both siblings are currently well without any findings of neoplasms.",
+        "The patient undergoes sigmoidoscopy and is found to have dozens of small colonic polyps within rectosigmoid.",
+        "Several of these are biopsied and are all benign adenomas.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    }
+  ],
+  "inclusion_false_negative": [
+    {
+      "annotation_id": 1,
+      "criterion_type": "inclusion",
+      "criterion_text": "Male and female",
+      "gold_label": "included",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life."
+      ],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 2,
+      "criterion_type": "inclusion",
+      "criterion_text": "Age 25 to 65 years",
+      "gold_label": "included",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life."
+      ],
+      "cited_excerpts": [
+        "A 58-year-old African-American woman presents to the ER with episodic pressing/burning anterior chest pain that began two days earlier for the first time in her life.",
+        "The pain started while she was walking, radiates to the back, and is accompanied by nausea, diaphoresis and mild dyspnea, but is not increased on inspiration.",
+        "The latest episode of pain ended half an hour prior to her arrival.",
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    },
+    {
+      "annotation_id": 22,
+      "criterion_type": "inclusion",
+      "criterion_text": "Clinical diagnosis of one or more risk factors, such as diabetes, smoking habit, lipid metabolism abnormality, history of ischemic heart disease (IHD) or cerebrovascular disease, obesity (BMI>25), chronic heart failure (NYHA II-III), and electrocardiogram (ECG) abnormality (LVH)",
+      "gold_label": "included",
+      "predicted_label": "not applicable",
+      "gold_evidence_ids": [
+        3,
+        4
+      ],
+      "predicted_evidence_ids": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [3, 4, 5, 6, 7, 8]\n}",
+      "gold_excerpts": [
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease."
+      ],
+      "cited_excerpts": [
+        "She is known to have hypertension and obesity.",
+        "She denies smoking, diabetes, hypercholesterolemia, or a family history of heart disease.",
+        "She currently takes no medications.",
+        "Physical examination is normal.",
+        "The EKG shows nonspecific changes.",
+        "The patient will provide informed consent, and will comply with the trial protocol without any practical issues."
+      ]
+    }
+  ],
+  "inclusion_not_included_as_included": [
+    {
+      "annotation_id": 934,
+      "criterion_type": "inclusion",
+      "criterion_text": "Taking anti-tuberculosis medicines (or NTM meds at NIH CC) during the time sputa are provided",
+      "gold_label": "not included",
+      "predicted_label": "included",
+      "gold_evidence_ids": [],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"included\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "gold_excerpts": [],
+      "cited_excerpts": [
+        "A 65-year-old male with a history of tuberculosis has started to complain of productive cough with tinges of blood.",
+        "Chest X-ray reveals a round opaque mass within a cavity in his left upper lobe.",
+        "The spherical mass moved in the cavity during supine and prone CT imaging.",
+        "Culture of the sputum revealed an organism with septated, low-angle branching hyphae that had straight, parallel walls."
+      ]
+    },
+    {
+      "annotation_id": 935,
+      "criterion_type": "inclusion",
+      "criterion_text": "Thought likely to be Mycobacterium culture positive (including NTM infected for the NIH CC) by enrolling physician",
+      "gold_label": "not included",
+      "predicted_label": "included",
+      "gold_evidence_ids": [
+        3
+      ],
+      "predicted_evidence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_evidence": [],
+      "raw_output": "{\n  \"label\": \"included\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "gold_excerpts": [
+        "Culture of the sputum revealed an organism with septated, low-angle branching hyphae that had straight, parallel walls."
+      ],
+      "cited_excerpts": [
+        "A 65-year-old male with a history of tuberculosis has started to complain of productive cough with tinges of blood.",
+        "Chest X-ray reveals a round opaque mass within a cavity in his left upper lobe.",
+        "The spherical mass moved in the cavity during supine and prone CT imaging.",
+        "Culture of the sputum revealed an organism with septated, low-angle branching hyphae that had straight, parallel walls."
+      ]
+    }
+  ],
+  "invalid_evidence": [],
+  "empty_evidence_nonempty_gold": [
+    {
+      "annotation_id": 542,
+      "criterion_type": "inclusion",
+      "criterion_text": "New claudication patient with Rutherford stage 2 and Fontaine stage 2a symptoms",
+      "gold_label": "not enough information",
+      "predicted_label": null,
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: not applicable\nevidence_sentence_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8]",
+      "gold_excerpts": [
+        "A 72-year-old man complains of increasing calf pain when walking uphill."
+      ],
+      "cited_excerpts": []
+    },
+    {
+      "annotation_id": 553,
+      "criterion_type": "inclusion",
+      "criterion_text": "Males or females older than 18 years of age.",
+      "gold_label": "included",
+      "predicted_label": null,
+      "gold_evidence_ids": [
+        0
+      ],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: not applicable\nevidence_sentence_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8]",
+      "gold_excerpts": [
+        "A 72-year-old man complains of increasing calf pain when walking uphill."
+      ],
+      "cited_excerpts": []
+    },
+    {
+      "annotation_id": 569,
+      "criterion_type": "exclusion",
+      "criterion_text": "Recent myocardial infarction within 3 months prior to screening.",
+      "gold_label": "not excluded",
+      "predicted_label": null,
+      "gold_evidence_ids": [
+        2
+      ],
+      "predicted_evidence_ids": [],
+      "invalid_evidence": [],
+      "raw_output": "label: excluded\nevidence_sentence_ids: [2, 3, 4, 5, 6, 7, 8]",
+      "gold_excerpts": [
+        "The patient had an uncomplicated myocardial infarction 2 years earlier and a transient ischemic attack 6 months ago."
+      ],
+      "cited_excerpts": []
+    }
+  ]
+}

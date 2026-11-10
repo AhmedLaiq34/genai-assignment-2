@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#17202a}.axis{stroke:#52606d;stroke-width:1}.grid{stroke:#d9e2ec;stroke-width:1}.label{font-size:13px}.title{font-size:18px;font-weight:600}.legend{font-size:12px}</style>
+<text x="357.5" y="30" text-anchor="middle" class="title">Runtime (lower is better)</text>
+<line x1="105" y1="330.0" x2="610" y2="330.0" class="grid"/>
+<text x="95" y="334.0" text-anchor="end" class="label">0.0</text>
+<line x1="105" y1="262.5" x2="610" y2="262.5" class="grid"/>
+<text x="95" y="266.5" text-anchor="end" class="label">176.4</text>
+<line x1="105" y1="195.0" x2="610" y2="195.0" class="grid"/>
+<text x="95" y="199.0" text-anchor="end" class="label">352.9</text>
+<line x1="105" y1="127.5" x2="610" y2="127.5" class="grid"/>
+<text x="95" y="131.5" text-anchor="end" class="label">529.3</text>
+<line x1="105" y1="60.0" x2="610" y2="60.0" class="grid"/>
+<text x="95" y="64.0" text-anchor="end" class="label">705.7</text>
+<line x1="105" y1="60" x2="105" y2="330" class="axis"/>
+<line x1="105" y1="330" x2="610" y2="330" class="axis"/>
+<text x="168.125" y="354" text-anchor="middle" class="label">128</text>
+<text x="294.375" y="354" text-anchor="middle" class="label">512</text>
+<text x="420.625" y="354" text-anchor="middle" class="label">1024</text>
+<text x="546.875" y="354" text-anchor="middle" class="label">2048</text>
+<text x="50" y="195.0" text-anchor="middle" transform="rotate(-90 50 195.0)" class="label">median milliseconds</text>
+<polyline fill="none" stroke="#dc2626" stroke-width="2.5" points="168.12,329.71 294.38,328.93 420.62,326.71 546.88,318.60"/>
+<line x1="640" y1="80" x2="675" y2="80" stroke="#dc2626" stroke-width="2.5"/>
+<text x="682" y="84" class="legend">dense</text>
+<polyline fill="none" stroke="#2563eb" stroke-width="2.5" points="168.12,328.95 294.38,315.29 420.62,272.79 546.88,95.22"/>
+<line x1="640" y1="104" x2="675" y2="104" stroke="#2563eb" stroke-width="2.5"/>
+<text x="682" y="108" class="legend">tiled tile 64</text>
+<text x="357.5" y="400" text-anchor="middle" class="title">Peak allocated GPU memory</text>
+<line x1="105" y1="700.0" x2="610" y2="700.0" class="grid"/>
+<text x="95" y="704.0" text-anchor="end" class="label">0.0</text>
+<line x1="105" y1="632.5" x2="610" y2="632.5" class="grid"/>
+<text x="95" y="636.5" text-anchor="end" class="label">157.1</text>
+<line x1="105" y1="565.0" x2="610" y2="565.0" class="grid"/>
+<text x="95" y="569.0" text-anchor="end" class="label">314.1</text>
+<line x1="105" y1="497.5" x2="610" y2="497.5" class="grid"/>
+<text x="95" y="501.5" text-anchor="end" class="label">471.2</text>
+<line x1="105" y1="430.0" x2="610" y2="430.0" class="grid"/>
+<text x="95" y="434.0" text-anchor="end" class="label">628.2</text>
+<line x1="105" y1="430" x2="105" y2="700" class="axis"/>
+<line x1="105" y1="700" x2="610" y2="700" class="axis"/>
+<text x="168.125" y="724" text-anchor="middle" class="label">128</text>
+<text x="294.375" y="724" text-anchor="middle" class="label">512</text>
+<text x="420.625" y="724" text-anchor="middle" class="label">1024</text>
+<text x="546.875" y="724" text-anchor="middle" class="label">2048</text>
+<text x="50" y="565.0" text-anchor="middle" transform="rotate(-90 50 565.0)" class="label">megabytes</text>
+<polyline fill="none" stroke="#dc2626" stroke-width="2.5" points="168.12,695.26 294.38,680.70 420.62,636.31 546.88,465.22"/>
+<line x1="640" y1="450" x2="675" y2="450" stroke="#dc2626" stroke-width="2.5"/>
+<text x="682" y="454" class="legend">dense</text>
+<polyline fill="none" stroke="#2563eb" stroke-width="2.5" points="168.12,695.21 294.38,692.37 420.62,688.40 546.88,679.79"/>
+<line x1="640" y1="474" x2="675" y2="474" stroke="#2563eb" stroke-width="2.5"/>
+<text x="682" y="478" class="legend">tiled tile 64</text>
+</svg>

@@ -1,0 +1,262 @@
+{
+  "aggregate": {
+    "criteria": [
+      {
+        "criterion_text": "Age 25 to 65 years",
+        "criterion_type": "inclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "8924842a-ee30-47e8-a5c5-fe9f0aa9b79b"
+      },
+      {
+        "criterion_text": "Myocardial infarction within the previous 6 months",
+        "criterion_type": "exclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "3b29ecb3-d586-4fc0-b753-819989124c4b"
+      },
+      {
+        "criterion_text": "Abnormal exercise myocardial perfusion scan with reversible ischemia",
+        "criterion_type": "inclusion",
+        "effect": "review",
+        "flags": {
+          "contradiction": false,
+          "duplicate_evidence_ids": false,
+          "invalid_evidence_ids": false,
+          "missing_information": false,
+          "parse_failure": false,
+          "runtime_failure": false,
+          "truncation": false
+        },
+        "label": "not applicable",
+        "request_id": "9f427661-5962-45ef-804c-e385aebf752a"
+      }
+    ],
+    "criterion_count": 3,
+    "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+    "is_ground_truth_trial_outcome": false,
+    "not_applicable_policy": "Keep 'not applicable' visible but force review_needed for this preliminary aggregation. Without an external applicability rule, the label cannot establish that a required criterion is satisfied; treating it as a pass would turn an uncertain or misused category into an unsupported match.",
+    "outcome": "review_needed",
+    "outcome_description": "No definite failure, but at least one criterion is unknown, invalid, truncated, contradictory, or operationally failed.",
+    "policy_version": "v1",
+    "reasons": [
+      "At least one criterion requires review or has no verified decision."
+    ]
+  },
+  "criteria": [
+    {
+      "criterion_text": "Age 25 to 65 years",
+      "criterion_type": "inclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "8924842a-ee30-47e8-a5c5-fe9f0aa9b79b",
+      "timing_ms": 2174.637799995253,
+      "truncated": false
+    },
+    {
+      "criterion_text": "Myocardial infarction within the previous 6 months",
+      "criterion_type": "exclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "3b29ecb3-d586-4fc0-b753-819989124c4b",
+      "timing_ms": 1276.5991000051145,
+      "truncated": false
+    },
+    {
+      "criterion_text": "Abnormal exercise myocardial perfusion scan with reversible ischemia",
+      "criterion_type": "inclusion",
+      "educational_notice": "Educational screening prototype; not a clinical enrollment decision.",
+      "evidence_excerpts": [
+        {
+          "id": 0,
+          "text": "A 58-year-old woman presents with two days of exertional chest pressure."
+        },
+        {
+          "id": 1,
+          "text": "She has hypertension and obesity but no known diabetes."
+        },
+        {
+          "id": 2,
+          "text": "She takes no regular medications and has no prior cardiac procedure."
+        },
+        {
+          "id": 3,
+          "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."
+        }
+      ],
+      "evidence_sentence_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence_status": "valid",
+      "explanation": "The model predicted 'not applicable'. It cites these exact source sentences: [0] A 58-year-old woman presents with two days of exertional chest pressure. [1] She has hypertension and obesity but no known diabetes. [2] She takes no regular medications and has no prior cardiac procedure. [3] An electrocardiogram shows nonspecific changes; no troponin result is available. The model chose not applicable; this label alone does not establish a clinical reason. A cited sentence is traceability, not proof of clinical entailment.",
+      "flags": {
+        "contradiction": false,
+        "duplicate_evidence_ids": false,
+        "invalid_evidence_ids": false,
+        "missing_information": false,
+        "parse_failure": false,
+        "runtime_failure": false,
+        "truncation": false
+      },
+      "generation_mode": "transformers_generate_greedy_cache",
+      "invalid_evidence_values": [],
+      "kept_sentence_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "not applicable",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "parse_status": "valid",
+      "prompt_revision": "v1-provisional",
+      "raw_evidence_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw_output": "{\n  \"label\": \"not applicable\",\n  \"evidence_sentence_ids\": [0, 1, 2, 3]\n}",
+      "removed_sentence_ids": [],
+      "request_id": "9f427661-5962-45ef-804c-e385aebf752a",
+      "timing_ms": 1247.3131000006106,
+      "truncated": false
+    }
+  ],
+  "notice": "Synthetic educational example. Not a real patient and not medical advice."
+}

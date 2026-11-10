@@ -1,0 +1,24 @@
+{
+  "notice": "Synthetic educational example. Not a real patient and not medical advice.",
+  "patient_sentences": [
+    {"id": 0, "text": "A 58-year-old woman presents with two days of exertional chest pressure."},
+    {"id": 1, "text": "She has hypertension and obesity but no known diabetes."},
+    {"id": 2, "text": "She takes no regular medications and has no prior cardiac procedure."},
+    {"id": 3, "text": "An electrocardiogram shows nonspecific changes; no troponin result is available."},
+    {"id": 4, "text": "She is awake, alert, and able to provide informed consent."}
+  ],
+  "criteria": [
+    {
+      "criterion_type": "inclusion",
+      "criterion_text": "Age 25 to 65 years"
+    },
+    {
+      "criterion_type": "exclusion",
+      "criterion_text": "Myocardial infarction within the previous 6 months"
+    },
+    {
+      "criterion_type": "inclusion",
+      "criterion_text": "Abnormal exercise myocardial perfusion scan with reversible ischemia"
+    }
+  ]
+}

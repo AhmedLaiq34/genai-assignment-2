@@ -1,0 +1,369 @@
+{
+  "artifacts": {
+    "adapter_path": "D:\\Gen_AI_Assignment_2\\artifacts\\phase04\\phase04_lora_colab_cli_20261110T1650Z_bundle\\selected_adapter",
+    "adapter_sha256": "86af3f6a0b294932a88abc54568debc61650f5aaa49b3408187c686e0d25b1f1",
+    "eval_config_sha256": "3bd2c2e9d3f5b1f55639baca37e82a5244d6a375f7ca8597961ee4d0164c37bf",
+    "input_jsonl_sha256": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686",
+    "model_config_sha256": "522b223319bcd08eb792d94874f1e831b0cd7c62a95cb7b637c000213c8c1acc",
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "prompt_config_sha256": "59cccc29bccaadd0dd76e92f36fecbef598ecf7a48174373bfbf66aef6a27104",
+    "split_manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b"
+  },
+  "by_criterion_type": {
+    "exclusion": {
+      "classification": {
+        "accuracy": null,
+        "confusion_matrix": [],
+        "macro_f1": null,
+        "n": 0,
+        "per_class": {}
+      },
+      "evidence": {
+        "both_empty_annotations": 0,
+        "macro_per_annotation": {
+          "f1": null,
+          "precision": null,
+          "recall": null
+        },
+        "micro": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "micro_counts": {
+          "fn": 0,
+          "fp": 0,
+          "tp": 0
+        },
+        "n": 0,
+        "nonempty_gold_micro": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nonempty_gold_micro_counts": {
+          "fn": 0,
+          "fp": 0,
+          "tp": 0
+        },
+        "nonempty_gold_n": 0
+      }
+    },
+    "inclusion": {
+      "classification": {
+        "accuracy": 1.0,
+        "classes": [
+          "included",
+          "not included",
+          "not enough information",
+          "not applicable"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "included",
+          "not included",
+          "not enough information",
+          "not applicable",
+          "__invalid__"
+        ],
+        "invalid_prediction_count": 0,
+        "macro_f1": 0.25,
+        "n": 1,
+        "per_class": {
+          "included": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 0
+          },
+          "not applicable": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 0
+          },
+          "not enough information": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 1
+          },
+          "not included": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 0
+          }
+        },
+        "zero_support_classes": [
+          "included",
+          "not included",
+          "not applicable"
+        ]
+      },
+      "evidence": {
+        "both_empty_annotations": 0,
+        "macro_per_annotation": {
+          "f1": 0.6,
+          "precision": 0.42857142857142855,
+          "recall": 1.0
+        },
+        "micro": {
+          "f1": 0.6,
+          "precision": 0.42857142857142855,
+          "recall": 1.0
+        },
+        "micro_counts": {
+          "fn": 0,
+          "fp": 4,
+          "tp": 3
+        },
+        "n": 1,
+        "nonempty_gold_micro": {
+          "f1": 0.6,
+          "precision": 0.42857142857142855,
+          "recall": 1.0
+        },
+        "nonempty_gold_micro_counts": {
+          "fn": 0,
+          "fp": 4,
+          "tp": 3
+        },
+        "nonempty_gold_n": 1
+      }
+    }
+  },
+  "classification": {
+    "accuracy": 1.0,
+    "classes": [
+      "included",
+      "not included",
+      "excluded",
+      "not excluded",
+      "not enough information",
+      "not applicable"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "included",
+      "not included",
+      "excluded",
+      "not excluded",
+      "not enough information",
+      "not applicable",
+      "__invalid__"
+    ],
+    "invalid_prediction_count": 0,
+    "macro_f1": 0.16666666666666666,
+    "n": 1,
+    "per_class": {
+      "excluded": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "included": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "not applicable": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "not enough information": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 1
+      },
+      "not excluded": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      },
+      "not included": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 0
+      }
+    },
+    "zero_support_classes": [
+      "included",
+      "not included",
+      "excluded",
+      "not excluded",
+      "not applicable"
+    ]
+  },
+  "environment": {
+    "cuda": "12.8",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
+    "recorded_at_utc": "2026-11-10T17:11:50.938409+00:00",
+    "torch": "2.11.0+cu128"
+  },
+  "evidence": {
+    "both_empty_annotations": 0,
+    "macro_per_annotation": {
+      "f1": 0.6,
+      "precision": 0.42857142857142855,
+      "recall": 1.0
+    },
+    "micro": {
+      "f1": 0.6,
+      "precision": 0.42857142857142855,
+      "recall": 1.0
+    },
+    "micro_counts": {
+      "fn": 0,
+      "fp": 4,
+      "tp": 3
+    },
+    "n": 1,
+    "nonempty_gold_micro": {
+      "f1": 0.6,
+      "precision": 0.42857142857142855,
+      "recall": 1.0
+    },
+    "nonempty_gold_micro_counts": {
+      "fn": 0,
+      "fp": 4,
+      "tp": 3
+    },
+    "nonempty_gold_n": 1
+  },
+  "evidence_parse_failure_count": 0,
+  "generation": {
+    "backend": "transformers_generate_greedy_cache",
+    "equivalence_examples": [],
+    "seconds_per_annotation": 8.017605400003958,
+    "tokens_per_second": 3.367589031007521,
+    "total_seconds": 8.017605400003958
+  },
+  "invalid_evidence_value_count": 0,
+  "n": 1,
+  "parse_status_counts": {
+    "valid": 1
+  },
+  "raw_evidence_validity_rate": 1.0,
+  "runtime_failure_count": 0,
+  "scope": {
+    "full_split": false,
+    "n": 1,
+    "requested_n": 1,
+    "split": "validation",
+    "test_data_opened": false
+  },
+  "truncated_count": 0,
+  "validated_evidence_validity_rate": 1.0
+}

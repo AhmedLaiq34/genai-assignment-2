@@ -11,7 +11,7 @@
   "protected_test_read_by_this_verifier": false,
   "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
   "quarantined_training_rows": 1,
-  "recorded_at_utc": "2026-11-09T14:40:29.395525+00:00",
+  "recorded_at_utc": "2026-11-09T19:17:10.973197+00:00",
   "row_counts": {
     "test": {
       "prepared": 206,
@@ -30,10 +30,10 @@
     }
   },
   "source_archive_contains_no_parquet_or_jsonl": true,
-  "source_archive_sha256": "7e7053296d8f9e701e02683661c4bc46c3b89a52d5af9530c9cd890a88ff2d08",
+  "source_archive_sha256": "104b91aab285c3fed19ce1d839a2d3065d9850884efb0cb5e27502ddcc839de5",
   "source_sha256": "14c547184fac9b013cd17441fd028845b40150c76b022e58334f5494077e5234",
   "test_suite_command": "D:\\Gen_AI_Assignment_2\\.venv\\Scripts\\python.exe -m pytest -q",
   "test_suite_exit_code": 0,
-  "test_suite_output": ".................                                                        [100%]\n17 passed in 1.12s",
+  "test_suite_output": "............................                                             [100%]\n============================== warnings summary ===============================\ntests/test_evaluation_adapter.py::EvaluationAdapterTests::test_adapter_loads_and_generates\n  D:\\Gen_AI_Assignment_2\\.venv\\Lib\\site-packages\\peft\\utils\\save_and_load.py:286: UserWarning: Could not find a config file in  - will assume that the vocabulary was not modified.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n28 passed, 1 warning in 10.05s",
   "token_audit_scope": "training and validation only; no protected test examples loaded"
 }

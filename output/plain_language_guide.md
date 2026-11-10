@@ -1,12 +1,16 @@
 # Your assignment, explained step by step
 
+> **Compute-route update (10 November 2026):** the active training route is **Google Colab**, with the laptop for development and the final app. See [Colab training setup](../docs/colab_manual_setup.md). Verify CUDA in the live session.
+
 ## How to use this guide
 
 This guide is a conversation about the project: what we are building, why each step exists, what you will see when it works, and what you should understand before moving on. Read it first when a phase in the master plan feels overwhelming.
 
-The [master plan](master_plan.md) remains the detailed instruction manual for implementation, exact tests, file names, and the grading checklist. This guide follows the same phase numbers, so you can move between the two. Neither document is the assignment's final research paper, and neither claims the system has already been built or tested.
+The [master plan](master_plan.md) remains the detailed instruction manual for implementation, exact tests, file names, and the grading checklist. This guide follows the same phase numbers, so you can move between the two. This is a progress guide, not the assignment's final research paper.
 
-Our proposed route is to use free Kaggle for most model training and experiments, and your laptop for the final application. That route is subject to the actual computing resources we can obtain and to a successful local application test.
+Our current route is to use **Google Colab** for training and research, and use your laptop for development and the final application. Colab GPU access can vary, so we verify it before training. The laptop app never requires an active Colab session.
+
+**Where we are now:** Phases 0 through 8 are implemented and locally tested. We have measured the original, untrained-for-this-task model on all 206 validation examples. We have not completed the real TrialGPT adapter training or built the final app. You have chosen Google Colab for the training run. The synthetic LoRA pilot only showed that a short training procedure can run; it did not teach the model this task.
 
 ## First, what are we actually building?
 
@@ -49,27 +53,27 @@ Think of the work as four connected stories:
 
 The phases below describe these in the same order as the master plan. For each phase, you can ask an agent to carry out the technical work, but you should still understand the purpose, inspect the output, and be able to explain what happened. The assignment is individual and explicitly allows AI assistance when it is acknowledged and understood.
 
-## A word about Kaggle and your laptop
+## A word about Colab and your laptop
 
-Kaggle gives us a temporary computer in the cloud, potentially with a graphics processor, or **GPU**. GPUs can speed up model calculations. Your laptop also has a GPU, but its 6 GB of graphics memory makes model training more restrictive. A Kaggle GPU may have more room, although the free service does not guarantee which GPU we receive or whether one is available.
+Colab gives us a temporary computer in the cloud with a graphics processor, or **GPU**. GPUs can speed up model calculations. Your laptop also has a GPU, but its 6 GB of graphics memory makes model training more restrictive. Colab may have more room, although the available GPU and session duration are not guaranteed.
 
-Our plan uses Kaggle as the main workshop for training and experiments if we can get a suitable GPU. Because a Kaggle session can end, we will save copies of training progress and results in a durable location and download the final model files to your laptop. We will then run the browser application on your laptop. That means the evaluator can use the final application without opening a Kaggle notebook.
+The Colab notebook reads a checksummed source archive from Google Drive and writes verified checkpoints and exports back to Drive. Because the session can disconnect or its temporary storage can disappear, we verify the saved files, download them, and check the hashes on your laptop. The final browser application runs locally, so the evaluator does not need Colab.
 
-A previous Colab session ran a small synthetic pilot, but the Kaggle CLI authentication succeeded but its job and GPU have not yet been verified. No speedup has been measured. The detailed compute comparison is in [compute strategy](compute_strategy.md).
+A previous Colab session ran a small synthetic pilot, but that pilot is not TrialGPT training. Kaggle's recent GPU probe received CPU-only PyTorch; those records are historical. Verify CUDA in the current Colab session before the active training run. No speedup has been measured. The detailed compute comparison is in [compute strategy](compute_strategy.md).
 
 ## Phase 0 - Set up our workspaces
 
-**What we are doing:** We are preparing two places to work: the Kaggle environment for experiments and your laptop for development and the final app. An environment is simply the combination of Python and the software packages a project needs.
+**What we are doing:** We are preparing two places to work: Colab for experiments and your laptop for development and the final app. An environment is simply the combination of Python and the software packages a project needs.
 
 **Why it matters:** Without a repeatable setup, a program may work once and fail the next time because software versions or file locations changed. On your laptop, we also need to put large files on drive D:, where the earlier inspection found considerably more space than on drive C:.
 
-We will create the project folders, install the necessary tools, and record what is available. In Kaggle, we will check whether a GPU is actually assigned and how much memory it has. We will make a small notebook whose job is to start the project's scripts; the main implementation will live in normal source files that can also run elsewhere.
+We created the project folders, installed the local tools, and recorded what was available. In Colab, the environment report checks whether a GPU is actually assigned and how much memory it has. The notebook starts project scripts; the main implementation lives in normal source files that can also run elsewhere.
 
-We will also practice saving and restoring a small piece of work. This is a rehearsal for an interrupted training session. If Kaggle's free GPU is unavailable, we will stop spending time repeatedly trying to obtain one and use the tested local fallback while continuing work that does not need a GPU.
+We will also practice saving and restoring a small piece of work. This is a rehearsal for an interrupted training session. If Colab's GPU is unavailable, stop and continue local work that does not need a GPU. Local assignment training remains unverified and needs a measured pilot before use.
 
-**What you should see at the end:** A clear record of both environments, a working project setup, a Kaggle verification job and proof that its saved output can be recovered. Kaggle checkpoint recovery still needs testing; the prior synthetic Colab pilot was not clinical training.
+**What you should see at the end:** A clear record of both environments, a working project setup, and proof that Colab Drive output can be downloaded and recovered. Interrupted-training recovery has a local rehearsal; the prior synthetic Colab pilot was not clinical training.
 
-**Explain it back:** "Kaggle is our temporary experiment computer; my laptop is where we will keep a copy of the work and run the final app."
+**Explain it back:** "Colab is the temporary experiment computer used through the browser notebook; my laptop is where we keep a copy of the work and run the final app."
 
 ## Phase 1 - Learn from existing work and choose our models
 
@@ -79,7 +83,7 @@ A **model** is the learned mathematical system that processes the text. The sugg
 
 **Why two models?** The main model handles the assignment's patient-versus-criterion task. Later, the smaller model will suggest possible next words or word pieces; the main model will check them. For this to work, the two must agree on how text is broken into numbered pieces, called **tokens**. For example, a word might be one token or several. We must actually check their token rules rather than assume they match because the models share a family name.
 
-We will do small experiments before committing: can the main model train on the available Kaggle GPU, and can the laptop run both models together for the final demonstration? If the answer is no, we adjust the approach and document the decision. We also record why we chose these models over alternatives and what each source contributed.
+We will do small experiments before committing: can the main model train on the verified Colab GPU, and can the laptop run both models together for the final demonstration? If the answer is no, we adjust the approach and document the decision. We also record why we chose these models over alternatives and what each source contributed.
 
 **What you should see at the end:** A short research record, a justified model choice, a compatibility check for the two models, and evidence that the chosen setup fits the available machines. No final test patients are used to make these choices.
 
@@ -109,7 +113,7 @@ Long records may not fit within the amount of text the model can process in one 
 
 ## Phase 3 - Find out how the model performs before training
 
-**What we are doing:** We ask the original, untrained-for-this-task model to answer the validation examples. This gives us a starting point, often called a **baseline**. We also build the scoring tools that will later judge both the original and trained model in the same way.
+**What we did:** We asked the original, untrained-for-this-task model to answer all 206 validation examples. This gives us a starting point, often called a **baseline**. We also built the scoring tools that can later judge both the original and trained model in the same way.
 
 **Why it matters:** If we only show results after training, we cannot tell whether training helped. Comparing the same model before and after, on the same examples with the same answer settings, makes the change interpretable.
 
@@ -119,19 +123,21 @@ The assignment asks for several measures. **Accuracy** is the share of category 
 
 There is an important special case: sometimes neither the expert nor the model identifies an evidence sentence. The scoring code must state how it treats that case and also report results for examples where evidence was actually expected. Broken or unreadable model outputs must be counted and reported, not quietly discarded.
 
-**What you should see at the end:** Saved answers and scores from the original model on validation examples, plus scoring tools that have been checked on small examples with known answers. The final test remains untouched.
+**What we saved:** All 206 answers, their raw model text, the exact prompt token IDs, per-row timing, configuration fingerprints and scores. The test data was not opened. The local model achieved accuracy 0.131 and six-category macro-F1 0.124. Its evidence micro-F1 was 0.155. It produced valid JSON on 202 of 206 examples, with no runtime failures or output-cap truncations. These are baseline software metrics, not evidence that the system is safe or clinically useful. The results are in the [Phase 3 handoff](../handoffs/phase_03.md).
 
-**Explain it back:** "We measure the model before teaching it, and we check both the decision and the sentences behind it."
+For speed, the full run used the library's key/value cache. We checked the parsed answers against the simpler, slower decoder on three examples: the parsed answers matched, but the generated token sequences did not match exactly. The later custom-cache phase still needs to prove exact token agreement.
+
+**Explain it back:** "We now have the model's before-training score, and every validation answer is saved so we can compare training fairly."
 
 ## Phase 4 - Teach the model the assignment's task
 
-**What we are doing:** We show the model the training examples and adjust a small set of additional model parameters so that it learns to return the expert's category and evidence sentence numbers. This task-specific teaching is called **fine-tuning**.
+**What we will do next:** We will show the model the training examples and adjust a small set of additional model parameters so that it learns to return the expert's category and evidence sentence numbers. This task-specific teaching is called **fine-tuning**.
 
 The proposed method, **LoRA**, adds small trainable components while keeping most of the original model fixed. You can think of it as adding a compact task-specific adjustment to an existing model. The adjustment is usually saved as an **adapter**: a file that is loaded alongside the original model. This can be more manageable than storing and retraining an entire large model.
 
 We start with a tiny practice run to catch mistakes. Then we train on the designated 37-patient group and periodically check the model on the validation group. We record how the training is going and choose a saved version based on validation performance. A saved training state is often called a **checkpoint**.
 
-Because Kaggle jobs can stop, we must first implement and test a way to preserve resumable checkpoints during a run; completed job outputs alone do not prove interrupted-run recovery. They need enough information to continue training, not just the final adapter. Once we select a version, we copy it and its records to durable storage and your laptop, check the copies, and make sure the laptop can load it.
+Because cloud sessions can fail, we must preserve resumable checkpoints during a run; notebook output alone does not prove interrupted-run recovery. Checkpoints need enough information to continue training, not just the final adapter. If the Colab GPU fails or disconnects, preserve the evidence and continue local work. Once we select a version, we download it and its records from Drive to your laptop, verify the copies, and make sure the laptop can load it.
 
 **Why validation matters here:** We can use validation results to choose among checkpoints. We cannot make that choice by looking at the final test results. We also compare against the original model using the same validation examples and settings. Training may improve some measures and worsen others; we report what actually happens.
 
@@ -193,7 +199,7 @@ This explanation uses deterministic choices: the helper and main model select th
 
 **Why do this?** Checking a short group of proposals can sometimes be faster than making every main-model step separately. But the helper has its own cost, and rejected suggestions waste work. On this project it may be slower. We still must implement the process correctly, compare its output token by token with ordinary main-model generation, and report how many suggestions were accepted, the time, the speed, and memory use.
 
-Our main speed comparison must use the same machine for both methods. A Kaggle result divided by a laptop result would mix the algorithm difference with a hardware difference and would not be a fair speedup claim. We also verify that the models fit and work in a small laptop demo.
+Our main speed comparison must use the same machine for both methods. A Colab result divided by a laptop result would mix the algorithm difference with a hardware difference and would not be a fair speedup claim. We also verify that the models fit and work in a small laptop demo.
 
 **What you should see at the end:** Working draft-and-check code, tests for complete acceptance and rejection cases, evidence that final tokens match ordinary main-model output, and an honest account of whether it helped or slowed things down.
 
@@ -223,7 +229,7 @@ The interface must expose meaningful comparisons of the implemented generation m
 
 We will check what happens with empty input, overly long text, invalid sentence references, missing model files, and an out-of-memory error. A useful application explains the problem and lets the user try again. It must clearly say that it is an educational screening prototype, not a clinical enrollment decision.
 
-**What you should see at the end:** You can start the app on the laptop, open it in a browser, enter a new synthetic patient, review the evidence, compare inference methods, recover from an invalid entry, and download a report. After the required files are downloaded, this should work without an active Kaggle session.
+**What you should see at the end:** You can start the app on the laptop, open it in a browser, enter a new synthetic patient, review the evidence, compare inference methods, recover from an invalid entry, and download a report. After the required files are downloaded, this should work without an active Colab session.
 
 **Explain it back:** "The evaluator can use the finished system in a browser, inspect what supports each answer, and save the screening report."
 

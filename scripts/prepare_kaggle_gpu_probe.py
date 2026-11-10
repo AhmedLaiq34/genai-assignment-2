@@ -23,10 +23,13 @@ from pathlib import Path
 report = {'recorded_at_utc': datetime.now(timezone.utc).isoformat(), 'platform': platform.platform(),
           'python': sys.version, 'synthetic_only': True, 'passed': False}
 try:
-    smi = subprocess.run(['nvidia-smi'], capture_output=True, text=True, timeout=15, check=False)
-    report['nvidia_smi_returncode'] = smi.returncode
-    report['nvidia_smi_stdout'] = smi.stdout
-    report['nvidia_smi_stderr'] = smi.stderr
+    try:
+        smi = subprocess.run(['nvidia-smi'], capture_output=True, text=True, timeout=15, check=False)
+        report['nvidia_smi_returncode'] = smi.returncode
+        report['nvidia_smi_stdout'] = smi.stdout
+        report['nvidia_smi_stderr'] = smi.stderr
+    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        report['nvidia_smi_unavailable'] = str(exc)
     import torch
     report['torch'] = torch.__version__
     report['cuda_available'] = torch.cuda.is_available()

@@ -1,0 +1,20 @@
+{
+  "control_epoch": 4,
+  "control_example_cursor": 0,
+  "control_global_step": 4,
+  "control_loss_count": 4,
+  "control_run": "rehearsal_control_20261109T193655Z",
+  "interrupt_at": 2,
+  "interrupted_run": "rehearsal_interrupted_20261109T193655Z",
+  "losses_finite": true,
+  "max_abs_loss_delta": 0.0,
+  "max_steps": 4,
+  "orders_equal": true,
+  "passed": true,
+  "resume_bundle": "D:\\Gen_AI_Assignment_2\\checkpoints\\rehearsal_interrupted_20261109T193655Z\\bundles\\resume-step-000002-epoch",
+  "resumed_epoch": 4,
+  "resumed_example_cursor": 0,
+  "resumed_global_step": 4,
+  "resumed_loss_count": 4,
+  "resumed_run": "rehearsal_resumed_20261109T193655Z"
+}

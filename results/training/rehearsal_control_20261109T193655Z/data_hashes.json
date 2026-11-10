@@ -1,0 +1,10 @@
+{
+  "data_config": "a063f00e2065b573b560f1bce8e0077f8410660501b9036430f8ffb7c718c13a",
+  "manifest_sidecar": "1c9b3e2ddadd97dbc2507a9696ec3aa4afdbbada07ab229706c5e3d65aea68a4",
+  "model_config": "490d017489c7526eeacef6e76870a67110974ad1e7da22b77ad92db79b2bea0c",
+  "prompt_config": "59cccc29bccaadd0dd76e92f36fecbef598ecf7a48174373bfbf66aef6a27104",
+  "split_manifest": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "train_config": "e0df816a7f6ffa62081a352f545f94a72c9e6aaee39b18ef51d2406319f02a23",
+  "train_jsonl": "84dac11dd9772252e0a2d53bf7bb4b9d852a18a5d9bdb36ccff784b2b25dfe6b",
+  "validation_jsonl": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686"
+}

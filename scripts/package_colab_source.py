@@ -25,6 +25,7 @@ ROOT_FILES = (
 SOURCE_DIRS = (
     "configs",
     "docs",
+    "examples",
     "handoffs",
     "notebooks",
     "research",
@@ -44,6 +45,12 @@ PROJECT_GUIDES = (
     "output/master_plan.md",
     "output/phase_0_1_concepts.md",
     "output/phase_0_1_2_conceptual_guide.md",
+    "output/phase_4_6_implementation_plan.md",
+)
+BASELINE_FILES = (
+    "results/baseline/base_greedy_v1_validation/metrics.json",
+    "results/baseline/base_greedy_v1_validation/run_config.json",
+    "results/baseline/base_greedy_v1_validation/equivalence_diagnostic.json",
 )
 EXCLUDED_PARTS = {
     ".cache",
@@ -55,7 +62,7 @@ EXCLUDED_PARTS = {
 
 def source_files(project_root: Path) -> list[Path]:
     candidates: set[Path] = set()
-    for relative in ROOT_FILES + DATA_FILES + PROJECT_GUIDES:
+    for relative in ROOT_FILES + DATA_FILES + PROJECT_GUIDES + BASELINE_FILES:
         path = project_root / relative
         if path.is_file():
             candidates.add(path)

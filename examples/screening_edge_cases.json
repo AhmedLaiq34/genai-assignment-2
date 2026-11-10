@@ -1,0 +1,55 @@
+{
+  "notice": "Synthetic educational fixtures. Not real patients and not medical advice.",
+  "cases": [
+    {
+      "name": "explicit_negation",
+      "criterion_type": "inclusion",
+      "criterion_text": "Prior chemotherapy is allowed",
+      "patient_sentences": [
+        {"id": 0, "text": "The patient has no prior chemotherapy."},
+        {"id": 1, "text": "She is currently asymptomatic."}
+      ],
+      "expected_behaviour": "The model must not treat the negation as evidence of prior chemotherapy."
+    },
+    {
+      "name": "family_history_is_not_patient_history",
+      "criterion_type": "exclusion",
+      "criterion_text": "Known BRCA1 or BRCA2 mutation",
+      "patient_sentences": [
+        {"id": 0, "text": "Her mother had a BRCA1 mutation."},
+        {"id": 1, "text": "The patient has not been tested for BRCA1 or BRCA2."}
+      ],
+      "expected_behaviour": "Family history is not the patient's own genotype; a negative or absent test needs review."
+    },
+    {
+      "name": "temporal_qualifier",
+      "criterion_type": "exclusion",
+      "criterion_text": "Myocardial infarction within the previous 3 months",
+      "patient_sentences": [
+        {"id": 0, "text": "The patient had an uncomplicated myocardial infarction two years ago."},
+        {"id": 1, "text": "She has no chest pain today."}
+      ],
+      "expected_behaviour": "A two-year-old event is outside the three-month window."
+    },
+    {
+      "name": "lexical_contradiction",
+      "criterion_type": "inclusion",
+      "criterion_text": "Chemotherapy naive",
+      "patient_sentences": [
+        {"id": 0, "text": "The patient has no prior chemotherapy."},
+        {"id": 1, "text": "Prior chemotherapy was completed."}
+      ],
+      "expected_behaviour": "The service must set the contradiction flag and require review."
+    },
+    {
+      "name": "exclusion_inversion",
+      "criterion_type": "exclusion",
+      "criterion_text": "Severe anemia with hemoglobin below 7 g/dL",
+      "patient_sentences": [
+        {"id": 0, "text": "The patient has a history of severe anemia."},
+        {"id": 1, "text": "No current hemoglobin value is available."}
+      ],
+      "expected_behaviour": "Do not turn an exclusion into inclusion; missing current laboratory data requires review."
+    }
+  ]
+}

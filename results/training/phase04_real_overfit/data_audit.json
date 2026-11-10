@@ -1,0 +1,47 @@
+{
+  "manifest_sha256": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+  "overfit_subset": true,
+  "patient_splits_disjoint": true,
+  "run_name": "phase04_real_overfit",
+  "test_data_opened": false,
+  "train_counts_by_type_label": {
+    "exclusion": {
+      "excluded": 8,
+      "not applicable": 23,
+      "not enough information": 65,
+      "not excluded": 291
+    },
+    "inclusion": {
+      "included": 88,
+      "not applicable": 5,
+      "not enough information": 109,
+      "not included": 13
+    }
+  },
+  "train_examples": 602,
+  "train_examples_used": 12,
+  "train_patient_count": 37,
+  "train_prompt_truncated": 0,
+  "train_rows": 602,
+  "train_rows_used": 12,
+  "train_target_tokens": 8502,
+  "validation_counts_by_type_label": {
+    "exclusion": {
+      "excluded": 2,
+      "not applicable": 11,
+      "not enough information": 26,
+      "not excluded": 101
+    },
+    "inclusion": {
+      "included": 35,
+      "not applicable": 1,
+      "not enough information": 27,
+      "not included": 3
+    }
+  },
+  "validation_examples": 206,
+  "validation_patient_count": 8,
+  "validation_prompt_truncated": 0,
+  "validation_rows": 206,
+  "validation_rows_used": 12
+}

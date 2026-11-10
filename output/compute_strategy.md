@@ -1,13 +1,60 @@
-﻿# Compute strategy: Kaggle research and local application
+# Compute strategy: Colab research and local application
 
-Updated 9 November 2026. The user chose Kaggle after repeated Colab runtime allocation stalls. The laptop remains the development and final application environment. Earlier Colab T4 synthetic pilots are historical feasibility evidence, not Kaggle results or clinical performance.
+Updated 10 November 2026 (Asia/Karachi). The user selected Google Colab for
+Phase 4 training after Kaggle did not provide an enabled GPU accelerator. The
+laptop remains the development, artifact verification, and final-application
+environment. See the [Colab training guide](../docs/colab_manual_setup.md),
+[Phase 4 Colab handoff](../handoffs/phase_04_colab_training_handoff.md), and
+[runner notebook](../notebooks/colab_runner.ipynb).
 
-Kaggle can run private jobs through its [official CLI](https://github.com/Kaggle/kaggle-cli); [kernel metadata](https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels_metadata.md) controls visibility, accelerator and internet settings. Account access and quota were checked; internet, GPU and dependencies remain unverified. Do not assume fixed free resources. See [Kaggle setup](../docs/kaggle_setup.md).
+## Active route
 
-The RTX 3050 laptop has 6 GiB VRAM, so a suitable cloud GPU might make training easier, but that is not a measured speedup. Retain the chosen 1.5B target and smaller 0.5B draft subject to actual fit. Record hardware, memory and a short pilot on the allocated Kaggle device. If no cloud GPU is available, time-box troubleshooting and verify a local training fallback.
+1. Develop and run portable CPU/toy checks locally.
+2. Build a source-only ZIP with a SHA-256 sidecar and upload both, plus the
+   current runner notebook, to Google Drive.
+3. In Colab select **Runtime > Change runtime type > GPU**. Run the environment
+   doctor and require `cuda_available: true` plus a finite CUDA operation.
+4. Run the notebook's data/hash verification, test suite, overfit gate, and
+   interrupted/resumed rehearsal before full training.
+5. Run the configured three-epoch FP16 LoRA job on the approved training rows,
+   validating and selecting only on the validation split. Persist verified
+   checkpoints to Drive.
+6. Download the selected export and checksums to D:, verify the bundle, reload
+   it locally, and compare it to the unchanged base on all 206 validation rows.
 
-Run preparation and metric tests on CPU; use the Kaggle GPU for training and research benchmarks when verified. Compare methods on the same hardware, checkpoint and precision. The final app must run independently on the laptop after downloading its files.
+Colab GPU allocation, runtime duration, storage, and package environment can
+change. Record the actual device and software versions for each run. If CUDA
+is unavailable, stop; do not train on CPU, retry full training locally, or
+silently switch precision/model. Preserve the sealed test split until Phase 9.
 
-Kaggle working storage is temporary. Download and verify completed job outputs. Before long training, implement and test a way to preserve resumable checkpoints during an active run, or use short completed jobs with verified output recovery. Completed outputs do not prove interrupted-job recovery. Save adapter, optimizer, scheduler, random states and data position; verify restoration and hashes. Never tune on held-out test data. See the [master plan](master_plan.md) and [decision log](../research/decision_log.md).
+## Training and persistence boundary
 
-**Current provider status:** Kaggle displayed an outage banner on 9 November saying notebook startup/connectivity is impaired and a fix is underway. Both CPU and GPU verification jobs stayed queued. Pause new submissions while this notice is active; continue local work. Resume with one minimal CPU probe after the notice clears, then test GPU access.
+The Colab runner invokes repository scripts rather than duplicating model or
+training logic. Its ordered gates cover pinned data regeneration and manifest
+verification, the complete local test suite, overfit smoke, resume rehearsal,
+full training with per-epoch validation, selected export, and bundle checks.
+The training configuration remains `configs/train.yaml`.
+
+The source archive excludes raw Parquet, prepared patient JSONL, model weights,
+caches, and credentials. Colab `/content` is temporary; persist resumable
+bundles under `MyDrive/GenAI_Assignment_2_checkpoints/<run>/`. Verify a copied
+bundle before pruning or resuming from it. Keep only verified bundles and
+selected exports; notebook output alone is not durable evidence.
+
+## Comparisons and local application
+
+Keep Colab selection metrics separate from fresh local reload metrics. Use the
+same prompt, parser, budgets, base revision, and all 206 validation rows for
+the local before/after comparison. Never compare unlike-device timings as a
+speedup. The final app runs locally without a Colab mount, active session,
+cloud authorization, or cloud GPU.
+
+## Historical Kaggle attempt
+
+Kaggle CLI authentication succeeded, but the GPU-enabled private probe
+received `torch 2.11.0+cpu` and `cuda_available: false`; the notebook UI also
+showed GPU T4 x2 disabled pending phone verification. No Kaggle training was
+submitted. Preserve its logs and probe outputs as historical evidence. The
+[Kaggle guide](../docs/kaggle_setup.md) and
+[Kaggle-era handoff](../handoffs/phase_04_training_resume_handoff.md) are
+archival records, not current run instructions.

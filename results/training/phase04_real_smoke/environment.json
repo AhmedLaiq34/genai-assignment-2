@@ -1,0 +1,13 @@
+{
+  "cuda": "12.8",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "peft": "0.17.1",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "precision": "float16",
+  "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
+  "recorded_at_utc": "2026-11-09T19:33:10.534787+00:00",
+  "torch": "2.11.0+cu128",
+  "transformers": "4.57.1",
+  "vram_total_bytes": 6441926656
+}

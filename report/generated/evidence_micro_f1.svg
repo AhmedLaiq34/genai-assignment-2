@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="34" font-size="20" font-family="Arial">Evidence Micro F1</text>
+<line x1="80" y1="290" x2="700" y2="290" stroke="#334155"/>
+<rect x="110.0" y="172.6" width="120.0" height="117.4" fill="#4778c7" rx="5"/>
+<text x="170.0" y="162.6" text-anchor="middle" font-size="13" font-family="Arial">0.165</text>
+<text x="170.0" y="315" text-anchor="middle" font-size="13" font-family="Arial">base</text>
+<rect x="290.0" y="80.0" width="120.0" height="210.0" fill="#4778c7" rx="5"/>
+<text x="350.0" y="70.0" text-anchor="middle" font-size="13" font-family="Arial">0.296</text>
+<text x="350.0" y="315" text-anchor="middle" font-size="13" font-family="Arial">adapted</text>
+</svg>

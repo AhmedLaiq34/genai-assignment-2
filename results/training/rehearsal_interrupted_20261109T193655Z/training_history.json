@@ -1,0 +1,16 @@
+{
+  "best": null,
+  "epochs_completed": 2,
+  "global_step": 2,
+  "last_validation": null,
+  "losses": [
+    0.5186840873211622,
+    0.5186840873211622
+  ],
+  "run_name": "rehearsal_interrupted_20261109T193655Z",
+  "seconds_per_step": [
+    3.248970599997847,
+    3.1310605999969994
+  ],
+  "skip_validation": false
+}

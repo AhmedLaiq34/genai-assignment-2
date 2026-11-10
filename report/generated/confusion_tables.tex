@@ -1,0 +1,34 @@
+\begin{table*}[t]\centering\caption{Test confusion matrices by criterion type and model variant. Rows are gold; columns are predicted.}\scriptsize\begin{tabular}{lrrrrrr}\toprule
+\multicolumn{7}{l}{Inclusion / Base} \\
+Gold / Pred. & included & not included & not enough information & not applicable & \_\_invalid\_\_ & Support \\
+\midrule
+included & 16 & 0 & 0 & 11 & 0 & 27 \\
+not included & 3 & 0 & 0 & 4 & 0 & 7 \\
+not enough information & 3 & 0 & 0 & 34 & 1 & 38 \\
+not applicable & 0 & 0 & 0 & 3 & 0 & 3 \\
+\_\_invalid\_\_ & 0 & 0 & 0 & 0 & 0 & 0 \\
+\multicolumn{7}{l}{Inclusion / Adapted} \\
+Gold / Pred. & included & not included & not enough information & not applicable & \_\_invalid\_\_ & Support \\
+\midrule
+included & 16 & 0 & 11 & 0 & 0 & 27 \\
+not included & 0 & 0 & 7 & 0 & 0 & 7 \\
+not enough information & 0 & 0 & 38 & 0 & 0 & 38 \\
+not applicable & 0 & 0 & 3 & 0 & 0 & 3 \\
+\_\_invalid\_\_ & 0 & 0 & 0 & 0 & 0 & 0 \\
+\multicolumn{7}{l}{Exclusion / Base} \\
+Gold / Pred. & excluded & not excluded & not enough information & not applicable & \_\_invalid\_\_ & Support \\
+\midrule
+excluded & 0 & 0 & 0 & 0 & 0 & 0 \\
+not excluded & 27 & 0 & 0 & 64 & 0 & 91 \\
+not enough information & 6 & 0 & 0 & 22 & 0 & 28 \\
+not applicable & 1 & 0 & 0 & 11 & 0 & 12 \\
+\_\_invalid\_\_ & 0 & 0 & 0 & 0 & 0 & 0 \\
+\multicolumn{7}{l}{Exclusion / Adapted} \\
+Gold / Pred. & excluded & not excluded & not enough information & not applicable & \_\_invalid\_\_ & Support \\
+\midrule
+excluded & 0 & 0 & 0 & 0 & 0 & 0 \\
+not excluded & 0 & 91 & 0 & 0 & 0 & 91 \\
+not enough information & 0 & 28 & 0 & 0 & 0 & 28 \\
+not applicable & 0 & 12 & 0 & 0 & 0 & 12 \\
+\_\_invalid\_\_ & 0 & 0 & 0 & 0 & 0 & 0 \\
+\bottomrule\end{tabular}\end{table*}

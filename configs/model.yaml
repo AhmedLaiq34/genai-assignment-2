@@ -1,13 +1,13 @@
 target:
   id: Qwen/Qwen2.5-1.5B-Instruct
   revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
-  role: selected target
+  role: selected target with validation-selected LoRA adapter available for inference
 draft:
   id: Qwen/Qwen2.5-0.5B-Instruct
   revision: 7ae557604adf67be50417f59c2c2f167def9a775
   role: selected speculative draft
   candidate_target: true
-selection_status: selected after pinned tokenizer, local inference-envelope, Colab inference, and synthetic LoRA feasibility checks; task-quality validation remains pending
+selection_status: selected target validated for the completed Colab LoRA run; epoch 3 was selected on the 206-row development validation split, and the exported adapter is available under artifacts/phase04
 precision: float16
 max_position_embeddings: 32768
 license: Apache-2.0
@@ -25,3 +25,4 @@ output_schema:
       - not enough information
       - not applicable
   evidence_sentence_ids: integer list using original note IDs
+

@@ -22,6 +22,7 @@ artifacts/*
 checkpoints/*
 !checkpoints/README.md
 models/
+results/baseline/*/validation_predictions.jsonl
 
 *.safetensors
 *.gguf
@@ -31,3 +32,9 @@ models/
 *.onnx
 *.engine
 *.log
+tmp/
+results/demo_exports/
+results/final_test/*/test_predictions.jsonl
+report/*.blg
+report/main.pdf
+report/paper.tex

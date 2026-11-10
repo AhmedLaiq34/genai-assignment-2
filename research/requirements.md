@@ -16,15 +16,16 @@ This is educational screening software, not a medical enrollment decision.
 
 ## Phase 0/1 implications
 
-- Phase 0 establishes reproducible local and Colab environments, captures
+- Phase 0 establishes reproducible local and Kaggle environments, captures
   actual hardware/runtime information, and tests checkpoint persistence.
 - Phase 1 supports rubric A1-A3 and F1: research sources, candidate metadata,
   tokenizer compatibility, local/cloud memory fit, and documented choices.
 - Qwen2.5-1.5B-Instruct and Qwen2.5-0.5B-Instruct are hypotheses from the
   plan until the tokenizer, forward, fit, and local co-residency pilots pass.
-- Do not claim a Colab GPU, speedup, successful LoRA fit, or selected model
+- Do not claim a Kaggle GPU, speedup, successful LoRA fit, or selected model
   until the corresponding run is recorded.
-- The final application must work locally without requiring Colab.
+- The final application must work locally without requiring Kaggle or any
+  active cloud session.
 
 ## Rubric arithmetic discrepancy
 

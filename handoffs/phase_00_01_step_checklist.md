@@ -1,3 +1,5 @@
+> **Compute-route update (10 November 2026):** this file records historical Colab evidence. The active route is **Google Colab**; see [Colab training setup](../docs/colab_manual_setup.md). This checklist records earlier environment evidence; verify CUDA in the current training session.
+
 # Phase 0 and Phase 1: detailed step checklist
 
 **Audit basis:** the complete [master plan](../output/master_plan.md), especially its Phase 0 and Phase 1 sections; the [collective handoff](phase_00_01_collective.md); the [Phase 0 handoff](phase_00.md); the [Phase 1 handoff](phase_01.md); and the linked saved artifacts. The collective handoff describes the environment and model-feasibility work as complete. The item-level statuses below apply the plan's more detailed requirements and identify missing or narrower evidence; they do not silently promote a summary claim to full acceptance.
@@ -62,15 +64,15 @@
 
 - [x] **P0-06a** Create a thin interactive Colab notebook using repository scripts rather than embedding the training implementation. [Colab runner](../notebooks/colab_runner.ipynb) calls the doctor, tokenizer check, model smoke and fit pilot scripts.
 - [x] **P0-06b** Verify the source archive before extracting the project. [Colab runner](../notebooks/colab_runner.ipynb) checks the SHA-256 sidecar and source archive paths; [source archive sidecar](../artifacts/colab_source.zip.sha256) records the archive hash.
-- [~] **P0-06c** Provide a functioning notebook bootstrap/dependency-install sequence. [Colab runner](../notebooks/colab_runner.ipynb) includes a `%pip` cell, but it references `/content/Gen_AI_Assignment_2/requirements-colab.txt` while earlier cells create a hash-suffixed `ACTIVE_DIR`; the handoffs record CLI-based Colab execution, not a successful end-to-end notebook run.
+- [~] **P0-06c** Provide a functioning notebook bootstrap/dependency-install sequence. The current [Colab runner](../notebooks/colab_runner.ipynb) copies the verified source into its hash-suffixed `ACTIVE_DIR` and installs requirements from that directory. The full notebook path still needs a fresh end-to-end run.
 - [x] **P0-06d** Include a doctor cell. [Colab runner](../notebooks/colab_runner.ipynb) invokes [`doctor.py`](../scripts/doctor.py) and writes a run-specific report.
-- [~] **P0-06e** Include training, evaluation and benchmark runner cells. [Colab runner](../notebooks/colab_runner.ipynb) runs synthetic fit/inference pilots; full task training, evaluation and benchmark invocation cells are not present. Their implementations belong to later phases.
+- [x] **P0-06e** Include training runner cells. [Colab runner](../notebooks/colab_runner.ipynb) now invokes the full Phase 4 trainer and includes verification, overfit/resume rehearsal, training and export cells. Downstream adapter-specific evaluation and benchmark reruns remain later-phase work.
 - [x] **P0-06f** Stage active code and model cache under `/content`. [Colab runner](../notebooks/colab_runner.ipynb), [Colab profile](../configs/runtime_colab.yaml) and [Colab environment report](../results/environments/colab_20261109T110002Z.json) show active workspace/cache paths.
 - [~] **P0-06g** Persist verified notebook bundles to a chosen Drive/project folder. [Colab runner](../notebooks/colab_runner.ipynb) contains a Drive-backed bundle cell; the [collective handoff](phase_00_01_collective.md) evidences a CLI-downloaded bundle restored locally, not an end-to-end execution of that notebook cell against mounted Drive.
 - [x] **P0-06h** Implement generic checksum-verified snapshot/export helpers. [Checkpoint helpers](../src/clinical_match/checkpointing.py) create, verify and restore bundles; [tests](../tests/test_checkpointing.py) cover recovery and integrity checks.
 - [x] **P0-06i** Include a snapshot/restore cell. [Colab runner](../notebooks/colab_runner.ipynb) creates a verified bundle and checks a restored copy; execution of this exact notebook path remains unverified as noted in P0-06g.
 - [x] **P0-06j** Run a synthetic save/verify/restore test. [Checkpoint tests](../tests/test_checkpointing.py) contain a synthetic round trip; the [collective handoff](phase_00_01_collective.md) records the tests passing and the cloud report bundle being verified/restored locally.
-- [ ] **P0-06k** Integrate the 25-step/5-minute checkpoint schedule with actual task training. This is explicitly a later-phase action; the [decision log](../research/decision_log.md) says optimizer-resume integration remains Phase 4.
+- [~] **P0-06k** Integrate the 25-step/5-minute checkpoint schedule with actual task training. The trainer implements periodic and epoch checkpoints, and local resume rehearsal passes; a full TrialGPT Colab run remains outstanding.
 - [~] **P0-06l** Keep secrets out of source and notebook output. [Colab runner](../notebooks/colab_runner.ipynb) avoids requesting/printing secrets and [README](../README.md) warns against committing tokens; no comprehensive secret scan or published-repository audit is evidenced.
 
 ### Step 7 - Windows launch design and source archive
@@ -85,7 +87,7 @@
 - [x] **P0-OUTa** Shared dependency pins: [requirements-base.txt](../requirements-base.txt).
 - [~] **P0-OUTb** Two tested environment locks/profiles: [local lock](../requirements-local.lock), [local profile](../configs/runtime_local.yaml), [Colab profile](../configs/runtime_colab.yaml), [Colab requirements](../requirements-colab.txt); the full Colab-specific lock remains missing.
 - [~] **P0-OUTc** `.gitignore` and source skeleton: [ignore rules](../.gitignore), [source](../src/clinical_match/), [scripts](../scripts/); broad private-input and generic temporary-file rules are not evidenced.
-- [~] **P0-OUTd** Thin Colab launcher: [notebook](../notebooks/colab_runner.ipynb) exists, with bootstrap path mismatch and missing full task-evaluation/benchmark cells as described above.
+- [x] **P0-OUTd** Colab launcher and Phase 4 training workflow: [notebook](../notebooks/colab_runner.ipynb) includes the current bootstrap and full training/export sequence. Its full mounted-Drive path has not yet been rerun after recent edits; see the Phase 4 Colab handoff.
 - [x] **P0-OUTe** Local/Colab environment reports and summary: [local](../results/environments/local.json), [Colab](../results/environments/colab_20261109T110002Z.json), [pointer](../results/environment.json).
 - [x] **P0-OUTf** Generic checkpoint/export helpers and synthetic test: [helpers](../src/clinical_match/checkpointing.py), [tests](../tests/test_checkpointing.py), [restored bundle](../results/colab_verified_bundle/).
 - [x] **P0-OUTg** Setup notes: [README](../README.md).

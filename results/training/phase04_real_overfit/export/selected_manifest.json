@@ -1,0 +1,120 @@
+{
+  "data_hashes": {
+    "data_config": "a063f00e2065b573b560f1bce8e0077f8410660501b9036430f8ffb7c718c13a",
+    "manifest_sidecar": "1c9b3e2ddadd97dbc2507a9696ec3aa4afdbbada07ab229706c5e3d65aea68a4",
+    "model_config": "490d017489c7526eeacef6e76870a67110974ad1e7da22b77ad92db79b2bea0c",
+    "prompt_config": "59cccc29bccaadd0dd76e92f36fecbef598ecf7a48174373bfbf66aef6a27104",
+    "split_manifest": "309ea164a836f9a3f6d6c315578be990370971990412bbb75ef77cde707e063b",
+    "train_config": "e0df816a7f6ffa62081a352f545f94a72c9e6aaee39b18ef51d2406319f02a23",
+    "train_jsonl": "84dac11dd9772252e0a2d53bf7bb4b9d852a18a5d9bdb36ccff784b2b25dfe6b",
+    "validation_jsonl": "d064084797472e9bc48a54880344f36fe33381437856134664e20355467eb686"
+  },
+  "environment": {
+    "cuda": "12.8",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+    "peft": "0.17.1",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "precision": "float16",
+    "python": "3.11.17 (main, Oct 14 2026, 01:04:22) [MSC v.1944 64 bit (AMD64)]",
+    "recorded_at_utc": "2026-11-09T19:33:35.241318+00:00",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1",
+    "vram_total_bytes": 6441926656
+  },
+  "epochs_completed": 20,
+  "global_step": 40,
+  "last_validation": null,
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompt_revision": "v1-provisional",
+  "resolved_config": {
+    "attn_implementation": "sdpa",
+    "checkpoint": {
+      "drive_root": null,
+      "every_seconds": 300,
+      "every_steps": 25,
+      "keep_recent": 2,
+      "local_root": "checkpoints"
+    },
+    "data_config": "configs/data.yaml",
+    "device": "cuda",
+    "gradient_accumulation_steps": 8,
+    "gradient_checkpointing": true,
+    "lora": {
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "r": 8,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "task_type": "CAUSAL_LM"
+    },
+    "manifest_sha256_file": "data/splits/manifest.sha256",
+    "max_epochs": 3,
+    "max_grad_norm": 1.0,
+    "max_new_tokens": 96,
+    "max_seq_len": 1024,
+    "max_total_tokens": 1024,
+    "micro_batch_size": 1,
+    "model_config": "configs/model.yaml",
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "learning_rate": 0.0002,
+      "name": "AdamW",
+      "weight_decay": 0.01
+    },
+    "output": {
+      "results_root": "results/training"
+    },
+    "precision": "float16",
+    "prompt_config": "configs/prompt.yaml",
+    "prompt_revision": "v1-provisional",
+    "run_name": "phase04_lora_r8",
+    "runtime": {
+      "device": "cuda",
+      "max_steps": 40,
+      "overfit": true,
+      "overfit_examples": 12,
+      "resume": null,
+      "run_name": "phase04_real_overfit",
+      "skip_validation": false,
+      "stop_after_steps": null,
+      "tiny_model": false
+    },
+    "scheduler": {
+      "name": "linear",
+      "warmup_ratio": 0.05
+    },
+    "seed": 42,
+    "selection": {
+      "final_tie": "validation_loss",
+      "primary": "classification.macro_f1",
+      "tie_breaker": "evidence.micro.f1"
+    },
+    "split_manifest": "data/splits/manifest.json",
+    "tokenizer_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "train_config_path": "configs\\train.yaml",
+    "use_cache_during_training": false,
+    "validation": {
+      "generation_backend": "transformers_generate_greedy_cache",
+      "max_new_tokens": 96,
+      "max_total_tokens": 1024,
+      "reference_equivalence_examples": 0,
+      "split": "validation"
+    }
+  },
+  "run_name": "phase04_real_overfit",
+  "schema_version": 1,
+  "selected": null,
+  "selected_adapter_sha256": "67c4cf31a9888d569de8a419bb61ab117bf7cd857b8648df294de45036991892",
+  "selection_source": "last_state_no_validation_selection",
+  "tiny_model": false
+}

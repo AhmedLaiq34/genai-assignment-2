@@ -1,0 +1,46 @@
+{
+  "status": "blocked_local_oom",
+  "scope": "Phase 4 real-model local gate on NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "test_data_opened": false,
+  "real_smoke": {
+    "run_name": "phase04_real_smoke",
+    "step_seconds": 4.07,
+    "loss": 0.5740,
+    "grad_norm": 1.494,
+    "passed": true
+  },
+  "real_overfit": {
+    "run_name": "phase04_real_overfit",
+    "examples": 12,
+    "steps": 40,
+    "starting_loss": 0.4533831290900707,
+    "ending_loss": 0.11741327866911888,
+    "target_match_before": 1,
+    "target_match_after": 5,
+    "finite_losses": true,
+    "passed": true
+  },
+  "real_resume_rehearsal": {
+    "report": "results/training/resume_rehearsal.json",
+    "max_steps": 4,
+    "interrupt_at": 2,
+    "max_abs_loss_delta": 0.0,
+    "orders_equal": true,
+    "passed": true
+  },
+  "full_fp16_attempt": {
+    "run_name": "phase04_lora_r8",
+    "status": "incomplete",
+    "observed_log_steps": 115,
+    "last_verified_epoch_bundle_step": 76,
+    "last_periodic_bundle_step": 100,
+    "peak_allocated_bytes": 4498746880,
+    "peak_reserved_bytes": 8873050112,
+    "oom_observed": true,
+    "validation_metrics_saved": false,
+    "adapter_accepted": false,
+    "note": "A partial adapter exists but was not validation-selected and must not be treated as the Phase 4 delivered model."
+  },
+  "decision": "Do not continue full FP16 training on the 6GB laptop. Preserve the completed trainer/checkpoint gates and run the full training on a cloud GPU when available.",
+  "next_cloud_command": "python scripts/train.py --config configs/train.yaml --run-name phase04_lora_r8 --device cuda"
+}

@@ -1,0 +1,57 @@
+# Phase 4 LoRA training contract. Values are pinned starting hypotheses, not tuned results.
+run_name: phase04_lora_r8
+model_id: Qwen/Qwen2.5-1.5B-Instruct
+model_revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+tokenizer_id: Qwen/Qwen2.5-1.5B-Instruct
+tokenizer_revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+model_config: configs/model.yaml
+prompt_config: configs/prompt.yaml
+prompt_revision: v1-provisional
+data_config: configs/data.yaml
+split_manifest: data/splits/manifest.json
+manifest_sha256_file: data/splits/manifest.sha256
+seed: 42
+device: cuda
+precision: float16
+attn_implementation: sdpa
+max_total_tokens: 1024
+max_new_tokens: 96
+max_seq_len: 1024
+gradient_checkpointing: true
+use_cache_during_training: false
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+  task_type: CAUSAL_LM
+optimizer:
+  name: AdamW
+  learning_rate: 2.0e-4
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+scheduler:
+  name: linear
+  warmup_ratio: 0.05
+max_grad_norm: 1.0
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+max_epochs: 3
+checkpoint:
+  every_steps: 25
+  every_seconds: 300
+  keep_recent: 2
+  local_root: checkpoints
+  drive_root: null
+output:
+  results_root: results/training
+validation:
+  split: validation
+  max_total_tokens: 1024
+  max_new_tokens: 96
+  generation_backend: transformers_generate_greedy_cache
+  reference_equivalence_examples: 0
+selection:
+  primary: classification.macro_f1
+  tie_breaker: evidence.micro.f1
+  final_tie: validation_loss
