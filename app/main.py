@@ -9,6 +9,7 @@ import tempfile
 import threading
 import time
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -132,7 +133,11 @@ def screen(note: str, rows: Any, mode: str):
             "runtime": {"model_id": rt["cfg"]["model_id"],
                         "model_revision": rt["cfg"]["model_revision"],
                         "adapter_sha256": rt["cfg"].get("adapter_sha256"),
-                        "device": str(rt["device"]), "decoder": mode_name},
+                        "device": str(rt["device"]), "decoder": mode_name,
+                        "prompt_revision": rt["cfg"].get("prompt_revision"),
+                        "max_total_tokens": rt["cfg"].get("max_total_tokens"),
+                        "max_new_tokens": rt["cfg"].get("max_new_tokens")},
+            "created_at": datetime.now(timezone.utc).isoformat(),
             "criteria": results, "aggregate": aggregate,
         }
         if mode_name == "Speculative (k=4)":
@@ -146,7 +151,13 @@ def screen(note: str, rows: Any, mode: str):
             flag_text = ", ".join(name.replace("_", " ") for name, active in flags.items() if active) or "none"
             invalid = item.get("invalid_evidence_values", [])
             invalid_text = f" · Invalid evidence IDs: {html.escape(str(invalid))}" if invalid else ""
-            cards.append(f"<section class='result'><h3>{html.escape(item.get('criterion_type','').title())}: {html.escape(item.get('criterion_text',''))}</h3><p><b>Prediction:</b> {html.escape(str(item.get('label') or 'Needs review'))} · <b>Parse:</b> {html.escape(str(item.get('parse_status')))} · <b>Evidence:</b> {html.escape(str(item.get('evidence_status','unknown')))}</p>{excerpts}<p>{html.escape(str(item.get('explanation','')))}</p><p><b>Review flags:</b> {html.escape(flag_text)}{invalid_text}</p></section>")
+            stats = item.get("speculative_stats") or {}
+            stats_text = (
+                f" · Speculative acceptance: {stats.get('accepted_tokens', 0)}/"
+                f"{stats.get('proposed_tokens', 0)} ({stats.get('acceptance_rate', 0.0):.1%})"
+                if mode_name == "Speculative (k=4)" else ""
+            )
+            cards.append(f"<section class='result'><h3>{html.escape(item.get('criterion_type','').title())}: {html.escape(item.get('criterion_text',''))}</h3><p><b>Prediction:</b> {html.escape(str(item.get('label') or 'Needs review'))} · <b>Parse:</b> {html.escape(str(item.get('parse_status')))} · <b>Evidence:</b> {html.escape(str(item.get('evidence_status','unknown')))}</p><p><b>Request latency:</b> {item.get('timing_ms', 0.0):.1f} ms · <b>Output tokens:</b> {item.get('generated_token_count', 0)} · <b>Output rate:</b> {item.get('tokens_per_second', 0.0):.2f} tokens/s{html.escape(stats_text)}</p>{excerpts}<p>{html.escape(str(item.get('explanation','')))}</p><p><b>Review flags:</b> {html.escape(flag_text)}{invalid_text}</p></section>")
         panel = f"<div class='summary'><h2>{html.escape(aggregate['outcome'].replace('_',' ').title())}</h2><p>{html.escape(aggregate.get('outcome_description',''))}</p><small>{html.escape(aggregate['educational_notice'])}</small></div>" + "".join(cards)
         return panel, report, report, "Screening finished. Nothing was written to disk. Exports include cited text and are created only when you request a download."
     except Exception as exc:  # surfaced in UI so the operator can recover
@@ -166,11 +177,47 @@ def export_report(report: dict[str, Any] | None, format_name: str):
         snippets = "".join(f"<blockquote>[{e['id']}] {html.escape(e['text'])}</blockquote>" for e in item.get("evidence_excerpts", []))
         flags = ", ".join(k.replace("_", " ") for k, v in item.get("flags", {}).items() if v) or "none"
         cards.append(f"<section class='result'><h2>{html.escape(item['criterion_type'].title())}: {html.escape(item['criterion_text'])}</h2><p><b>Prediction:</b> {html.escape(str(item.get('label') or 'Needs review'))} · <b>Evidence:</b> {html.escape(str(item.get('evidence_status','unknown')))} · <b>Parse:</b> {html.escape(str(item.get('parse_status','unknown')))}</p>{snippets}<p>{html.escape(item.get('explanation',''))}</p><p><b>Review flags:</b> {html.escape(flags)}</p></section>")
-    body = f"<div class='summary'><h1>{html.escape(aggregate['outcome'].replace('_',' ').title())}</h1><p>{html.escape(aggregate.get('outcome_description',''))}</p></div>" + "".join(cards)
+    body = (f"<div class='summary'><h1>{html.escape(aggregate['outcome'].replace('_',' ').title())}</h1>"
+            f"<p>{html.escape(aggregate.get('outcome_description',''))}</p>"
+            f"<p><b>Aggregation policy:</b> {html.escape(str(aggregate.get('policy_version','unknown')))}"
+            f" · {html.escape('; '.join(aggregate.get('reasons', [])) or 'No review reason recorded.')}</p></div>"
+            + "".join(cards))
+    runtime = report.get("runtime", {})
+    prompt_details = report.get("criteria", [{}])[0] if report.get("criteria") else {}
+    provenance = [
+        ("Generated at (UTC)", report.get("created_at", "")),
+        ("Target model", runtime.get("model_id", "")),
+        ("Target revision", runtime.get("model_revision", "")),
+        ("Adapter SHA-256", runtime.get("adapter_sha256") or "none"),
+        ("Device", runtime.get("device", "")),
+        ("Decoder", runtime.get("decoder", "")),
+        ("Draft model", runtime.get("draft_model_id") or "none"),
+        ("Draft revision", runtime.get("draft_model_revision") or "none"),
+        ("Prompt template revision", runtime.get("prompt_revision") or prompt_details.get("prompt_revision", "")),
+        ("Criterion 1 tokenized prompt IDs SHA-256", prompt_details.get("prompt_sha256", "")),
+        ("Token limits", f"input {runtime.get('max_total_tokens', 'unknown')}; output {runtime.get('max_new_tokens', 'unknown')}"),
+    ]
+    provenance_html = "<dl>" + "".join(
+        f"<dt><b>{html.escape(str(label))}</b></dt><dd>{html.escape(str(value))}</dd>"
+        for label, value in provenance
+    ) + "</dl>"
+    runtime_rows = "".join(
+        f"<li>{html.escape(item.get('criterion_type','').title())}: "
+        f"{html.escape(str(item.get('timing_ms', 0)))} ms · "
+        f"{html.escape(str(item.get('generated_token_count', 0)))} tokens · "
+        f"{html.escape(str(round(item.get('tokens_per_second', 0.0), 2)))} tokens/s · "
+        f"{html.escape(str((item.get('speculative_stats') or {}).get('acceptance_rate', 'n/a')))} acceptance · "
+        f"{html.escape(str(item.get('generation_mode', runtime.get('decoder',''))))} · "
+        f"Prompt IDs SHA-256: {html.escape(str(item.get('prompt_sha256','')))}</li>"
+        for item in report.get("criteria", [])
+    )
     document = ("<!doctype html><html><head><meta charset='utf-8'><title>Screening report</title>"
                 f"<style>body{{font:16px system-ui,sans-serif;max-width:1000px;margin:40px auto;padding:0 20px;color:#172033}}{CSS}</style></head><body>"
                 "<h1>Clinical trial criteria screening</h1>" + body +
-                f"<p>{html.escape(aggregate['educational_notice'])}</p><p>Model: {html.escape(report['runtime']['model_id'])} · Decoder: {html.escape(report['runtime']['decoder'])}</p></body></html>")
+                f"<h2>Runtime provenance</h2>{provenance_html}"
+                f"<h2>Criterion timings</h2><p>End-to-end prompt, decode, parse, and explanation time; model loading is excluded.</p>"
+                f"<ul>{runtime_rows}</ul>"
+                f"<p>{html.escape(aggregate['educational_notice'])}</p></body></html>")
     destination.write_text(document, encoding="utf-8")
     return str(destination)
 

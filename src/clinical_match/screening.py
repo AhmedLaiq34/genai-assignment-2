@@ -348,6 +348,12 @@ class ScreeningService:
             contradiction=flags["contradiction"],
         )
         elapsed_ms = (time.perf_counter() - started) * 1000.0
+        generated_token_count = len(generated.get("token_ids", []))
+        tokens_per_second = (
+            generated_token_count / (elapsed_ms / 1000.0)
+            if elapsed_ms > 0.0
+            else 0.0
+        )
         prompt_ids = prompt["input_ids"] if prompt is not None else []
         prompt_hash = hashlib.sha256(
             json.dumps(prompt_ids, separators=(",", ":")).encode("utf-8")
@@ -386,6 +392,9 @@ class ScreeningService:
             or str(self.cfg.get("generation_backend", "cached_library_greedy")),
             "runtime_error": runtime_error,
             "timing_ms": elapsed_ms,
+            "generated_token_count": generated_token_count,
+            "tokens_per_second": tokens_per_second,
+            "speculative_stats": generated.get("stats"),
             "educational_notice": EDUCATIONAL_NOTICE,
         }
 
