@@ -2,20 +2,20 @@
 
 ## Release state
 
-The working tree contains the implementation, a compiled six-page IEEE paper, frozen base and adapted test predictions, metrics and plots, and the selected adapter bundle. The Git remote is configured as `origin` (`https://github.com/AhmedLaiq34/genai-assignment-2.git`); publish the current release after reviewing the staged files. The demo recording and Classroom receipt still require the author.
+The working tree contains the implementation, a compiled six-page IEEE paper, frozen base and adapted test predictions, metrics and plots, and the selected adapter bundle. The Git remote is configured as `origin` (`https://github.com/AhmedLaiq34/genai-assignment-2.git`), and the current source release is published on `main`. The adapter bundle and checksum, as well as the demo recording, are linked below; submit the artifacts through the course portal and save the receipt.
 
 ## Deliverables checklist
 
 | Item | Artifact / status |
 |---|---|
 | IEEE report PDF and LaTeX | [`report/paper.pdf`](report/paper.pdf), [`report/main.tex`](report/main.tex), [`report/references.bib`](report/references.bib); AI-use appendix is included in the PDF. |
-| GitHub URL | <https://github.com/AhmedLaiq34/genai-assignment-2> (current local release must be pushed before this URL contains the final files). |
+| GitHub URL | <https://github.com/AhmedLaiq34/genai-assignment-2> (public `main` branch). |
 | Run and reproduction instructions | This guide, `README.md`, and the commands below. |
-| Model weights / download | [Selected adapter ZIP on Google Drive](https://drive.google.com/file/d/1MvDikzqD8oGyZhP__d-DU08bkMs5pCx0/view?usp=drivesdk), with [SHA-256 sidecar](https://drive.google.com/file/d/1X68LYEoKLNkA0jXwbyVxR4JJWefgdZN1/view?usp=drivesdk). The Drive files are currently private; grant course staff access before relying on this link. Base model downloads from Hugging Face: <https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct>. |
+| Model weights / download | [Selected adapter ZIP on Google Drive](https://drive.google.com/file/d/1MvDikzqD8oGyZhP__d-DU08bkMs5pCx0/view?usp=drivesdk), with [SHA-256 sidecar](https://drive.google.com/file/d/1X68LYEoKLNkA0jXwbyVxR4JJWefgdZN1/view?usp=drivesdk). Both Drive files allow anyone with the link to view and download them. Base model downloads from Hugging Face: <https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct>. |
 | Split manifest | `results/frozen_manifest.json` and `results/frozen_manifest.sha256`. |
 | Benchmark logs | Raw JSON/CSV under `results/cache/`, `results/speculative/`, and `results/attention/`. |
 | AI-use appendix | Included in `report/paper.pdf` and `report/main.tex`. |
-| 5–7 minute demo video | Not recorded yet; use the local app instructions below and submit the recording link. |
+| 5–7 minute demo video | [YouTube demo](https://youtu.be/ZSvL8BiK-Cg) (confirm it is viewable by course staff). |
 
 ## Run the local demo
 
@@ -33,7 +33,7 @@ The exact notice is **Educational screening prototype; not a clinical enrollment
 - Draft: `Qwen/Qwen2.5-0.5B-Instruct`, revision `7ae557604adf67be50417f59c2c2f167def9a775` (Apache-2.0).
 - Adapter: Phase 4 run `phase04_lora_colab_cli_20261110T1650Z`, validation-selected epoch 3, global step 228. Full bundle is locally preserved under `artifacts/phase04/phase04_lora_colab_cli_20261110T1650Z_bundle/`; large model weights are git-ignored.
 - Bundle manifest: `artifacts/phase04/phase04_lora_colab_cli_20261110T1650Z_bundle/bundle_manifest.json`. It checks the SHA-256 and byte size of each bundle file. Verify with `python scripts/verify_training_bundle.py`; it checks all 10 bundle files against size and SHA-256 in the bundle manifest. The adapter tensor file SHA-256 is recorded by that command.
-- Before sharing the model, upload the adapter bundle to an accessible file host and add a link plus permissions here. Do not add `.safetensors` files to Git.
+- The adapter bundle and SHA-256 sidecar are shared as viewer-accessible links above. Do not add `.safetensors` files to Git.
 
 ## Frozen evaluation and evidence
 
@@ -57,10 +57,10 @@ The held-out set contains 206 criterion examples from eight patients. Adapted te
 
 ## Final hand-in items to add
 
-- Published repository URL and release commit after committing and pushing the reviewed source.
-- Public or course-accessible adapter download link with a verified checksum and license note.
-- 5-7 minute locally recorded demonstration link and access permissions.
+- Published repository URL: https://github.com/AhmedLaiq34/genai-assignment-2 (main branch).
+- Adapter ZIP and SHA-256 sidecar: shared as Anyone with the link (Viewer).
+- 5-7 minute demonstration: https://youtu.be/ZSvL8BiK-Cg (confirm course-staff access).
 - Screenshot of the actual running local browser UI.
 - Classroom submission receipt and live-demo attendance confirmation.
 
-These external release actions have not been performed by this workspace. Add their URLs and the exact release commit before handing in.
+Before handing in, verify the YouTube link in a signed-out browser, include a screenshot of the running app if required, submit through the course portal, and save the Classroom receipt.
